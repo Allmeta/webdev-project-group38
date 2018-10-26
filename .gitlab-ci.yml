@@ -13,6 +13,7 @@ ver-job:
 client-init-job: 
   stage: init
   script:
+    - docker login gruppe38
     - "cd client/"
     - "yarn cache clean"
     - "rm -rf node-modules"
