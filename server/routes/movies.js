@@ -7,8 +7,8 @@ router.get('/movies', (req, res) => {
   let query
   if (req.query.search) {
     query = {
-      text: 'SELECT * FROM movie WHERE title = $1',
-      values: [req.query.search.toString()]
+      text: 'SELECT * FROM movie WHERE title LIKE $1',
+      values: [`%${req.query.search.toString()}%`]
     }
   } else {
     query = 'SELECT * FROM movie'
