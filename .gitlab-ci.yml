@@ -1,0 +1,39 @@
+image: "yarn:1.9.4"
+
+stages:
+  - ver
+  - init
+  - tests
+
+ver-job: 
+  stage: ver
+  script:
+    - "yarn --version"
+
+client-init-job: 
+  stage: init
+  script:
+    - "cd client/"
+    - "yarn cache clean"
+    - "rm -rf node-modules"
+    - "yarn"
+
+server-init-job:
+  stage: init
+  script:
+    - "cd server/"
+    - "yarn cache clean"
+    - "rm -rf node-modules"
+    - "yarn"
+
+client_run_tests: 
+  stage: tests
+  script: 
+    - "cd client/"
+    - "yarn test"
+
+server_run_tests: 
+  stage: tests
+  script: 
+    - "cd server/"
+    - "yarn test"
