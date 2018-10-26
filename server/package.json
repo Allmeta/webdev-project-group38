@@ -14,7 +14,8 @@
     "express": "^4.16.4",
     "jest": "^23.6.0",
     "joi": "^14.0.1",
-    "pg": "^7.5.0"
+    "pg": "^7.5.0",
+    "supertest": "^3.3.0"
   },
   "devDependencies": {
     "babel-register": "^6.26.0",
@@ -29,6 +30,7 @@
   },
   "scripts": {
     "start": "nodemon -r babel-register server.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "test": "jest bable-register __tests__/*"
   }
 }
