@@ -1,14 +1,18 @@
 import request from 'supertest'
-// import { app } from '../../server'
-// const apiReq = request(app)
-const apiReq = request('http://localhost:5006/api')
+import { server } from '../../server'
 
 describe('GET /api/movies - get movies', () => {
-  it('should return all movies', () => {
-    apiReq
-      .get('/movies')
+  afterAll(() => server.close())
+
+  it('should return all movies', async (done) => {
+    return request(server)
+      .get('/api/movies')
       .expect(200)
       .expect('Content-Type', /json/)
-      .expect('Content-Length', '499')
+      .then(response => {
+        expect(response.body).toHaveLength(508)
+        // done().catch(done)
+      })
+      .catch(error => console.log(error))
   })
 })
