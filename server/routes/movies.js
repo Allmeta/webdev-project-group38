@@ -24,4 +24,5 @@ router.get('/movies', (req, res) => {
 function generateError (status, errorMessage) {
   return { status: status, error: errorMessage }
 }
+
 export { router }

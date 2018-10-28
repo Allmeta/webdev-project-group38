@@ -1,18 +1,21 @@
 import request from 'supertest'
-import { server } from '../../server'
+import { close, server } from '../../server'
 
 describe('GET /api/movies - get movies', () => {
-  afterAll(() => server.close())
+  afterAll(() => close())
 
-  it('should return all movies', async (done) => {
+  it('should return json and 200 status code', (done) => {
     return request(server)
       .get('/api/movies')
       .expect(200)
-      .expect('Content-Type', /json/)
+      .expect('Content-Type', /json/, done)
+  })
+
+  it('should return all movies', () => {
+    request(server)
+      .get('/api/movies')
       .then(response => {
         expect(response.body).toHaveLength(508)
-        // done().catch(done)
       })
-      .catch(error => console.log(error))
   })
 })
