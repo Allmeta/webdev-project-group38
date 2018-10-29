@@ -1,5 +1,10 @@
 image: "node:latest"
 
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+    - node_modules/
+
 stages:
   - ver
   - init
@@ -11,11 +16,6 @@ ver-job:
     - "yarn --version"
 
 client-init-job: 
-  cache:
-    key: client
-    paths:
-      - "/client/node_modules/"
-      - "/client/yarn.lock"
   stage: init
   script:
     - "cd client/"
@@ -24,11 +24,6 @@ client-init-job:
     - "yarn install"
 
 server-init-job:
-  cache:
-    key: server
-    paths:
-      - "/server/node_modules/"
-      - "/server/yarn.lock"
   stage: init
   script:
     - "cd server/"
@@ -37,24 +32,12 @@ server-init-job:
     - "yarn install"
 
 client_run_tests: 
-  cache:
-    key: client
-    paths:
-      - "/client/node_modules/"
-      - "/client/yarn.lock"
-    policy: pull
   stage: tests
   script: 
     - "cd client/"
     - "yarn test"
 
 server_run_tests: 
-  cache:
-    key: server
-    paths:
-      - "/server/node_modules/"
-      - "/server/yarn.lock"
-    policy: pull
   stage: tests
   script: 
     - "cd server/"
