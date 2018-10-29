@@ -14,13 +14,13 @@ app.get('/', (req, res) => {
 })
 
 app.use('/api', router)
-app.set('port', (process.env.PORT || 5021))
+app.set('port', (process.env.PORT || 5030))
 const server = app.listen(app.get('port'), () => {
   console.log(`Listening on ${app.get('port')}`)
 })
 
 function close () {
   pool.end()
-  server.close()
+    .then(() => server.close())
 }
 export { close, server }
