@@ -1,44 +1,39 @@
-image: node:latest
+image: "node:latest"
 
 stages:
- - install
- - test
- - compile
+  - ver
+  - init
+  - tests
 
-cache:
- key: modules
- paths:
-  - node_modules/
-
-install:
- stage: install
- cache:
-  key: modules
-  paths:
-    - node_modules/
-  after_script:
-   - node -v && npm -v
+ver-job: 
+  stage: ver
   script:
-  - npm i
+    - "yarn --version"
 
-test:
- stage: test
- cache:
-   key: modules
-   paths:
-     - node_modules/
-   policy: pull
- before_script:
-  - node -v && npm -v
- script:
-- npm run test
+client-init-job: 
+  stage: init
+  script:
+    - "cd client/"
+    - "yarn cache clean"
+    - "rm -rf node-modules"
+    - "yarn install"
 
-compile:
- stage: compile
- cache:
- key: modules
- paths:
-   - node_modules/
- policy: pull
- script:
-  - npm run build
+server-init-job:
+  stage: init
+  script:
+    - "cd server/"
+    - "yarn cache clean"
+    - "rm -rf node-modules"
+    - "yarn install"
+
+client_run_tests: 
+  stage: tests
+  script: 
+    - "cd client/"
+    - "yarn test"
+
+server_run_tests: 
+  stage: tests
+  script: 
+    - "cd server/"
+    - "yarn test"
