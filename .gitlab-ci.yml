@@ -1,10 +1,5 @@
 image: "node:latest"
 
-cache:
-  key: ${CI_COMMIT_REF_SLUG}
-  paths:
-    - node_modules/
-
 stages:
   - ver
   - init
@@ -35,10 +30,12 @@ client_run_tests:
   stage: tests
   script: 
     - "cd client/"
+    - "yarn install"
     - "yarn test"
 
 server_run_tests: 
   stage: tests
   script: 
     - "cd server/"
+    - "yarn install"
     - "yarn test"
