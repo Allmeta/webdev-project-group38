@@ -14,8 +14,8 @@ client-init-job:
   cache:
     key: client
     paths:
-      - "node_modules"
-      - "yarn.lock"
+      - "/client/node_modules/"
+      - "/client/yarn.lock"
   stage: init
   script:
     - "cd client/"
@@ -27,8 +27,8 @@ server-init-job:
   cache:
     key: server
     paths:
-      - "node_modules"
-      - "yarn.lock"
+      - "/server/node_modules/"
+      - "/server/yarn.lock"
   stage: init
   script:
     - "cd server/"
@@ -40,8 +40,8 @@ client_run_tests:
   cache:
     key: client
     paths:
-      - "node_modules"
-      - "yarn.lock"
+      - "/client/node_modules/"
+      - "/client/yarn.lock"
     policy: pull
   stage: tests
   script: 
@@ -52,8 +52,8 @@ server_run_tests:
   cache:
     key: server
     paths:
-      - "node_modules"
-      - "yarn.lock"
+      - "/server/node_modules/"
+      - "/server/yarn.lock"
     policy: pull
   stage: tests
   script: 
