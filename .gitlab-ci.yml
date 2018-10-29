@@ -30,10 +30,12 @@ client_run_tests:
   stage: tests
   script: 
     - "cd client/"
+    - "yarn install"
     - "yarn test"
 
 server_run_tests: 
   stage: tests
   script: 
     - "cd server/"
+    - "yarn install"
     - "yarn test"
