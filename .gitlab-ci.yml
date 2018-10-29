@@ -1,4 +1,4 @@
-image: "yarn:1.9.4"
+image: "node:latest"
 
 stages:
   - ver
@@ -13,11 +13,10 @@ ver-job:
 client-init-job: 
   stage: init
   script:
-    - docker login gruppe38
     - "cd client/"
     - "yarn cache clean"
     - "rm -rf node-modules"
-    - "yarn"
+    - "yarn install"
 
 server-init-job:
   stage: init
@@ -25,16 +24,16 @@ server-init-job:
     - "cd server/"
     - "yarn cache clean"
     - "rm -rf node-modules"
-    - "yarn"
+    - "yarn install"
 
 client_run_tests: 
   stage: tests
   script: 
     - "cd client/"
-    - "yarn test"
+    - "npm test"
 
 server_run_tests: 
   stage: tests
   script: 
     - "cd server/"
-    - "yarn test"
+    - "npm test"
