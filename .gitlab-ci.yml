@@ -11,6 +11,10 @@ ver-job:
     - "yarn --version"
 
 client-init-job: 
+  cache:
+    key: client
+    paths:
+      - "node_modules"
   stage: init
   script:
     - "cd client/"
@@ -19,6 +23,10 @@ client-init-job:
     - "yarn install"
 
 server-init-job:
+  cache:
+    key: server
+    paths:
+      - "node_modules"
   stage: init
   script:
     - "cd server/"
@@ -27,15 +35,23 @@ server-init-job:
     - "yarn install"
 
 client_run_tests: 
+  cache:
+    key: client
+    paths:
+      - "/node_modules"
+    policy: pull
   stage: tests
   script: 
     - "cd client/"
-    - "yarn install"
     - "yarn test"
 
 server_run_tests: 
+  cache:
+    key: server
+    paths:
+      - "/node_modules"
+    policy: pull
   stage: tests
   script: 
     - "cd server/"
-    - "yarn install"
     - "yarn test"
