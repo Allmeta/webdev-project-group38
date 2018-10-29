@@ -1,4 +1,4 @@
-image: "node-yarn"
+image: "https://hub.docker.com/_/node/:latest"
 
 stages:
   - ver
@@ -14,7 +14,7 @@ client-init-job:
   stage: init
   script:
     - "cd client/"
-    - "yarn cache clean"
+    - "yarm cache clean"
     - "rm -rf node-modules"
     - "yarn install"
 
