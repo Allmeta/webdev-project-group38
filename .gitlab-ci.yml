@@ -16,7 +16,7 @@ client-init-job:
     - "cd client/"
     - "yarn cache clean"
     - "rm -rf node-modules"
-    - "yarn"
+    - "yarn install"
 
 server-init-job:
   stage: init
@@ -24,16 +24,16 @@ server-init-job:
     - "cd server/"
     - "yarn cache clean"
     - "rm -rf node-modules"
-    - "yarn"
+    - "yarn install"
 
 client_run_tests: 
   stage: tests
   script: 
     - "cd client/"
-    - "npm test"
+    - "yarn test"
 
 server_run_tests: 
   stage: tests
   script: 
     - "cd server/"
-    - "npm test"
+    - "yarn test"
