@@ -8,32 +8,32 @@ stages:
 ver-job: 
   stage: ver
   script:
-    - "npm --version"
+    - "yarn --version"
 
 client-init-job: 
   stage: init
   script:
     - "cd client/"
-    - "npm cache clean"
+    - "yarn cache clean"
     - "rm -rf node-modules"
-    - "npm install"
+    - "yarn install"
 
 server-init-job:
   stage: init
   script:
     - "cd server/"
-    - "npm cache clean"
+    - "yarn cache clean"
     - "rm -rf node-modules"
-    - "npm install"
+    - "yarn install"
 
 client_run_tests: 
   stage: tests
   script: 
     - "cd client/"
-    - "npm test"
+    - "yarn test"
 
 server_run_tests: 
   stage: tests
   script: 
     - "cd server/"
-    - "npm test"
+    - "yarn test"
