@@ -12,20 +12,25 @@
     "babel-preset-stage-0": "^6.24.1",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
-    "jest": "^23.6.0",
-    "joi": "^14.0.1"
+    "pg": "^7.5.0",
+    "supertest": "^3.3.0"
   },
   "devDependencies": {
     "babel-register": "^6.26.0",
     "eslint": "^5.7.0",
     "eslint-config-standard": "^12.0.0",
     "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jest": "^21.26.1",
     "eslint-plugin-node": "^7.0.1",
     "eslint-plugin-promise": "^4.0.1",
     "eslint-plugin-standard": "^4.0.0",
+    "jest": "^23.6.0",
+    "joi": "^14.0.1",
     "nodemon": "^1.18.4"
   },
   "scripts": {
-    "start": "nodemon -r babel-register server.js"
+    "start": "nodemon -r babel-register server.js --signal SIGINT",
+    "lint": "eslint .",
+    "test": "jest --forceExit"
   }
 }
