@@ -11,7 +11,6 @@ ver-job:
     - "yarn --version"
     - "yarn cache clean"
     - "rm -rf node-modules"
-    - "yarn cache dir"
 
 client-build-job: 
   stage: build
@@ -19,8 +18,7 @@ client-build-job:
     - "cd client/"
     - "yarn install"
   artifacts:
-    paths:
-      - "node_modules/"    
+    untracked: true
 
 server-build-job:
   stage: build
@@ -28,8 +26,7 @@ server-build-job:
     - "cd server/"
     - "yarn install"
   artifacts:
-    paths:
-      - "node_modules/"    
+    untracked: true  
 
 client-test-job: 
   stage: test
