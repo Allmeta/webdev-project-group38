@@ -11,6 +11,7 @@ ver-job:
     - "yarn --version"
     - "yarn cache clean"
     - "rm -rf node-modules"
+    - "yarn cache dir"
 
 client-build-job: 
   stage: build
