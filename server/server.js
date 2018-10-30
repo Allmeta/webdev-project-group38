@@ -1,6 +1,7 @@
 import express from 'express'
 import bodyParser from 'body-parser'
-import { router } from './routes/movies'
+import { movies } from './routes/movies'
+import { reviews } from './routes/reviews'
 import { pool } from './dbConnect'
 
 const app = express()
@@ -13,8 +14,9 @@ app.get('/', (req, res) => {
   res.send('Hello world')
 })
 
-app.use('/api', router)
-app.set('port', (process.env.PORT || 5030))
+app.use('/api', movies)
+app.use('/api/movies', reviews)
+app.set('port', (process.env.PORT || 5025))
 const server = app.listen(app.get('port'), () => {
   console.log(`Listening on ${app.get('port')}`)
 })
