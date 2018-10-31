@@ -62,7 +62,7 @@ describe('GET /api/movies/reviews - get reviews', () => {
   })
 })
 
-describe('POST /api/movies/reviews - post review', () => {
+describe('PUT /api/movies/reviews - post review', () => {
   it('should return the response object and 200 status code', done => {
     const respObj = {
       id: Joi.number(),
@@ -73,7 +73,7 @@ describe('POST /api/movies/reviews - post review', () => {
       review: 'Good adaptation btw (Updated by the test)'
     }
     return request(server)
-      .post('/api/movies/reviews')
+      .put('/api/movies/reviews')
       .send(postObj)
       .set('Accept', 'application/json')
       .expect(200)
