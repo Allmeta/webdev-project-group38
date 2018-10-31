@@ -25,7 +25,7 @@ reviews.get('/reviews/id/:id', (req, res) => {
     .catch(() => res.status(500).json(generateError(500, 'Internal server error')))
 })
 
-reviews.post('/reviews', (req, res) => {
+reviews.put('/reviews', (req, res) => {
   const reviewObj = {
     id: Joi.number(),
     review: Joi.string()
