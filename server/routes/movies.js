@@ -34,8 +34,6 @@ movies.get('/movies/id/:id', (req, res) => {
     .catch(() => res.status(500).json(generateError(500, 'Internal server error')))
 })
 
-function generateError (status, errorMessage) {
-  return { status: status, error: errorMessage }
-}
+const generateError = (status, errorMessage) => ({status, error: errorMessage})
 
 export { movies, generateError }
