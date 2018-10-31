@@ -32,4 +32,3 @@ chrome-user-data
 .idea
 *.iml
 .vscode
-db_config.json
