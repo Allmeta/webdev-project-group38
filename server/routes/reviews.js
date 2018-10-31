@@ -1,9 +1,9 @@
 import express from 'express'
 import { pool } from '../dbConnect'
-import { generateError } from './movies'
+import { generateError } from '../utils'
 import Joi from 'joi'
 
-const reviews = express.Router('/movies')
+const reviews = express.Router()
 
 reviews.get('/reviews', (req, res) => {
   pool.query('SELECT comment FROM movie')
@@ -14,8 +14,6 @@ reviews.get('/reviews', (req, res) => {
 })
 
 reviews.get('/reviews/id/:id', (req, res) => {
-  if (req.params.id === undefined) return res.json(generateError(400, 'No id provided'))
-
   const query = {
     text: 'SELECT comment FROM movie WHERE movie_id = $1',
     values: [`${req.params.id}`]
