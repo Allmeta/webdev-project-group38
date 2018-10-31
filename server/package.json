@@ -7,7 +7,7 @@
   "license": "GPLv3.0",
   "private": true,
   "engines": {
-    "node": "8"
+    "node": ">=8"
   },
   "dependencies": {
     "babel-plugin-transform-runtime": "^6.23.0",
