@@ -1,19 +1,26 @@
-import bodyParser from 'body-parser'
 import express from 'express'
+import bodyParser from 'body-parser'
+import { router } from './routes/movies'
+import { pool } from './dbConnect'
+
 const app = express()
+
+// Define bodyParse middleware to be used
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded({extended: false}))
-const router = express.Router()
-router.get('/cities', (req, res) => {
-  const cities = [
-    {name: 'New York City', population: 8175133},
-    {name: 'Los Angeles',   population: 3792621},
-    {name: 'Chicago',       population: 2695598}
-  ]
-  res.json(cities)
+app.use(bodyParser.urlencoded({ extended: false }))
+
+app.get('/', (req, res) => {
+  res.send('Hello world')
 })
-app.use(router)
-app.set('port', (process.env.PORT || 5000))
-app.listen(app.get('port'), () => {
+
+app.use('/api', router)
+app.set('port', (process.env.PORT || 5030))
+const server = app.listen(app.get('port'), () => {
   console.log(`Listening on ${app.get('port')}`)
 })
+
+function close () {
+  pool.end()
+    .then(() => server.close())
+}
+export { close, server }
