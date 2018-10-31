@@ -36,7 +36,7 @@ describe('GET /api/movies - get movies', () => {
 
   it('should return 404 error', done => {
     return request(server)
-      .get('/api/movies/1')
+      .get('/api/movies/id/1')
       .expect(404, done)
   })
 
@@ -46,7 +46,7 @@ describe('GET /api/movies - get movies', () => {
       error: Joi.string()
     }
     return request(server)
-      .get('/api/movies/1')
+      .get('/api/movies/id/1')
       .expect('Content-Type', /json/)
       .then(response => {
         const { error } = Joi.validate(response.body[0], errorObj)

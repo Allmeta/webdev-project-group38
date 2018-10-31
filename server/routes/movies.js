@@ -1,9 +1,10 @@
 import express from 'express'
 import { pool } from '../dbConnect'
+import { generateError } from '../utils'
 
-const router = express.Router()
+const movies = express.Router()
 
-router.get('/movies', (req, res) => {
+movies.get('/movies', (req, res) => {
   let query = 'SELECT * FROM movie'
   if (req.query.search) {
     query = {
@@ -19,10 +20,7 @@ router.get('/movies', (req, res) => {
     .catch(() => res.status(500).json(generateError(500, 'Internal server error')))
 })
 
-router.get('/movies/:id', (req, res) => {
-  if (req.params.id === undefined) {
-    res.json(generateError(400, 'No id provided'))
-  }
+movies.get('/movies/id/:id', (req, res) => {
   let query = {
     text: 'SELECT * FROM movie WHERE movie_id = $1',
     values: [`${req.params.id}`]
@@ -34,8 +32,4 @@ router.get('/movies/:id', (req, res) => {
     .catch(() => res.status(500).json(generateError(500, 'Internal server error')))
 })
 
-function generateError (status, errorMessage) {
-  return { status: status, error: errorMessage }
-}
-
-export { router }
+export { movies }
