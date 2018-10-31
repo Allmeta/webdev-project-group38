@@ -6,6 +6,9 @@ exports[`App renders correctly 1`] = `
     <li>
       This is a test
     </li>
+    <li>
+      This is a second test
+    </li>
   </ul>
 </div>
 `;
