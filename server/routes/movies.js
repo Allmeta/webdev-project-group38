@@ -21,7 +21,7 @@ movies.get('/movies', (req, res) => {
 
 movies.get('/movies/id/:id', (req, res) => {
   if (req.params.id === undefined) {
-    res.json(generateError(400, 'No id provided'))
+    return res.json(generateError(400, 'No id provided'))
   }
   let query = {
     text: 'SELECT * FROM movie WHERE movie_id = $1',
