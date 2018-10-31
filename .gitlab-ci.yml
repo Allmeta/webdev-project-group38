@@ -1,0 +1,45 @@
+image: "node:latest"
+
+stages:
+  - init
+  - build
+  - test
+
+ver-job: 
+  stage: init
+  script:
+    - "yarn --version"
+    - "yarn cache clean"
+    - "rm -rf node-modules"
+
+client-build-job: 
+  stage: build
+  script:
+    - "cd client/"
+    - "yarn install"
+  artifacts:
+    untracked: true
+
+server-build-job:
+  stage: build
+  script:
+    - "cd server/"
+    - "yarn install"
+  artifacts:
+    untracked: true  
+
+client-test-job: 
+  stage: test
+  script: 
+    - "cd client/"
+    - "yarn test"
+  dependencies:
+    - client-build-job
+
+server-test-job: 
+  stage: test
+  script: 
+    - "cd server/"
+    - "yarn test"
+  dependencies:
+    - server-build-job
