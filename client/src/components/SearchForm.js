@@ -1,9 +1,5 @@
 import React, { Component } from 'react'
-import { Form, Icon } from 'semantic-ui-react'
-
-const FormStyle = {
-  flex: 1
-}
+import { Form, Icon, Header } from 'semantic-ui-react'
 
 class SearchForm extends Component {
   state = {
@@ -29,7 +25,8 @@ class SearchForm extends Component {
     const { title, genre } = this.state;
 
     return (
-      <Form onSubmit={this.handleSubmit} style={FormStyle}>
+      <Form onSubmit={this.handleSubmit}>
+        <Header>Search</Header>
         <Form.Group>
           <Form.Input onChange={this.handleChange} value={title} name='title' placeholder='Title' width={3}/>
           <Form.Input onChange={this.handleChange} value={genre} name='genre' placeholder='Genre' width={3}/>
