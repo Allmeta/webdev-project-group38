@@ -1,15 +1,10 @@
 import React, { Component } from 'react'
+import Layout from './Components/Layout';
 class App extends Component {
-  state = {
-      cities: []
-    }
   render() {
     return (
-      <div>
-        <ul>
-          <li>This is a test</li>
-          <li>This is a second test</li>
-        </ul>
+      <div style={{margin:0}}>
+        <Layout/>
       </div>
     );
   }
