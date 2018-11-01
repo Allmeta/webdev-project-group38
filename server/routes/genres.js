@@ -20,9 +20,9 @@ genres.get('/genres', (req, res) => {
     .catch(() => res.status(500).json(generateError(500, 'Internal server error')))
 })
 // genre of a movie
-genres.get('/genres/movie/:movieid', (req, res) => {
+genres.get('/genres/movie/:id', (req, res) => {
   let query = {
-    text: 'SELECT * FROM genre WHERE genre_id IN (SELECT genre_id FROM movie_genre WHERE movie_id = $1',
+    text: 'SELECT * FROM genre WHERE genre_id IN (SELECT genre_id FROM movie_genre WHERE movie_id = $1)',
     values: [`${req.params.id}`]
   }
   pool.query(query)

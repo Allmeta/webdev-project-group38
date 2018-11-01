@@ -32,10 +32,10 @@ movies.get('/movies/id/:id', (req, res) => {
     .catch(() => res.status(500).json(generateError(500, 'Internal server error')))
 })
 
-movies.get('/movies/genre/:genreid', (req, res) => {
+movies.get('/movies/genre/:id', (req, res) => {
   let query = {
-    text: 'SELECT * FROM movie WHERE movie_id IN (SELECT movie_id FROM movie_genre WHERE genre_id = $1',
-    values: [`${req.params.genreid}`]
+    text: 'SELECT * FROM movie WHERE movie_id IN (SELECT movie_id FROM movie_genre WHERE genre_id = $1)',
+    values: [`${req.params.id}`]
   }
   pool.query(query)
     .then(movies => movies.rows.length > 0 ? res.json(movies.rows) : res.status(404).json(
