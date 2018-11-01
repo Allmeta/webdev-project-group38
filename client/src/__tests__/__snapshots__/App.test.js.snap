@@ -10,5 +10,64 @@ exports[`App renders correctly 1`] = `
       This is a second test
     </li>
   </ul>
+  <form
+    className="ui form"
+    onSubmit={[Function]}
+  >
+    <div
+      className="ui header"
+    >
+      Search
+    </div>
+    <div
+      className="fields"
+    >
+      <div
+        className="three wide field"
+      >
+        <div
+          className="ui input"
+        >
+          <input
+            name="title"
+            onChange={[Function]}
+            placeholder="Title"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="three wide field"
+      >
+        <div
+          className="ui input"
+        >
+          <input
+            name="genre"
+            onChange={[Function]}
+            placeholder="Genre"
+            type="text"
+            value=""
+          />
+        </div>
+      </div>
+      <div
+        className="two wide field"
+      >
+        <button
+          className="ui icon button"
+          onClick={[Function]}
+          role="button"
+          type="submit"
+        >
+          <i
+            aria-hidden="true"
+            className="search icon"
+          />
+        </button>
+      </div>
+    </div>
+  </form>
 </div>
 `;
