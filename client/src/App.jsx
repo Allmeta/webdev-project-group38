@@ -10,6 +10,7 @@ class App extends Component {
         <Layout/>
          <SearchForm />
       </div>
+      </div>
     );
   }
 }
