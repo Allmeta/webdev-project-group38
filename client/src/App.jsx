@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Layout from './Components/Layout';
+import Layout from './components/Layout';
 import SearchForm from './components/SearchForm.js'
 
 class App extends Component {
