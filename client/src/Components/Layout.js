@@ -11,7 +11,6 @@ font-size:2em;
 color: white;
 height: 100vh;
 margin:0;
-text-align: center;
 `
 const SearchBar = styled.div`
 flex: 1;
