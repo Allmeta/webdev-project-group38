@@ -29,13 +29,13 @@ width: 80%;
 height: 100%;
 margin:0px auto;
 bottom: 0;
+text-align:center;
 `
 class Layout extends Component {
     render() {
         return (
             <WrapperFlex>
                 <Header />
-                <SearchBar> Search/sort components go here</SearchBar>
                 <StyledBody>Body</StyledBody>
             </WrapperFlex >
         );

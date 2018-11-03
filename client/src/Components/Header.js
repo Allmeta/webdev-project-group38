@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
-import Logo from '../images/filmguru-logo.jpg'
+import Logo from '../images/filmguru-logo2.jpg'
+import SearchForm from './SearchForm.js'
+
 
 //The logo uses this hex-color: #4553F4
 
@@ -17,11 +19,16 @@ const HDiv = styled.div`
     }
 `
 const ImgStyle = styled.img`
+flex:0.5;
 max-width:100%;
-max-height:100%;
+max-height:90%;
 align-self: left;
 align-items:left; 
 align-content: left;
+
+`
+const SearchDiv = styled.div`
+
 
 `
 
@@ -32,10 +39,15 @@ class Header extends Component {
         return (
             <div >
                 <HDiv>
+                    <div style={{ fontSize: 20, textAlign: 'center' }}> Search / sort components go in the Header component!: </div>
+
                     <ImgStyle src={Logo} />
-                    <p style={{ fontSize: 20 }}>Search/sort components go here OR: </p>
+                    <SearchDiv>
+                        <SearchForm />
+                    </SearchDiv>
+                    <div style={{ fontSize: 20, textAlign: "center" }}>Search/sort components go here OR: </div>
                 </HDiv>
-            </div>
+            </div >
         );
     }
 }
