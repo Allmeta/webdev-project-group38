@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Header from './Header'
-import Header2 from './Header2'
+import { Grid } from 'semantic-ui-react'
+
 
 const WrapperFlex = styled.div`
 display: flex;
@@ -34,7 +35,7 @@ class Layout extends Component {
     render() {
         return (
             <WrapperFlex>
-                <Header2 />
+                <Header />
                 <StyledBody>Body</StyledBody>
             </WrapperFlex >
         );

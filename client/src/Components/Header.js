@@ -19,15 +19,20 @@ const HDiv = styled.div`
     }
 `
 const ImgStyle = styled.img`
+width: 30%;
 flex:0.5;
 max-width:100%;
 max-height:90%;
-align-self: left;
-align-items:left; 
-align-content: left;
+float: left;
 
 `
 const SearchDiv = styled.div`
+width: 70%;
+position: absolute;
+float: right;
+right:-100px;
+top:100;
+padding-top:40;
 
 
 `
@@ -39,13 +44,9 @@ class Header extends Component {
         return (
             <div >
                 <HDiv>
-                    <div style={{ fontSize: 20, textAlign: 'center' }}> Search / sort components go in the Header component!: </div>
 
                     <ImgStyle src={Logo} />
-                    <SearchDiv>
-                        <SearchForm />
-                    </SearchDiv>
-                    <div style={{ fontSize: 20, textAlign: "center" }}>Search/sort components go here OR: </div>
+                    <SearchDiv> <SearchForm /> </SearchDiv>
                 </HDiv>
             </div >
         );
