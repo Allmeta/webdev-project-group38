@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import styled from 'styled-components'
 import Header from './Header'
-import Header2 from './Header2'
 
 const WrapperFlex = styled.div`
 display: flex;
@@ -34,8 +33,8 @@ class Layout extends Component {
     render() {
         return (
             <WrapperFlex>
-                <Header2 />
-                <StyledBody>Body</StyledBody>
+                <Header />
+                <StyledBody>ALL THE DATA GOES HERE</StyledBody>
             </WrapperFlex >
         );
     }

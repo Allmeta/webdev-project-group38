@@ -2,16 +2,18 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Logo from '../images/filmguru-logo2.jpg'
 import SearchForm from './SearchForm.js'
+import { Grid } from 'semantic-ui-react'
+
 
 
 //The logo uses this hex-color: #4553F4
 
 const HDiv = styled.div`
-    flex: 1;
+    padding: 0;
+    margin: 0;
     background-color: #4553F4;
     font-size: 2em;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
-    height: 200px;
    
 
     @media screen and (max-width: 500px) {
@@ -19,36 +21,35 @@ const HDiv = styled.div`
     }
 `
 const ImgStyle = styled.img`
-width: 30%;
-flex:0.5;
 max-width:100%;
-max-height:90%;
+max-height:100%;
 float: left;
-
 `
-const SearchDiv = styled.div`
-width: 70%;
-position: absolute;
-float: right;
-right:-100px;
-top:100;
-padding-top:40;
-
-
+const SearchFields = styled.div`
+height:100%;
+width:72%;
 `
+
 
 
 class Header extends Component {
 
     render() {
         return (
-            <div >
-                <HDiv>
-
-                    <ImgStyle src={Logo} />
-                    <SearchDiv> <SearchForm /> </SearchDiv>
-                </HDiv>
-            </div >
+            <HDiv>
+                <Grid columns={2} divided>
+                    <Grid.Row>
+                        <Grid.Column width={4}>
+                            <ImgStyle src={Logo} />
+                        </Grid.Column>
+                        <SearchFields>
+                            <Grid.Column width={20}>
+                                <SearchForm />
+                            </Grid.Column>
+                        </SearchFields>
+                    </Grid.Row>
+                </Grid>
+            </HDiv>
         );
     }
 }
