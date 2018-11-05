@@ -1,5 +1,5 @@
 import { createStore } from 'redux'
-import { SUBMIT_SEARCH, UPDATE_GENRE, UPDATE_TITLE } from "../actions/actions";
+import { SUBMIT_SEARCH, UPDATE_GENRE, UPDATE_TITLE } from "../actions/SearchFormActionTypes";
 
 const initialState = {
   title: '',

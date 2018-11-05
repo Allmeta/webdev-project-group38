@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Icon, Header } from 'semantic-ui-react'
-import {submitSearch, updateGenre, updateTitle} from "../actions/actions";
+import {submitSearch, updateGenre, updateTitle} from "../actions/SearchFormActions";
 
 function SearchForm(props) {
   return (

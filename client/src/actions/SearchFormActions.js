@@ -1,14 +1,4 @@
-/*
- * action types
- */
-
-export const UPDATE_TITLE = 'UPDATE_TITLE';
-export const UPDATE_GENRE = 'UPDATE_GENRE';
-export const SUBMIT_SEARCH = 'SUBMIT_SEARCH';
-
-/*
- * action functions
- */
+import {SUBMIT_SEARCH, UPDATE_GENRE, UPDATE_TITLE} from "./SearchFormActionTypes";
 
 export function updateTitle(title) {
   return { type: UPDATE_TITLE, title }
