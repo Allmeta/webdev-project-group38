@@ -5,13 +5,22 @@ import { generateError } from '../utils'
 const movies = express.Router()
 
 movies.get('/movies', (req, res) => {
-  let query = 'SELECT * FROM movie'
+  let query = { text: 'SELECT * FROM movie', values: [] }
+  let index = 1
+
   if (req.query.search) {
-    query = {
-      text: 'SELECT * FROM movie WHERE title LIKE $1',
-      values: [`%${req.query.search}%`]
-    }
+    query.text += ' WHERE title LIKE $1'
+    query.values.push(`%${req.query.search}%`)
+    index++
   }
+  if (req.query.page) {
+    query.text += ' ORDER BY CTID ASC LIMIT 10 OFFSET $' + index
+    query.values.push(`${(req.query.page - 1) * 10}`)
+  } else {
+    query.text += ' ORDER BY CTID ASC LIMIT 10'
+  }
+  // console.log(query)
+
   pool.query(query)
     .then(movies => {
       movies.rows.length > 0 ? res.json(movies.rows) : res.status(404).json(

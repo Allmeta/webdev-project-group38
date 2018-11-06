@@ -5,6 +5,7 @@
   "proxy": "http://localhost:3001",
   "dependencies": {
     "@types/styled-components": "^4.0.3",
+    "eslint-plugin-jest": "^21.27.1",
     "jest": "^23.6.0",
     "react": "^16.5.2",
     "react-dom": "^16.5.2",
