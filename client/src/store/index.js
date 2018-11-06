@@ -8,7 +8,7 @@ const initialState = {
   submittedGenre: '',
 };
 
-const reducer = (state = initialState, action) => {
+export const SearchFormReducer = (state = initialState, action) => {
   console.log('reducer running', action);
   switch(action.type){
     case UPDATE_TITLE:
@@ -29,6 +29,6 @@ const reducer = (state = initialState, action) => {
   }
 };
 
-const store = createStore(reducer);
+const store = createStore(SearchFormReducer);
 
 export default store;
