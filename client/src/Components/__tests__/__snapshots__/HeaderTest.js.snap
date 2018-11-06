@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div>
+  <div
+    className="sc-bdVaJa keoVwn"
+  >
+    MovieMate
+    <p>
+      Search/sort components go here OR: 
+    </p>
+  </div>
+</div>
+`;

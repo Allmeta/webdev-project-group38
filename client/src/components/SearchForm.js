@@ -17,7 +17,6 @@ function SearchForm(props) {
 }
 
 function mapStateToProps(state){
-  console.log('mapStateToProps', state);
   return({
       title: state.title,
       genre: state.genre,
@@ -25,14 +24,14 @@ function mapStateToProps(state){
   )
 }
 
-function mapDispatchToProps(dispatch){
-  return(
+function mapDispatchToProps(dispatch) {
+  return (
     {
       handleChange: (e, {name, value}) => {
-        if(name === 'title'){
+        if (name === 'title') {
           dispatch(updateTitle(value));
         }
-        else if(name === 'genre'){
+        else if( name === 'genre' ){
           dispatch(updateGenre(value));
         }
       },
