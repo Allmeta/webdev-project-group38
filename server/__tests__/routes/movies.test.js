@@ -1,6 +1,6 @@
 import request from 'supertest'
 import express from 'express'
-import { movies } from '../routes/movies'
+import { movies } from '../../routes/movies'
 import Joi from 'joi'
 
 const app = express()
