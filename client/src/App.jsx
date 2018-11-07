@@ -1,17 +1,15 @@
 import React, { Component } from 'react'
 import Layout from './Components/Layout.js'
-import SearchForm from './Components/SearchForm.js'
 
 class App extends Component {
-  render() {
+  render () {
     return (
       <div>
-        <div style={{margin:0}}>
-          <Layout/>
-          <SearchForm />
+        <div style={{ margin: 0 }}>
+          <Layout style={{ marginLeft: '10vw', marginRight: '10vw' }}/>
         </div>
       </div>
-    );
+    )
   }
 }
-export default App;
+export default App
