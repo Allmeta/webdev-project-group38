@@ -6,6 +6,7 @@ import {
   UPDATE_TITLE
 } from "./SearchFormActionTypes"
 import fetch from 'cross-fetch'
+import {BASE_URL} from "../api/constants";
 
 export function updateTitle(title) {
   return { type: UPDATE_TITLE, title }
@@ -37,17 +38,36 @@ export function fetchMoviesFailure(error) {
   }
 }
 
-export function fetchMovies(){
+// Async action creator
+export function fetchMovies(title, genre){
   return dispatch => {
     dispatch(fetchMoviesBegin());
-    return fetch("http://178.62.117.129:5025/api/movies?search=ant")
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(json => {
-        dispatch(fetchMoviesSuccess(json));
-        return json;
-      })
-      .catch(error => dispatch(fetchMoviesFailure(error)));
+    if (title === "" && genre === ""){
+      return fetch(BASE_URL + "/movies")
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(json => {
+          dispatch(fetchMoviesSuccess(json));
+          return json;
+        })
+        .catch(error => dispatch(fetchMoviesFailure(error)));
+    }
+    else if (title !== "" && genre === ""){
+      return fetch(BASE_URL + "/movies?search=" + title)
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(json => {
+          dispatch(fetchMoviesSuccess(json));
+          return json;
+        })
+        .catch(error => dispatch(fetchMoviesFailure(error)));
+    }
+    else if (genre !== "" && title === ""){
+      dispatch(fetchMoviesFailure({message: "Invalid request"}));
+    }
+    else {
+      dispatch(fetchMoviesFailure({message: "Invalid request"}));
+    }
   };
 }
 

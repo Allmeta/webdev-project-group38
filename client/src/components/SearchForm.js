@@ -36,8 +36,10 @@ function mapDispatchToProps(dispatch) {
           dispatch(updateGenre(value));
         }
       },
-      handleSubmit: () => {
-        dispatch(fetchMovies());
+      handleSubmit: (event) => {
+        const title = event.target.querySelectorAll('input[name="title"]')[0].value;
+        const genre = event.target.querySelectorAll('input[name="genre"]')[0].value;
+        dispatch(fetchMovies(title, genre));
       }
     }
   )
