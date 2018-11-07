@@ -6,30 +6,29 @@ import SearchForm from './SearchForm.js'
 // The logo uses this hex-color: #4553F4
 
 const HDiv = styled.div`
-    position:relative;
-    padding: 0;
-    padding-left:10%;
-    padding-right:10%;
-    margin: 0;
-    background-color: #4553F4;
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-   
+  position:relative;
+  padding: 0;
+  padding-left:10%;
+  padding-right:10%;
+  margin: 0;
+  background-color: #4553F4;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  
 
-    @media screen and (max-width: 500px) {
-      flex-direction: column;
-    }
+  @media screen and (max-width: 500px) {
+    flex-direction: column;
+  }
 `
 const ImgStyle = styled.img`
-width:200px;
-float: left;
+  width:200px;
+  float: left;
 `
 const SearchFields = styled.div`
-vertical-align:middle;
-float:left;
-position:absolute;
-top:20px;
-width:1000px;
-left:40%;
+  float:left;
+  position:absolute;
+  width:1000px;
+  left:40%;
+  top:30px;
 `
 
 class Header extends Component {

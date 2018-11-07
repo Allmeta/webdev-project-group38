@@ -6,8 +6,9 @@
   "dependencies": {
     "@types/jest": "^23.3.9",
     "@types/styled-components": "^4.0.3",
-    "eslint-plugin-jest": "^21.27.1",
+    "axios": "^0.18.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "eslint-plugin-jest": "^21.27.1",
     "jest": "^23.6.0",
     "react": "^16.6.0",
     "react-dom": "^16.5.2",

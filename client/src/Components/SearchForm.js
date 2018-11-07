@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Icon, Header } from 'semantic-ui-react'
-import {submitSearch, updateGenre, updateTitle} from "../actions/SearchFormActions";
+import { submitSearch, updateGenre, updateTitle } from '../actions/SearchFormActions'
 
-function SearchForm(props) {
+function SearchForm (props) {
   return (
     <Form onSubmit={props.handleSubmit}>
-      <Header>Search</Header>
+      {/* <Header>Search</Header> */}
       <Form.Group>
         <Form.Input onChange={props.handleChange} value={props.title} name='title' placeholder='Title' width={3}/>
         <Form.Input onChange={props.handleChange} value={props.genre} name='genre' placeholder='Genre' width={3}/>
@@ -16,30 +16,29 @@ function SearchForm(props) {
   )
 }
 
-function mapStateToProps(state){
-  return({
-      title: state.title,
-      genre: state.genre,
-    }
+function mapStateToProps (state) {
+  return ({
+    title: state.title,
+    genre: state.genre
+  }
   )
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return (
     {
-      handleChange: (e, {name, value}) => {
+      handleChange: (e, { name, value }) => {
         if (name === 'title') {
-          dispatch(updateTitle(value));
-        }
-        else if( name === 'genre' ){
-          dispatch(updateGenre(value));
+          dispatch(updateTitle(value))
+        } else if (name === 'genre') {
+          dispatch(updateGenre(value))
         }
       },
       handleSubmit: () => {
-        dispatch(submitSearch());
+        dispatch(submitSearch())
       }
     }
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm)
