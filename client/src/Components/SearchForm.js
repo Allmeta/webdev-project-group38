@@ -1,45 +1,45 @@
-import React, { Component } from 'react'
+import React from 'react'
+import { connect } from 'react-redux'
 import { Form, Icon, Header } from 'semantic-ui-react'
-import styled from 'styled-components'
+import {submitSearch, updateGenre, updateTitle} from "../actions/SearchFormActions";
 
-
-
-class SearchForm extends Component {
-  state = {
-    title: '',
-    genre: '',
-    submittedTitle: '',
-    submittedGenre: '',
-  };
-
-  handleChange = (e, { name, value }) => {
-    this.setState({ [name]: value })
-  };
-
-  handleSubmit = () => {
-    const { title, genre } = this.state;
-    this.setState({
-      submittedTitle: title,
-      submittedGenre: genre
-    })
-  };
-
-  render() {
-    const { title, genre } = this.state;
-
-    return (
-      <Form onSubmit={this.handleSubmit}>
-        <Header>Search</Header>
-        <Form.Group>
-          <Form.Input onChange={this.handleChange} value={title} name='title' placeholder='Title' width={3} />
-          <Form.Input onChange={this.handleChange} value={genre} name='genre' placeholder='Genre' width={3} />
-          <Form.Button type='submit' width={2} icon={<Icon name='search' />} />
-        </Form.Group>
-      </Form>
-
-
-    )
-  }
+function SearchForm(props) {
+  return (
+    <Form onSubmit={props.handleSubmit}>
+      <Header>Search</Header>
+      <Form.Group>
+        <Form.Input onChange={props.handleChange} value={props.title} name='title' placeholder='Title' width={3}/>
+        <Form.Input onChange={props.handleChange} value={props.genre} name='genre' placeholder='Genre' width={3}/>
+        <Form.Button type='submit' width={2} icon={<Icon name='search'/>}/>
+      </Form.Group>
+    </Form>
+  )
 }
 
-export default SearchForm
+function mapStateToProps(state){
+  return({
+      title: state.title,
+      genre: state.genre,
+    }
+  )
+}
+
+function mapDispatchToProps(dispatch) {
+  return (
+    {
+      handleChange: (e, {name, value}) => {
+        if (name === 'title') {
+          dispatch(updateTitle(value));
+        }
+        else if( name === 'genre' ){
+          dispatch(updateGenre(value));
+        }
+      },
+      handleSubmit: () => {
+        dispatch(submitSearch());
+      }
+    }
+  )
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(SearchForm);
