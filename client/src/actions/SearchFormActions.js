@@ -1,7 +1,6 @@
 import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
-  FETCH_MOVIES_SUCCESS,
-  SUBMIT_SEARCH,
+  FETCH_MOVIES_SUCCESS, LOG_SEARCH,
   UPDATE_GENRE,
   UPDATE_TITLE
 } from "./SearchFormActionTypes"
@@ -16,8 +15,8 @@ export function updateGenre(genre) {
   return { type: UPDATE_GENRE, genre }
 }
 
-export function submitSearch() {
-  return { type: SUBMIT_SEARCH }
+export function logSearch() {
+  return { type: LOG_SEARCH }
 }
 
 export function fetchMoviesBegin() {
