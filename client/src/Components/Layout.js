@@ -24,14 +24,14 @@ const StyledBody = styled.div`
 `
 
 class Layout extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       cards: []
     }
     this.image_base = 'https://image.tmdb.org/t/p/w500'
   }
-  componentDidMount () {
+  componentDidMount() {
     const instance = axios.create({
       baseURL: 'http://178.62.117.129:5025/api'
     })
@@ -59,7 +59,7 @@ class Layout extends Component {
         console.log(err)
       })
   }
-  render () {
+  render() {
     return (
       <WrapperFlex>
         <Header />
