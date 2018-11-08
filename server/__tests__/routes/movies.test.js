@@ -2,10 +2,15 @@ import request from 'supertest'
 import express from 'express'
 import { movies } from '../../routes/movies'
 import Joi from 'joi'
+import { pool } from '../../dbConnect'
 
 const app = express()
 
 app.use('/api', movies)
+
+afterAll(async () => {
+  await pool.end()
+})
 
 describe('GET /api/movies - get movies', () => {
   it('should return json and 200 status code', done => {
