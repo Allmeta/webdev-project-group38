@@ -4,6 +4,7 @@ import Header from './Header'
 import { Card } from 'semantic-ui-react'
 import MovieCard from './Card.js'
 import axios from 'axios'
+import StickyHeaderComp from './StickyHeader.js'
 
 const WrapperFlex = styled.div`
   display: flex;
@@ -17,8 +18,8 @@ const WrapperFlex = styled.div`
 const StyledBody = styled.div`
   flex: 1;
   height: 100%;
-  padding-top:20px;
-  padding-left:10%;
+  padding-top:10%;
+  padding-left:15%;
   padding-right:10%;
 `
 
@@ -32,7 +33,7 @@ class Layout extends Component {
   }
   componentDidMount () {
     const instance = axios.create({
-      baseURL: 'http://localhost:5025/api'
+      baseURL: 'http://178.62.117.129:5025/api'
     })
     instance.get('/movies')
       .then((res) => {
@@ -47,7 +48,7 @@ class Layout extends Component {
               }
             })
             .catch((err) => {
-              console.log(err)
+              console.log(err.message)
             })
         }
         this.setState({

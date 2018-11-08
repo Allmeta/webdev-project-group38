@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Logo from '../images/filmguru-logo2.jpg'
 import SearchForm from './SearchForm.js'
+import 'react-sticky-header/styles.css'
+import StickyHeader from 'react-sticky-header'
 
 // The logo uses this hex-color: #4553F4
 
@@ -13,7 +15,10 @@ const HDiv = styled.div`
   margin: 0;
   background-color: #4553F4;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  
+color: white;
+text-align:center;
+height: 110px;
+
 
   @media screen and (max-width: 500px) {
     flex-direction: column;
@@ -34,12 +39,24 @@ const SearchFields = styled.div`
 class Header extends Component {
   render () {
     return (
-      <HDiv>
-        <ImgStyle src={Logo} />
-        <SearchFields>
-          <SearchForm />
-        </SearchFields>
-      </HDiv>
+      <StickyHeader
+
+        // This is the sticky part of the header.
+        header={
+          <div className="Header_root">
+            <HDiv>
+              <ImgStyle src={Logo} />
+              <SearchFields>
+                <SearchForm />
+              </SearchFields>
+            </HDiv>
+          </ div>
+        }>
+        <section>
+
+        </section>
+      </StickyHeader>
+
     )
   }
 }
