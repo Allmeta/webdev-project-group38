@@ -15,8 +15,12 @@ export function updateGenre(genre) {
   return { type: UPDATE_GENRE, genre }
 }
 
-export function logSearch() {
-  return { type: LOG_SEARCH }
+export function logSearch(title, genre) {
+  return {
+    type: LOG_SEARCH,
+    title: title,
+    genre: genre
+  }
 }
 
 export function fetchMoviesBegin() {
@@ -37,7 +41,7 @@ export function fetchMoviesFailure(error) {
   }
 }
 
-// Async action creator
+// Async action creator for fetching movies.
 export function fetchMovies(title, genre){
   return dispatch => {
     dispatch(fetchMoviesBegin());

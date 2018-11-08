@@ -41,7 +41,7 @@ function mapDispatchToProps(dispatch) {
 
         if(title !== "" || genre !== ""){
           // We log the search only if it's non-empty.
-          dispatch(logSearch());
+          dispatch(logSearch(title, genre));
         }
 
         dispatch(fetchMovies(title, genre));

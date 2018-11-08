@@ -1,14 +1,16 @@
 import {SearchFormReducer} from '../SearchFormReducer';
-import {UPDATE_GENRE, UPDATE_TITLE} from "../../actions/SearchFormActionTypes";
+import {LOG_SEARCH, UPDATE_GENRE, UPDATE_TITLE} from "../../actions/SearchFormActionTypes";
 
 describe('search form reducer', () => {
   it('should return the initial state', () => {
     expect(SearchFormReducer(undefined, {})).toEqual(
       {
-      title: '',
-      genre: '',
-      submittedTitle: '',
-      submittedGenre: '',
+        title: '',
+        genre: '',
+        searchHistory: [],
+        items: [],
+        loading: false,
+        error: null
       }
     )
   })
@@ -62,6 +64,22 @@ describe('search form reducer', () => {
     ).toEqual(
       {
         genre: 'Horror'
+      }
+    )
+  })
+
+  it('should handle LOG_SEARCH', () => {
+    expect(
+      SearchFormReducer({searchHistory: []}, {
+        type: LOG_SEARCH,
+        title: 'Avengers',
+        genre: 'Action'
+      })
+    ).toEqual(
+      { searchHistory: [{
+          searchedTitle: 'Avengers',
+          searchedGenre: 'Action'
+      }]
       }
     )
   })

@@ -28,7 +28,7 @@ export const SearchFormReducer = (state = initialState, action) => {
     case LOG_SEARCH:
       // Update search history.
       return Object.assign({}, state, {
-        searchHistory: [...state.searchHistory, {searchedTitle: state.title, searchedGenre: state.genre}]
+        searchHistory: [...state.searchHistory, {searchedTitle: action.title, searchedGenre: action.genre}]
       });
     case FETCH_MOVIES_BEGIN:
       // Mark state as loading so frontend knows to display loading wheel.

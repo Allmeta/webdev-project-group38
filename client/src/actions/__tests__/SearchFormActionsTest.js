@@ -18,10 +18,10 @@ describe('actions', () => {
     };
     expect(actions.updateGenre(text)).toEqual(expectedAction)
   });
-  it('should create an action to submit the title and genre fields', () => {
+  it('should create an action to log the title and genre fields', () => {
     const expectedAction = {
-      type: types.SUBMIT_SEARCH,
+      type: types.LOG_SEARCH,
     };
-    expect(actions.submitSearch()).toEqual(expectedAction)
+    expect(actions.logSearch()).toEqual(expectedAction)
   });
 });
