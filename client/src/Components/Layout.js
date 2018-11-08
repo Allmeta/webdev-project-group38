@@ -19,7 +19,7 @@ const StyledBody = styled.div`
   flex: 1;
   height: 100%;
   padding-top:10%;
-  padding-left:15%;
+  padding-left:10%;
   padding-right:10%;
 `
 
@@ -64,7 +64,7 @@ class Layout extends Component {
       <WrapperFlex>
         <Header />
         <StyledBody>
-          <Card.Group>
+          <Card.Group centered>
             {this.state.cards.map((o) =>
               <MovieCard
                 key={o.movie_id}
