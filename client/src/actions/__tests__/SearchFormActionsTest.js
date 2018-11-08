@@ -10,15 +10,7 @@ describe('actions', () => {
     };
     expect(actions.updateTitle(text)).toEqual(expectedAction)
   });
-  it('should create an action to update the genre field', () => {
-    const text = 'Horror';
-    const expectedAction = {
-      type: types.UPDATE_GENRE,
-      genre: text
-    };
-    expect(actions.updateGenre(text)).toEqual(expectedAction)
-  });
-  it('should create an action to log the title and genre fields', () => {
+  it('should create an action to log the title', () => {
     const expectedAction = {
       type: types.LOG_SEARCH,
     };

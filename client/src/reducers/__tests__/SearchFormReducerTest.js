@@ -6,7 +6,6 @@ describe('search form reducer', () => {
     expect(SearchFormReducer(undefined, {})).toEqual(
       {
         title: '',
-        genre: '',
         searchHistory: [],
         items: [],
         loading: false,
@@ -43,42 +42,15 @@ describe('search form reducer', () => {
       })
   })
 
-  it('should handle UPDATE_GENRE', () => {
-    expect(
-      SearchFormReducer({}, {
-        type: UPDATE_GENRE,
-        genre: 'Thriller'
-      })
-    ).toEqual(
-      {
-        genre: 'Thriller'
-      }
-    )
-    expect(
-      SearchFormReducer({
-        genre: 'Thriller'
-      }, {
-        type: UPDATE_GENRE,
-        genre: 'Horror'
-      })
-    ).toEqual(
-      {
-        genre: 'Horror'
-      }
-    )
-  })
-
   it('should handle LOG_SEARCH', () => {
     expect(
       SearchFormReducer({searchHistory: []}, {
         type: LOG_SEARCH,
-        title: 'Avengers',
-        genre: 'Action'
+        title: 'Avengers'
       })
     ).toEqual(
       { searchHistory: [{
-          searchedTitle: 'Avengers',
-          searchedGenre: 'Action'
+          searchedTitle: 'Avengers'
       }]
       }
     )

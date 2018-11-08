@@ -1,13 +1,11 @@
 import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS, LOG_SEARCH,
-  UPDATE_GENRE,
   UPDATE_TITLE
 } from "../actions/SearchFormActionTypes";
 
 const initialState = {
   title: '',
-  genre: '',
   searchHistory: [],
   items: [],
   loading: false,
@@ -21,14 +19,10 @@ export const SearchFormReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         title: action.title,
       });
-    case UPDATE_GENRE:
-      return Object.assign({}, state, {
-        genre: action.genre,
-      });
     case LOG_SEARCH:
       // Update search history.
       return Object.assign({}, state, {
-        searchHistory: [...state.searchHistory, {searchedTitle: action.title, searchedGenre: action.genre}]
+        searchHistory: [...state.searchHistory, {searchedTitle: action.title}]
       });
     case FETCH_MOVIES_BEGIN:
       // Mark state as loading so frontend knows to display loading wheel.
