@@ -10,9 +10,7 @@ const regular = input => [`${input}`]
 
 // Helper function for building SQL queries
 const buildQuery = R.curry((defaultQuery, complexBase, valuesTransform, values) => {
-  if (R.isNil(values)) {
-    return { text: defaultQuery }
-  }
+  if (R.isNil(values)) return { text: defaultQuery }
   return ({ text: complexBase, values: valuesTransform(values) })
 })
 
