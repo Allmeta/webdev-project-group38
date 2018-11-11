@@ -8,6 +8,8 @@ const insidePercent = input => [`%${input}%`]
 
 const regular = input => [`${input}`]
 
+const identity = input => input
+
 // Helper function for building SQL queries
 const buildQuery = R.curry((defaultQuery, complexBase, valuesTransform, values) => {
   if (R.isNil(values)) return { text: defaultQuery }
@@ -29,5 +31,6 @@ export {
   buildReviewsQuery,
   regular,
   insidePercent,
+  identity,
   buildGenresQuery
 }
