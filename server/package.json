@@ -16,6 +16,7 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "pg": "^7.5.0",
+    "rambda": "^1.2.6",
     "supertest": "^3.3.0"
   },
   "devDependencies": {
@@ -34,6 +35,6 @@
   "scripts": {
     "start": "nodemon -r babel-register server.js --signal SIGINT",
     "lint": "eslint .",
-    "test": "jest --forceExit"
+    "test": "jest"
   }
 }

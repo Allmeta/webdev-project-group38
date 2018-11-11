@@ -1,18 +1,26 @@
 import request from 'supertest'
-import { close, server } from '../../server'
+import express from 'express'
+import { movies } from '../../routes/movies'
 import Joi from 'joi'
+import { pool } from '../../dbConnect'
+
+const app = express()
+
+app.use('/api', movies)
+
+afterAll(async () => {
+  await pool.end()
+})
 
 describe('GET /api/movies - get movies', () => {
-  afterAll(() => close().then(() => console.log('Pool ended and server')))
-
   it('should return json and 200 status code', done => {
-    return request(server)
+    request(app)
       .get('/api/movies')
       .expect(200)
       .expect('Content-Type', /json/, done)
   })
 
-  it('should return a movie object', done => {
+  it('returns movies', done => {
     const movie = {
       movie_id: Joi.number(),
       title: Joi.string(),
@@ -25,7 +33,7 @@ describe('GET /api/movies - get movies', () => {
       rating: Joi.string()
     }
 
-    return request(server)
+    request(app)
       .get('/api/movies')
       .then(response => {
         const { error } = Joi.validate(response.body[0], movie)
@@ -35,7 +43,7 @@ describe('GET /api/movies - get movies', () => {
   })
 
   it('should return 404 error', done => {
-    return request(server)
+    request(app)
       .get('/api/movies/id/1')
       .expect(404, done)
   })
@@ -45,7 +53,7 @@ describe('GET /api/movies - get movies', () => {
       status: Joi.number(),
       error: Joi.string()
     }
-    return request(server)
+    request(app)
       .get('/api/movies/id/1')
       .expect('Content-Type', /json/)
       .then(response => {
