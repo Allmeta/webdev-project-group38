@@ -14,6 +14,7 @@
     "@types/styled-components": "^4.0.3",
     "axios": "^0.18.0",
     "babel-plugin-transform-es2015-modules-commonjs": "^6.26.2",
+    "babel-upgrade": "^0.0.24",
     "eslint-plugin-jest": "^21.27.1",
     "jest": "^23.6.0",
     "react": "^16.6.0",
