@@ -1,28 +1,183 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
+.c1 {
+  position: relative;
+  padding: 0;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin: 0;
+  background-color: #4553F4;
+  font-family: Verdana,Geneva,Tahoma,sans-serif;
+  color: white;
+  text-align: center;
+  height: 110px;
+}
+
+.c2 {
+  width: 200px;
+  float: left;
+}
+
+.c3 {
+  float: left;
+  position: absolute;
+  width: 1000px;
+  left: 40%;
+  top: 30px;
+}
+
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  background-color: #212733;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  font-family: Verdana,Geneva,Tahoma,sans-serif;
+  color: white;
+  height: 100vh;
+  margin: 0;
+}
+
+.c4 {
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
+  height: 100%;
+  padding-top: 10%;
+  padding-left: 10%;
+  padding-right: 10%;
+}
+
+@media screen and (max-width:500px) {
+  .c1 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
 <div
-  className="sc-bwzfXH cGOhmo"
+  className="c0"
 >
-  <div>
+  <header
+    className="ReactStickyHeader_root"
+  >
     <div
-      className="sc-bdVaJa keoVwn"
+      className="ReactStickyHeader_fixed"
     >
-      MovieMate
-      <p>
-        Search/sort components go here OR: 
-      </p>
+      <div
+        className="Header_root"
+      >
+        <div
+          className="c1"
+        >
+          <img
+            className="c2"
+            src="test-file-stub"
+          />
+          <div
+            className="c3"
+          >
+            <form
+              className="ui form"
+              onSubmit={[Function]}
+            >
+              <div
+                className="fields"
+              >
+                <div
+                  className="three wide field"
+                >
+                  <div
+                    className="ui input"
+                  >
+                    <input
+                      name="title"
+                      onChange={[Function]}
+                      placeholder="Title"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="three wide field"
+                >
+                  <div
+                    className="ui input"
+                  >
+                    <input
+                      name="genre"
+                      onChange={[Function]}
+                      placeholder="Genre"
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <div
+                  className="two wide field"
+                >
+                  <button
+                    className="ui icon button"
+                    onClick={[Function]}
+                    role="button"
+                    type="submit"
+                  >
+                    <i
+                      aria-hidden="true"
+                      className="search icon"
+                    />
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
+    <div
+      className="ReactStickyHeader_midground"
+      style={
+        Object {
+          "backgroundColor": undefined,
+          "backgroundImage": undefined,
+          "height": null,
+          "top": null,
+        }
+      }
+    />
+    <div
+      className="ReactStickyHeader_background-bg"
+      style={
+        Object {
+          "backgroundColor": undefined,
+          "backgroundImage": undefined,
+        }
+      }
+    />
+    <div
+      className="ReactStickyHeader_foreground"
+      style={
+        Object {
+          "backgroundColor": undefined,
+          "backgroundImage": undefined,
+          "opacity": 1,
+        }
+      }
+    />
+    <section />
+  </header>
   <div
-    className="sc-htpNat FNFIB"
+    className="c4"
   >
-     Search/sort components go here
-  </div>
-  <div
-    className="sc-bxivhb gGwQNM"
-  >
-    Body
+    <div
+      className="ui centered cards"
+    />
   </div>
 </div>
 `;

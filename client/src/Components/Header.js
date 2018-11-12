@@ -55,8 +55,7 @@ class Header extends Component {
         <section>
 
         </section>
-      </StickyHeader>
-
+      </StickyHeader >
     )
   }
 }
