@@ -87,6 +87,11 @@ exports[`renders correctly 1`] = `
               onSubmit={[Function]}
             >
               <div
+                className="ui header"
+              >
+                Search
+              </div>
+              <div
                 className="fields"
               >
                 <div
@@ -99,21 +104,6 @@ exports[`renders correctly 1`] = `
                       name="title"
                       onChange={[Function]}
                       placeholder="Title"
-                      type="text"
-                      value=""
-                    />
-                  </div>
-                </div>
-                <div
-                  className="three wide field"
-                >
-                  <div
-                    className="ui input"
-                  >
-                    <input
-                      name="genre"
-                      onChange={[Function]}
-                      placeholder="Genre"
                       type="text"
                       value=""
                     />

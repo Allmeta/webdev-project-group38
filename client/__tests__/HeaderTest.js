@@ -1,8 +1,8 @@
 import React from 'react'
-import Header from '../Header.js'
+import Header from '../src/Components/Header.js'
 import renderer from 'react-test-renderer'
 import 'jest-styled-components'
-import store from '../../store/index.js'
+import store from '../src/store/index.js'
 import { Provider } from 'react-redux'
 
 it('renders correctly', () => {
