@@ -15,7 +15,7 @@ afterAll(async () => {
 describe('GET /api/movies - get movies', () => {
   it('should return json and 200 status code', done => {
     request(app)
-      .get('/api/movies')
+      .get('/api/movies?page=1')
       .expect(200)
       .expect('Content-Type', /json/, done)
   })
@@ -34,7 +34,7 @@ describe('GET /api/movies - get movies', () => {
     }
 
     request(app)
-      .get('/api/movies')
+      .get('/api/movies?page=1')
       .then(response => {
         const { error } = Joi.validate(response.body[0], movie)
         expect(error).toEqual(null)
