@@ -38,3 +38,27 @@ describe('GET api/genres - get genres', () => {
       .expect(404, done)
   })
 })
+
+describe('GET api/genres/ratings - get average ratings', () => {
+  it('should return json and 200 status code', done => {
+    request(app)
+      .get('/api/genres/ratings')
+      .expect(200)
+      .expect('Content-Type', /json/, done)
+  })
+
+  it('returns average ratings', done => {
+    const ratingObj = {
+      name: Joi.string(),
+      avg: Joi.string()
+    }
+
+    request(app)
+      .get('/api/genres/ratings')
+      .then(response => {
+        const { error } = Joi.validate(response.body[0], ratingObj)
+        expect(error).toEqual(null)
+        done()
+      })
+  })
+})
