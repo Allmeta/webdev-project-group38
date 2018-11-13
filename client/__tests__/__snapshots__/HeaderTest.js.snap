@@ -1,0 +1,137 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c0 {
+  position: relative;
+  padding: 0;
+  padding-left: 10%;
+  padding-right: 10%;
+  margin: 0;
+  background-color: #4553F4;
+  font-family: Verdana,Geneva,Tahoma,sans-serif;
+  color: white;
+  text-align: center;
+  height: 110px;
+}
+
+.c1 {
+  width: 200px;
+  float: left;
+}
+
+.c2 {
+  float: left;
+  position: absolute;
+  width: 1000px;
+  left: 40%;
+  top: 30px;
+}
+
+@media screen and (max-width:500px) {
+  .c0 {
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+}
+
+<header
+  className="ReactStickyHeader_root"
+>
+  <div
+    className="ReactStickyHeader_fixed"
+  >
+    <div
+      className="Header_root"
+    >
+      <div
+        className="c0"
+      >
+        <img
+          className="c1"
+          src="test-file-stub"
+        />
+        <div
+          className="c2"
+        >
+          <form
+            className="ui form"
+            onSubmit={[Function]}
+          >
+            <div
+              className="ui header"
+            >
+              Search
+            </div>
+            <div
+              className="fields"
+            >
+              <div
+                className="three wide field"
+              >
+                <div
+                  className="ui input"
+                >
+                  <input
+                    name="title"
+                    onChange={[Function]}
+                    placeholder="Title"
+                    type="text"
+                    value=""
+                  />
+                </div>
+              </div>
+              <div
+                className="two wide field"
+              >
+                <button
+                  className="ui icon button"
+                  onClick={[Function]}
+                  role="button"
+                  type="submit"
+                >
+                  <i
+                    aria-hidden="true"
+                    className="search icon"
+                  />
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="ReactStickyHeader_midground"
+    style={
+      Object {
+        "backgroundColor": undefined,
+        "backgroundImage": undefined,
+        "height": null,
+        "top": null,
+      }
+    }
+  />
+  <div
+    className="ReactStickyHeader_background-bg"
+    style={
+      Object {
+        "backgroundColor": undefined,
+        "backgroundImage": undefined,
+      }
+    }
+  />
+  <div
+    className="ReactStickyHeader_foreground"
+    style={
+      Object {
+        "backgroundColor": undefined,
+        "backgroundImage": undefined,
+        "opacity": 1,
+      }
+    }
+  />
+  <section />
+</header>
+`;
