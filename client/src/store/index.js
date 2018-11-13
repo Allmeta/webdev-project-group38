@@ -8,4 +8,4 @@ const store = createStore(SearchFormReducer, composeEnhancers(
   applyMiddleware(thunk)
 ));
 
-export default store;
+export default store
