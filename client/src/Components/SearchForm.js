@@ -8,9 +8,9 @@ function SearchForm (props) {
     <Form onSubmit={props.handleSubmit}>
       {/* <Header>Search</Header> */}
       <Form.Group>
-        <Form.Input onChange={props.handleChange} value={props.title} name='title' placeholder='Title' width={3}/>
-        <Form.Input onChange={props.handleChange} value={props.genre} name='genre' placeholder='Genre' width={3}/>
-        <Form.Button type='submit' width={2} icon={<Icon name='search'/>}/>
+        <Form.Input onChange={props.handleChange} value={props.title} name='title' placeholder='Title' width={3} />
+        <Form.Input onChange={props.handleChange} value={props.genre} name='genre' placeholder='Genre' width={3} />
+        <Form.Button type='submit' width={2} icon={<Icon name='search' />} />
       </Form.Group>
     </Form>
   )
