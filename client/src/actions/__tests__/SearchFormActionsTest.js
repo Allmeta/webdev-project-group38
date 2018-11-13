@@ -6,29 +6,30 @@ import fetchMock from 'fetch-mock'
 import expect from 'expect'
 
 // Used when testing async actions.
-const middlewares = [thunk];
-const mockStore = configureMockStore(middlewares);
+const middlewares = [thunk]
+const mockStore = configureMockStore(middlewares)
 
 describe('actions', () => {
   it('should create an action to update the title field', () => {
-    const text = 'Rainman';
+    const text = 'Rainman'
     const expectedAction = {
       type: types.UPDATE_TITLE,
       title: text
-    };
+    }
     expect(actions.updateTitle(text)).toEqual(expectedAction)
-  });
+  })
   it('should create an action to log the title', () => {
     const expectedAction = {
-      type: types.LOG_SEARCH,
-    };
+      type: types.LOG_SEARCH
+    }
     expect(actions.logSearch()).toEqual(expectedAction)
-  });
-});
+  })
+})
 
 describe('async actions', () => {
   const mockResult = {
-    body: { items: [{
+    body: {
+      items: [{
         movie_id: 363088,
         title: 'Ant-Man and the Wasp',
         summary: 'Just when his time under house arrest is about to end, Scott Lang puts again his freedom at risk to help Hope van Dyne and Dr. Hank Pym dive into the quantum realm and try to accomplish, against time and any chance of success, a very dangerous rescue mission.',
@@ -49,20 +50,24 @@ describe('async actions', () => {
         poster_path: '/D6e8RJf2qUstnfkTslTXNTUAlT.jpg',
         comment: '',
         rating: '7.1'
-      }]},
+      }]
+    },
     headers: { 'content-type': 'application/json' }
-  };
+  }
 
   afterEach(() => {
     fetchMock.restore()
-  });
+  })
 
   it('creates FETCH_MOVIES_SUCCESS when fetching movies has been done', () => {
-    fetchMock.getOnce('/movies?search=Ant-Man', mockResult);
+    fetchMock.getOnce('/movies?search=Ant-Man', mockResult)
 
     const expectedActions = [
       { type: types.FETCH_MOVIES_BEGIN },
-      { type: types.FETCH_MOVIES_SUCCESS, payload: { movies: [
+      {
+        type: types.FETCH_MOVIES_SUCCESS,
+payload: {
+          movies: [
             {
               movie_id: 363088,
               title: 'Ant-Man and the Wasp',
@@ -85,9 +90,11 @@ describe('async actions', () => {
               comment: '',
               rating: '7.1'
             }
-          ]} }
-    ];
-    const store = mockStore({ items: [] });
+          ]
+        }
+      }
+    ]
+    const store = mockStore({ items: [] })
 
     return store.dispatch(actions.fetchMovies('Ant-Man')).then(() => {
       // Return of async actions.
@@ -96,19 +103,19 @@ describe('async actions', () => {
   })
 
   it('creates FETCH_MOVIES_FAILURE after posting request with FETCH_MOVIES_BEGIN', () => {
-    fetchMock.getOnce('/movies?search=???', "Not Found");
+    fetchMock.getOnce('/movies?search=???', 'Not Found')
 
     const expectedActions = [
       { type: types.FETCH_MOVIES_BEGIN },
-      { type: types.FETCH_MOVIES_FAILURE, error: "Not Found" }
-    ];
-    const store = mockStore({ items: [] });
+      { type: types.FETCH_MOVIES_FAILURE, error: 'Not Found' }
+    ]
+    const store = mockStore({ items: [] })
 
     return store.dispatch(actions.fetchMovies('???')).then(() => {
       // Return of async actions.
-      expect(store.getActions()[0]).toEqual(expectedActions[0]);
-      expect(store.getActions()[1].type).toEqual(expectedActions[1].type);
-      expect(store.getActions()[1].payload.error.message).toEqual(expectedActions[1].error);
+      expect(store.getActions()[0]).toEqual(expectedActions[0])
+      expect(store.getActions()[1].type).toEqual(expectedActions[1].type)
+      expect(store.getActions()[1].payload.error.message).toEqual(expectedActions[1].error)
     })
   })
-});
+})

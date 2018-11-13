@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Header, Icon, Input } from 'semantic-ui-react'
-import { fetchMovies, logSearch, updateTitle, updateFilterQuery } from '../actions/SearchFormActions'
+import { updateFilterQuery } from '../actions/FilterFormActions'
 import styled from 'styled-components'
 
 const StyledField = styled.div`
 right: 50;
 `
-function FilterForm (props) {
+function FilterForm(props) {
   return (
     <Form onSubmit={props.handleFilterSubmit}>
       <StyledField>
@@ -22,14 +22,14 @@ function FilterForm (props) {
   )
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return ({
     filterQuery: state.filterQuery
   }
   )
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return (
     {
       // Update the filter text in store:

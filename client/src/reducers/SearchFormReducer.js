@@ -1,7 +1,7 @@
 import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS, LOG_SEARCH,
-  UPDATE_TITLE, UPDATE_FILTER_QUERY
+  UPDATE_TITLE
 } from '../actions/SearchFormActionTypes'
 
 const initialState = {
@@ -9,8 +9,7 @@ const initialState = {
   searchHistory: [],
   items: [],
   loading: false,
-  error: null,
-  filterQuery: ''
+  error: null
 }
 
 export const SearchFormReducer = (state = initialState, action) => {
@@ -46,10 +45,6 @@ export const SearchFormReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload.error.message,
         items: []
-      })
-    case UPDATE_FILTER_QUERY:
-      return Object.assign({}, state, {
-        filterQuery: action.payload
       })
 
     default:
