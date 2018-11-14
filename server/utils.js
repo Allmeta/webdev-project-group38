@@ -32,5 +32,6 @@ export {
   regular,
   insidePercent,
   identity,
-  buildGenresQuery
+  buildGenresQuery,
+  buildQuery
 }
