@@ -157,28 +157,13 @@ exports[`renders correctly 1`] = `
                         onChange={[Function]}
                         placeholder="Title search"
                         type="text"
+                        value=""
                       />
                     </div>
                   </div>
                   <div
                     className="c5"
-                  >
-                    <div
-                      className="two wide field"
-                    >
-                      <button
-                        className="ui icon button"
-                        onClick={[Function]}
-                        role="button"
-                        type="submit"
-                      >
-                        <i
-                          aria-hidden="true"
-                          className="search icon"
-                        />
-                      </button>
-                    </div>
-                  </div>
+                  />
                 </div>
               </div>
             </form>

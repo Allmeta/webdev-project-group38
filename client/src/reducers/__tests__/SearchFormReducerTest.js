@@ -1,5 +1,5 @@
-import {SearchFormReducer} from '../SearchFormReducer';
-import {LOG_SEARCH, UPDATE_GENRE, UPDATE_TITLE} from "../../actions/SearchFormActionTypes";
+import { SearchFormReducer } from '../SearchFormReducer'
+import { LOG_SEARCH, UPDATE_GENRE, UPDATE_TITLE } from '../../actions/SearchFormActionTypes'
 
 describe('search form reducer', () => {
   it('should return the initial state', () => {
@@ -9,7 +9,9 @@ describe('search form reducer', () => {
         searchHistory: [],
         items: [],
         loading: false,
-        error: null
+        error: null,
+        filterItems: {},
+        filterQuery: ''
       }
     )
   })
@@ -22,13 +24,13 @@ describe('search form reducer', () => {
       })
     ).toEqual(
       {
-        title: 'Batman',
+        title: 'Batman'
       }
     )
     expect(
       SearchFormReducer(
         {
-          title: 'Batman',
+          title: 'Batman'
         }
         ,
         {
@@ -44,14 +46,15 @@ describe('search form reducer', () => {
 
   it('should handle LOG_SEARCH', () => {
     expect(
-      SearchFormReducer({searchHistory: []}, {
+      SearchFormReducer({ searchHistory: [] }, {
         type: LOG_SEARCH,
         title: 'Avengers'
       })
     ).toEqual(
-      { searchHistory: [{
+      {
+        searchHistory: [{
           searchedTitle: 'Avengers'
-      }]
+        }]
       }
     )
   })
