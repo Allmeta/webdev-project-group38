@@ -7,7 +7,7 @@ class MovieCard extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      toggled: false
+      toggled: true
     }
     this.toggleDesc = this.toggleDesc.bind(this)
   }
@@ -19,9 +19,9 @@ class MovieCard extends Component {
 
   render() {
     return (
-      < Card color="blue" onClick={this.toggleDesc}>
-        {this.state.toggled && < Image src={this.props.img}/>}
-        < Card.Content>
+      < Card color="blue">
+        {this.state.toggled && < Image onClick={this.toggleDesc} src={this.props.img}/>}
+        < Card.Content onClick={this.toggleDesc}>
           < Card.Header>{this.props.title}</Card.Header>
           {this.state.toggled && < Card.Meta>
           < span className='date'>  {
