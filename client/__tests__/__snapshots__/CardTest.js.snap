@@ -1,15 +1,17 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
-<a
+<div
   className="ui blue card"
   onClick={[Function]}
 >
   <img
     className="ui image"
+    onClick={[Function]}
   />
   <div
     className="content"
+    onClick={[Function]}
   >
     <div
       className="header"
@@ -63,9 +65,9 @@ exports[`renders correctly 1`] = `
         aria-hidden="true"
         className="star icon"
       />
-        
+       
       123
     </span>
   </div>
-</a>
+</div>
 `;

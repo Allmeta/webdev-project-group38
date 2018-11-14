@@ -1,6 +1,8 @@
 import {
-  FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
-  FETCH_MOVIES_SUCCESS, LOG_SEARCH,
+  FETCH_MOVIES_BEGIN,
+  FETCH_MOVIES_FAILURE,
+  FETCH_MOVIES_SUCCESS,
+  LOG_SEARCH,
   UPDATE_TITLE
 } from "../actions/SearchFormActionTypes";
 
@@ -13,7 +15,6 @@ const initialState = {
 };
 
 export const SearchFormReducer = (state = initialState, action) => {
-  console.log('reducer running', action);
   switch(action.type){
     case UPDATE_TITLE:
       return Object.assign({}, state, {
