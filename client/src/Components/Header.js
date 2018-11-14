@@ -45,7 +45,7 @@ const FilterField = styled.div`
 `
 
 class Header extends Component {
-  render () {
+  render() {
     return (
       <StickyHeader
 

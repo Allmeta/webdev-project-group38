@@ -1,19 +1,22 @@
 import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS, LOG_SEARCH,
-  UPDATE_TITLE
+  UPDATE_TITLE, UPDATE_FILTER_QUERY, EMPTY_FILTER_ITEMS
 } from '../actions/SearchFormActionTypes'
+import store from '../store/index.js'
 
 const initialState = {
   title: '',
   searchHistory: [],
   items: [],
   loading: false,
-  error: null
+  error: null,
+  filterQuery: '',
+  filterItems: {}
+
 }
 
 export const SearchFormReducer = (state = initialState, action) => {
-  console.log('reducer running', action)
   switch (action.type) {
     case UPDATE_TITLE:
       return Object.assign({}, state, {
@@ -29,7 +32,9 @@ export const SearchFormReducer = (state = initialState, action) => {
       // Reset any errors when starting new fetch.
       return Object.assign({}, state, {
         loading: true,
-        error: null
+        error: null,
+        filterItems: [],
+        filterQuery: ''
       })
     case FETCH_MOVIES_SUCCESS:
       // When finished, set loading to false.
@@ -46,8 +51,33 @@ export const SearchFormReducer = (state = initialState, action) => {
         error: action.payload.error.message,
         items: []
       })
-
+    case UPDATE_FILTER_QUERY:
+      var myJson = JSON.stringify([...state.items])
+      var filteredJson = findInObject(JSON.parse(myJson), { title: action.payload })
+      if ([...state.items].length === 0 || filteredJson === undefined) {
+        return Object.assign({}, state, {
+          filterQuery: action.payload,
+          filterItems: []
+        })
+      } else {
+        return Object.assign({}, state, {
+          filterQuery: action.payload,
+          filterItems: filteredJson
+        })
+      }
+    case EMPTY_FILTER_ITEMS:
+      return Object.assign({}, state, {
+        filterQuery: ''
+      })
     default:
       return state
   }
+}
+
+function findInObject (myObject, myCriteria) {
+  return myObject.filter(function (obj) {
+    return Object.keys(myCriteria).every(function (c) {
+      return obj[c].includes(myCriteria[c])
+    })
+  })
 }

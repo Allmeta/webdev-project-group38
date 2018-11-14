@@ -1,10 +1,11 @@
 import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS, LOG_SEARCH,
-  UPDATE_TITLE, UPDATE_FILTER_QUERY
+  UPDATE_TITLE, UPDATE_FILTER_QUERY, EMPTY_FILTER_ITEMS
 } from './SearchFormActionTypes'
 import fetch from 'cross-fetch'
 import { BASE_URL } from '../api/constants'
+import store from '../store/index'
 
 export function updateTitle (title) {
   return { type: UPDATE_TITLE, title }
@@ -22,9 +23,16 @@ export function fetchMoviesBegin () {
 }
 
 export function fetchMoviesSuccess (movies) {
+  console.log('Helpermethod triggered111111!')
   return {
     type: FETCH_MOVIES_SUCCESS,
     payload: { movies }
+  }
+}
+
+export function emptyFilterItems () {
+  return {
+    type: EMPTY_FILTER_ITEMS
   }
 }
 
@@ -56,4 +64,15 @@ function handleErrors (response) {
     throw Error(response.statusText)
   }
   return response
+}
+const unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+)
+
+export function updateFilterQuery (filterquery) {
+  console.log('updateFilterQuery Triggered with: ', filterquery)
+  return {
+    type: UPDATE_FILTER_QUERY,
+    payload: filterquery
+  }
 }

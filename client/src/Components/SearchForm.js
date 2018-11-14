@@ -1,9 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form, Header, Icon } from 'semantic-ui-react'
-import { fetchMovies, logSearch, updateTitle } from '../actions/SearchFormActions'
+import { fetchMovies, logSearch, updateTitle, emptyFilterItems } from '../actions/SearchFormActions'
 
-function SearchForm(props) {
+function SearchForm (props) {
   return (
     <Form onSubmit={props.handleSubmit}>
       <Form.Group>
@@ -14,7 +14,7 @@ function SearchForm(props) {
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return ({
     title: state.title,
     genre: state.genre
@@ -22,7 +22,7 @@ function mapStateToProps(state) {
   )
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return (
     {
       handleChange: (e, { name, value }) => {
@@ -37,6 +37,7 @@ function mapDispatchToProps(dispatch) {
         }
 
         dispatch(fetchMovies(title))
+        dispatch(emptyFilterItems())
       }
     }
   )
