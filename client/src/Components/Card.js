@@ -3,27 +3,27 @@ import { Card, Icon, Image } from 'semantic-ui-react'
 import PropTypes from 'prop-types'
 
 class MovieCard extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       toggled: false
     }
     this.toggleDesc = this.toggleDesc.bind(this)
   }
-  toggleDesc () {
+  toggleDesc() {
     this.setState({
       toggled: !this.state.toggled
     })
   }
 
-  render () {
+  render() {
     return (
-      < Card color = "blue" onClick={this.toggleDesc}>
-        {!this.state.toggled && < Image src = {this.props.img}/>}
+      < Card color="blue" onClick={this.toggleDesc}>
+        {!this.state.toggled && < Image src={this.props.img} />}
         < Card.Content >
           < Card.Header >{this.props.title}</Card.Header >
           {!this.state.toggled && < Card.Meta >
-            < span className = 'date' >  {
+            < span className='date' >  {
               this.props.genres
             } </span >
             {this.state.toggled}</Card.Meta >}
@@ -31,7 +31,7 @@ class MovieCard extends Component {
         </Card.Content >
         < Card.Content extra >
           < span >
-            < Icon name = 'star'/>  {
+            < Icon name='star' />  {
               this.props.popularity
             }
           </span >
