@@ -37,6 +37,9 @@ export function fetchMoviesFailure(error) {
 
 // Async action creator for fetching movies.
 export function fetchMovies(title){
+  if(title === undefined){
+    title = ''
+  }
   return dispatch => {
     dispatch(fetchMoviesBegin());
       return fetch(BASE_URL + "/movies?search=" + title)
