@@ -19,9 +19,9 @@ class MovieCard extends Component {
 
   render () {
     return (
-      < Card color = "blue" onClick={this.toggleDesc}>
-        {!this.state.toggled && < Image src = {this.props.img}/>}
-        < Card.Content >
+      < Card color = "blue">
+        {!this.state.toggled && < Image src = {this.props.img} onClick={this.toggleDesc}/>}
+        < Card.Content onClick={this.toggleDesc}>
           < Card.Header >{this.props.title}</Card.Header >
           {!this.state.toggled && < Card.Meta >
             < span className = 'date' >  {
