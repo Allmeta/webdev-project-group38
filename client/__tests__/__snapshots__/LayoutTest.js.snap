@@ -155,12 +155,23 @@ exports[`renders correctly 1`] = `
                       <input
                         name="filterQuery"
                         onChange={[Function]}
-                        placeholder="Title search"
+                        placeholder="Filter on title..."
                         type="text"
                         value=""
                       />
                     </div>
                   </div>
+                  <button
+                    className="ui grey icon right floated right labeled button"
+                    onClick={[Function]}
+                    role="button"
+                  >
+                    Rating
+                    <i
+                      aria-hidden="true"
+                      className=" sort numeric up big icon"
+                    />
+                  </button>
                   <div
                     className="c5"
                   />

@@ -14,8 +14,7 @@ const initialState = {
   filterQuery: '',
   filterItems: {},
   toggleSort: 'grey',
-  sortedItems: []
-
+  sortItems: []
 }
 
 export const SearchFormReducer = (state = initialState, action) => {
@@ -72,10 +71,12 @@ export const SearchFormReducer = (state = initialState, action) => {
         filterQuery: ''
       })
     case UPDATE_SORT_TOGGLE:
-      if (state.toggleSort === 'inverted' && state.filterItems.length > 0) {
+      if (state.toggleSort === 'green' && state.filterItems.length > 0) {
+        // Turn off sorting:
+        let randomOrder = state.filterItems.sort(function (a, b) { return Math.random() - 0.5 })
         return Object.assign({}, state, {
           toggleSort: 'grey',
-          filterItems: [...state.filterItems]
+          filterItems: randomOrder
         })
       } if (state.toggleSort === 'grey' && state.filterItems.length > 0) {
         console.log('The list should now be sorted!')
@@ -102,7 +103,7 @@ export const SearchFormReducer = (state = initialState, action) => {
   }
 }
 
-function findInObject (myObject, myCriteria) {
+function findInObject(myObject, myCriteria) {
   return myObject.filter(function (obj) {
     return Object.keys(myCriteria).every(function (c) {
       return obj[c].includes(myCriteria[c])

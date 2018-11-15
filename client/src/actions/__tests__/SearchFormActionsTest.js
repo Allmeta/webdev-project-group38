@@ -66,7 +66,7 @@ describe('async actions', () => {
       { type: types.FETCH_MOVIES_BEGIN },
       {
         type: types.FETCH_MOVIES_SUCCESS,
-payload: {
+        payload: {
           movies: [
             {
               movie_id: 363088,
@@ -116,6 +116,16 @@ payload: {
       expect(store.getActions()[0]).toEqual(expectedActions[0])
       expect(store.getActions()[1].type).toEqual(expectedActions[1].type)
       expect(store.getActions()[1].payload.error.message).toEqual(expectedActions[1].error)
+    })
+  })
+  it('Updates the filterquery which updates the filterItems list on change:', () => {
+    const store = mockStore({ filterQuery: '' })
+
+    const expectedActions =
+      { type: types.UPDATE_FILTER_QUERY, payload: 'The' }
+
+    return store.dispatch(actions.updateFilterQuery('The')).then(() => {
+      expect(store.getActions()).toEqual(expectedActions)
     })
   })
 })

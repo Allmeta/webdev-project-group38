@@ -23,7 +23,6 @@ export function fetchMoviesBegin () {
 }
 
 export function fetchMoviesSuccess (movies) {
-  console.log('Helpermethod triggered111111!')
   return {
     type: FETCH_MOVIES_SUCCESS,
     payload: { movies }
@@ -67,7 +66,6 @@ function handleErrors (response) {
 }
 
 export function updateFilterQuery (filterquery) {
-  console.log('updateFilterQuery Triggered with: ', filterquery)
   return {
     type: UPDATE_FILTER_QUERY,
     payload: filterquery
@@ -75,7 +73,6 @@ export function updateFilterQuery (filterquery) {
 }
 
 export function changeSortToggle () {
-  console.log(changeSortToggle, 'changeSortToggle FIRED in action')
   return {
     type: UPDATE_SORT_TOGGLE
   }
