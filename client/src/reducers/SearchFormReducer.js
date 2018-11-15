@@ -78,35 +78,40 @@ export const SearchFormReducer = (state = initialState, action) => {
       })
     case UPDATE_SORT_TOGGLE:
       if (state.toggleSort === 'green' && state.filterItems.length > 0) {
-        // Turn off sorting:
+        // reverse sorting!
+        let reverseSortedItems = [...state.filterItems].reverse()
+        return Object.assign({}, state, {
+          toggleSort: 'red',
+          filterItems: reverseSortedItems
+        })
+        // Turn off sorting completely:
+      }
+      if (state.toggleSort === 'red' && state.filterItems.length > 0) {
         let newState = [...state.filterItems]
         let randomOrder = newState.sort(function (a, b) { return Math.random() - 0.5 })
         return Object.assign({}, state, {
           toggleSort: 'grey',
           filterItems: randomOrder
         })
-      } if (state.toggleSort === 'grey' && state.filterItems.length > 0) {
-        console.log('The list should now be sorted!')
-        // Sorting the filteredList:
-        let data = [...state.filterItems]
-        data.sort(function (a, b) {
-          return a.rating.localeCompare(b.rating)
-        })
-        let sorted = data.sort().reverse()
-        console.log(sorted, 'SortedList')
-        // Sorter filteredItems, sett den til svart og returner det!!
-        return Object.assign({}, state, {
-          toggleSort: 'green',
-          filterItems: sorted
-
-        })
-      } else {
-        return Object.assign({}, state, {
-          toggleSort: 'grey'
-        })
       }
-    default:
-      return state
+  } if (state.toggleSort === 'grey' && state.filterItems.length > 0) {
+    console.log('The list should now be sorted!')
+    // Sorting the filteredList:
+    let data = [...state.filterItems]
+    data.sort(function (a, b) {
+      return a.rating.localeCompare(b.rating)
+    })
+    let sorted = data.sort().reverse()
+    console.log(sorted, 'SortedList')
+    // Sorter filteredItems, sett den til svart og returner det!!
+    return Object.assign({}, state, {
+      toggleSort: 'green',
+      filterItems: sorted
+    })
+  } else {
+    return Object.assign({}, state, {
+      toggleSort: 'grey'
+    })
   }
 }
 

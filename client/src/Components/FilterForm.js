@@ -21,8 +21,9 @@ function FilterForm (props) {
       <StyledField>
         <Form.Group >
           <Form.Input onChange={props.handleChange} value={props.filterQuery} name='filterQuery' placeholder='Filter on title...' width={3} />
+
           <Button onClick={props.handleSortToggle} icon labelPosition='right' floated='right' color={props.toggleSort} >Rating
-            <Icon size='big' name='sort numeric up' />
+            {props.toggleSort === 'green' ? (<Icon size='big' name='sort numeric up' />) : (<Icon size='big' name='sort numeric down' />)}
           </Button>
           <StyledField>
           </StyledField>
