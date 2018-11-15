@@ -36,7 +36,6 @@ function mapDispatchToProps (dispatch) {
           // We log the search only if it's non-empty.
           dispatch(logSearch(title))
         }
-        console.log(title)
         dispatch(fetchMovies(title))
       }
     }

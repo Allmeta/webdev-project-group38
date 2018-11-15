@@ -42,7 +42,7 @@ export function fetchMoviesFailure (error) {
 // Async action creator for fetching movies.
 export function fetchMovies (title, page = 1) {
   let fetchURL = ''
-  if(title === undefined){
+  if(title === undefined || title === ''){
     fetchURL = BASE_URL + '/movies?page=' + page + '&title='
   }
   else{
