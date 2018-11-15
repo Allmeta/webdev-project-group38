@@ -88,10 +88,6 @@ exports[`renders correctly 1`] = `
   -webkit-box-align: center;
   -ms-flex-align: center;
   align-items: center;
-  -webkit-box-pack: center;
-  -webkit-justify-content: center;
-  -ms-flex-pack: center;
-  justify-content: center;
   height: 100%;
   padding: 108px 50px 50px 50px;
 }
@@ -179,7 +175,11 @@ exports[`renders correctly 1`] = `
     <i
       aria-hidden="true"
       className="grey arrow alternate circle down huge link icon"
+      onBlur={[Function]}
       onClick={[Function]}
+      onFocus={[Function]}
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     />
   </div>
 </div>

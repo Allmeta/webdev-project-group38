@@ -25,7 +25,7 @@ const CardImg = styled.div`
   background-image: url(${props => props.img});
 `
 const CardTitle = styled.div`
-  background:rgba(0,0,0,.8);
+  background:rgba(0,0,0,.5);
   color:white;
   width:100%;
   padding:12px;
