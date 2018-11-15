@@ -19,7 +19,6 @@ const StyledBody = styled.div`
   display:flex;
   flex-direction:column;
   align-items: center;
-  justify-content: center;
   height: 100%;
   padding: 108px 50px 50px 50px;
   @media (max-width: 860px){
