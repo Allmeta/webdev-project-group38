@@ -1,4 +1,6 @@
 import { combineReducers } from 'redux'
 import { SearchFormReducer } from './SearchFormReducer'
 
-export default combineReducers({ SearchFormReducer })
+export default combineReducers({
+  SearchFormReducer
+})

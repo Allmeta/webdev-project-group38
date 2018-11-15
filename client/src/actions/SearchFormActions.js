@@ -43,26 +43,29 @@ export function fetchMoviesFailure (error) {
 }
 
 // Async action creator for fetching movies.
-export function fetchMovies (title) {
+export function fetchMovies(title){
+  if(title === undefined){
+    title = ''
+  }
   return dispatch => {
-    dispatch(fetchMoviesBegin())
-    return fetch(BASE_URL + '/movies?search=' + title)
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(json => {
-        dispatch(fetchMoviesSuccess(json))
-        return json
-      })
-      .catch(error => dispatch(fetchMoviesFailure(error)))
+    dispatch(fetchMoviesBegin());
+      return fetch(BASE_URL + "/movies?search=" + title)
+        .then(handleErrors)
+        .then(res => res.json())
+        .then(json => {
+          dispatch(fetchMoviesSuccess(json));
+          return json;
+        })
+        .catch(error => dispatch(fetchMoviesFailure(error)));
   }
 }
 
 // Handle HTTP errors since fetch won't.
-function handleErrors (response) {
+function handleErrors(response) {
   if (!response.ok) {
-    throw Error(response.statusText)
+    throw Error(response.statusText);
   }
-  return response
+  return response;
 }
 
 export function updateFilterQuery (filterquery) {

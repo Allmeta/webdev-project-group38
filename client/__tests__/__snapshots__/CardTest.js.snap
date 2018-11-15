@@ -1,0 +1,73 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+<div
+  className="ui blue card"
+  onClick={[Function]}
+>
+  <img
+    className="ui image"
+    onClick={[Function]}
+  />
+  <div
+    className="content"
+    onClick={[Function]}
+  >
+    <div
+      className="header"
+    >
+      snapshot
+    </div>
+    <div
+      className="meta"
+    >
+      <span
+        className="date"
+      >
+          
+        snapshot genre
+         
+      </span>
+    </div>
+  </div>
+  <div>
+    <div
+      className="ui blue icon fade animated bottom attached button"
+      onClick={[Function]}
+      role="button"
+      tabIndex={0}
+    >
+      <div
+        className="visible content"
+      >
+        <i
+          aria-hidden="true"
+          className="blue add circular icon"
+          style={
+            Object {
+              "background": "white",
+            }
+          }
+        />
+      </div>
+      <div
+        className="hidden content"
+      >
+        Comment on movie
+      </div>
+    </div>
+  </div>
+  <div
+    className="extra content"
+  >
+    <span>
+      <i
+        aria-hidden="true"
+        className="star icon"
+      />
+       
+      123
+    </span>
+  </div>
+</div>
+`;
