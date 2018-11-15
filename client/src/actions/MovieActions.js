@@ -2,7 +2,7 @@ import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS, LOG_SEARCH,
   UPDATE_TITLE, UPDATE_PAGE
-} from './SearchFormActionTypes'
+} from './MovieActionTypes'
 import fetch from 'cross-fetch'
 import { BASE_URL } from '../api/constants'
 
@@ -11,7 +11,7 @@ export function updateTitle (title) {
 }
 
 export function updatePage () {
-  return { type: UPDATE_TITLE }
+  return { type: UPDATE_PAGE }
 }
 
 export function logSearch (title) {
@@ -40,10 +40,17 @@ export function fetchMoviesFailure (error) {
 }
 
 // Async action creator for fetching movies.
-export function fetchMovies (title = '', page = 1) {
+export function fetchMovies (title, page = 1) {
+  let fetchURL = ''
+  if(title === undefined){
+    fetchURL = BASE_URL + '/movies?page=' + page + '&title='
+  }
+  else{
+    fetchURL = BASE_URL + '/movies?page=' + page + '&search=' + title
+  }
   return dispatch => {
     dispatch(fetchMoviesBegin())
-    return fetch(BASE_URL + '/movies?page=' + page + '&title=' + title)
+    return fetch(fetchURL)
       .then(handleErrors)
       .then(res => res.json())
       .then(json => {

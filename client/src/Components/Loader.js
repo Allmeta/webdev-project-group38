@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { fetchMovies, updateTitle, updatePage } from '../actions/SearchFormActions'
+import { fetchMovies, updateTitle, updatePage } from '../actions/MovieActions'
 import { Icon } from 'semantic-ui-react'
 
 class Loader extends Component {

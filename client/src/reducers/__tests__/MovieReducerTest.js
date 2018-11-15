@@ -1,22 +1,23 @@
-import {SearchFormReducer} from '../SearchFormReducer';
-import {LOG_SEARCH, UPDATE_GENRE, UPDATE_TITLE} from "../../actions/SearchFormActionTypes";
+import {MovieReducer} from '../MovieReducer';
+import {LOG_SEARCH, UPDATE_GENRE, UPDATE_TITLE} from "../../actions/MovieActionTypes";
 
 describe('search form reducer', () => {
   it('should return the initial state', () => {
-    expect(SearchFormReducer(undefined, {})).toEqual(
+    expect(MovieReducer(undefined, {})).toEqual(
       {
         title: '',
         searchHistory: [],
         items: [],
         loading: false,
-        error: null
+        error: null,
+        nextPage: 1
       }
     )
   })
 
   it('should handle UPDATE_TITLE', () => {
     expect(
-      SearchFormReducer({}, {
+      MovieReducer({}, {
         type: UPDATE_TITLE,
         title: 'Batman'
       })
@@ -26,7 +27,7 @@ describe('search form reducer', () => {
       }
     )
     expect(
-      SearchFormReducer(
+      MovieReducer(
         {
           title: 'Batman',
         }
@@ -44,7 +45,7 @@ describe('search form reducer', () => {
 
   it('should handle LOG_SEARCH', () => {
     expect(
-      SearchFormReducer({searchHistory: []}, {
+      MovieReducer({searchHistory: []}, {
         type: LOG_SEARCH,
         title: 'Avengers'
       })

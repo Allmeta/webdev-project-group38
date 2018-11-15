@@ -6,6 +6,6 @@ import { Provider } from 'react-redux'
 import store from '../src/store/index.js'
 
 it('renders correctly', () => {
-  const tree = renderer.create(<Provider store={store}><Card title="snapshot" popularity={123} genres="snapshot genre" /></Provider>).toJSON()
+  const tree = renderer.create(<Provider store={store}><Card title="snapshot" popularity={123} genres={['snapshot genre']} /></Provider>).toJSON()
   expect(tree).toMatchSnapshot()
 })

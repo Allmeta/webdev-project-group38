@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { Form } from 'semantic-ui-react'
-import { fetchMovies, logSearch, updateTitle } from '../actions/SearchFormActions'
+import { fetchMovies, logSearch, updateTitle } from '../actions/MovieActions'
 
 function SearchForm (props) {
   return (
@@ -36,7 +36,7 @@ function mapDispatchToProps (dispatch) {
           // We log the search only if it's non-empty.
           dispatch(logSearch(title))
         }
-
+        console.log(title)
         dispatch(fetchMovies(title))
       }
     }

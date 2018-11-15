@@ -5,7 +5,7 @@ import {
   LOG_SEARCH,
   UPDATE_TITLE,
   UPDATE_PAGE
-} from '../actions/SearchFormActionTypes'
+} from '../actions/MovieActionTypes'
 
 const initialState = {
   title: '',
@@ -16,7 +16,7 @@ const initialState = {
   nextPage: 1
 }
 
-export const SearchFormReducer = (state = initialState, action) => {
+export const MovieReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_TITLE:
       return Object.assign({}, state, {

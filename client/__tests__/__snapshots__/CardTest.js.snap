@@ -1,73 +1,182 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
+.c0 {
+  display: inline-grid;
+  grid-template-columns: 185px auto;
+  color: black;
+  box-shadow: 0 2px 20px rgba(49,54,68,.3);
+  background: #fafafa;
+  min-height: 265px;
+  min-width: 370px;
+  box-sizing: border-box;
+}
+
+.c1 {
+  background-position: 50%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: end;
+  -webkit-justify-content: flex-end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  background-image: url();
+}
+
+.c2 {
+  background: rgba(0,0,0,.8);
+  color: white;
+  width: 100%;
+  padding: 12px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.c3 {
+  position: relative;
+}
+
+.c4 {
+  text-align: center;
+  font-size: 14px;
+  padding: 10px;
+  background: #f1f3f7;
+  color: #4553F4;
+  font-weight: bold;
+}
+
+.c5 {
+  color: rgb(122,133,143);
+  display: grid;
+  font-size: 13px;
+  grid-template-columns: repeat(2,1fr);
+  background: #f6f8fb;
+}
+
+.c6 {
+  padding: 8px;
+  text-align: center;
+  display: inline-block;
+}
+
+.c7 {
+  color: rgb(122,133,143);
+  height: 160px;
+  background: #fafafa;
+  line-height: 15px;
+  padding: 4px 10px;
+  font-size: 12px;
+  overflow-y: hidden;
+}
+
+.c8 {
+  color: rgb(146,153,161);
+  line-height: 13px;
+  padding: 8px 10px;
+  max-height: 42px;
+  text-align: center;
+  width: 100%;
+  background: #f6f8fb;
+}
+
+.c9 {
+  color: rgb(146,153,161);
+  line-height: 13px;
+  padding: 8px 10px;
+  max-height: 42px;
+  text-align: center;
+  width: 100%;
+  background: #f6f8fb;
+  display: none;
+}
+
 <div
-  className="ui blue card"
-  onClick={[Function]}
+  className="c0"
+  onMouseEnter={[Function]}
+  onMouseLeave={[Function]}
 >
-  <img
-    className="ui image"
-    onClick={[Function]}
-  />
   <div
-    className="content"
-    onClick={[Function]}
+    className="c1"
   >
     <div
-      className="header"
+      className="c2"
     >
       snapshot
     </div>
-    <div
-      className="meta"
-    >
-      <span
-        className="date"
-      >
-          
-        snapshot genre
-         
-      </span>
-    </div>
-  </div>
-  <div>
-    <div
-      className="ui blue icon fade animated bottom attached button"
-      onClick={[Function]}
-      role="button"
-      tabIndex={0}
-    >
-      <div
-        className="visible content"
-      >
-        <i
-          aria-hidden="true"
-          className="blue add circular icon"
-          style={
-            Object {
-              "background": "white",
-            }
-          }
-        />
-      </div>
-      <div
-        className="hidden content"
-      >
-        Comment on movie
-      </div>
-    </div>
   </div>
   <div
-    className="extra content"
+    className="c3"
   >
-    <span>
-      <i
-        aria-hidden="true"
-        className="star icon"
-      />
-       
-      123
-    </span>
+    <div
+      className="c4"
+    />
+    <div
+      className="c5"
+    >
+      <span
+        className="c6"
+      >
+        <div
+          className="ui label"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="location arrow icon"
+          />
+        </div>
+      </span>
+      <span
+        className="c6"
+      >
+        <div
+          className="ui label"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="star icon"
+          />
+          123
+        </div>
+      </span>
+    </div>
+    <div
+      className="c7"
+    />
+    <div
+      className="c8"
+    >
+      <div
+        className="ui label"
+        onClick={[Function]}
+      >
+        snapshot genre
+      </div>
+    </div>
+    <div
+      className="c9"
+    >
+      <div>
+        <i
+          aria-hidden="true"
+          className="chat large link icon"
+          onBlur={[Function]}
+          onClick={[Function]}
+          onFocus={[Function]}
+          onMouseEnter={[Function]}
+          onMouseLeave={[Function]}
+        />
+      </div>
+    </div>
   </div>
 </div>
 `;

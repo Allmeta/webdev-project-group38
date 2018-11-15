@@ -1,22 +1,28 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
+.c0 {
+  text-align: left;
+}
+
 <div>
   <div
-    className="ui orange fade animated bottom attached button"
-    onClick={[Function]}
-    role="button"
-    tabIndex={0}
+    className="c0"
   >
     <div
-      className="visible content"
+      className="ui label"
+      onClick={[Function]}
     >
+      <i
+        aria-hidden="true"
+        className="cancel large link icon"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      />
       snapshot
-    </div>
-    <div
-      className="hidden content"
-    >
-      Change comment?
     </div>
   </div>
 </div>

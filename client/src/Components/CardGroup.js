@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import MovieCard from './Card.js'
-import { fetchMovies } from '../actions/SearchFormActions'
+import { fetchMovies } from '../actions/MovieActions'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
 
@@ -64,7 +64,7 @@ class CardGroup extends Component {
 
 function mapStateToProps (state) {
   return {
-    items: state.SearchFormReducer.items
+    items: state.MovieReducer.items
   }
 }
 
