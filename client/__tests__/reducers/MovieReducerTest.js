@@ -1,5 +1,5 @@
-import {MovieReducer} from '../MovieReducer';
-import {LOG_SEARCH, UPDATE_GENRE, UPDATE_TITLE} from "../../actions/MovieActionTypes";
+import {MovieReducer} from '../../src/reducers/MovieReducer';
+import {LOG_SEARCH, UPDATE_GENRE, UPDATE_TITLE} from "../../src/actions/MovieActionTypes";
 
 describe('search form reducer', () => {
   it('should return the initial state', () => {
