@@ -8,8 +8,8 @@ const StyledField = styled.div`
 right: 50 ;
 `
 
-function FilterForm (props) {
-  function componentDidUpdate (prevfilterQuery) {
+function FilterForm(props) {
+  function componentDidUpdate(prevfilterQuery) {
     console.log('GGGGS')
     if (this.props.filterQuery !== prevfilterQuery) {
       console.log(this.state.filterQuery, 'Filterquery updated!')
@@ -22,7 +22,7 @@ function FilterForm (props) {
         <Form.Group >
           <Form.Input onChange={props.handleChange} value={props.filterQuery} name='filterQuery' placeholder='Filter on title...' width={3} />
           <Button onClick={props.handleSortToggle} icon labelPosition='right' floated='right' color={props.toggleSort} >Rating
-            <Icon size='big' name=' sort numeric up' />
+            <Icon size='big' name='sort numeric down' />
           </Button>
           <StyledField>
           </StyledField>
@@ -32,7 +32,7 @@ function FilterForm (props) {
   )
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   console.log(state.SearchFormReducer.toggleSort, 'state.SearchFormReducer.toggleSort')
   return ({
     filterQuery: state.SearchFormReducer.filterQuery,
@@ -41,7 +41,7 @@ function mapStateToProps (state) {
   )
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return (
     {
       // Update the filter text in store:
