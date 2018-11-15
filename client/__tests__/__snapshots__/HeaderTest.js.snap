@@ -1,6 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`renders correctly 1`] = `
+.c4 {
+  right: 50;
+}
+
 .c0 {
   position: relative;
   padding: 0;
@@ -24,7 +28,15 @@ exports[`renders correctly 1`] = `
   position: absolute;
   width: 1000px;
   left: 40%;
-  top: 30px;
+  top: 50px;
+}
+
+.c3 {
+  float: right;
+  position: absolute;
+  width: 1000px;
+  left: 60%;
+  top: 50px;
 }
 
 @media screen and (max-width:500px) {
@@ -59,11 +71,6 @@ exports[`renders correctly 1`] = `
             onSubmit={[Function]}
           >
             <div
-              className="ui header"
-            >
-              Search
-            </div>
-            <div
               className="fields"
             >
               <div
@@ -75,7 +82,7 @@ exports[`renders correctly 1`] = `
                   <input
                     name="title"
                     onChange={[Function]}
-                    placeholder="Title"
+                    placeholder="Title search"
                     type="text"
                   />
                 </div>
@@ -94,6 +101,52 @@ exports[`renders correctly 1`] = `
                     className="search icon"
                   />
                 </button>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div
+          className="c3"
+        >
+          <form
+            className="ui form"
+            onSubmit={[Function]}
+          >
+            <div
+              className="c4"
+            >
+              <div
+                className="fields"
+              >
+                <div
+                  className="three wide field"
+                >
+                  <div
+                    className="ui input"
+                  >
+                    <input
+                      name="filterQuery"
+                      onChange={[Function]}
+                      placeholder="Filter on title..."
+                      type="text"
+                      value=""
+                    />
+                  </div>
+                </div>
+                <button
+                  className="ui grey icon right floated right labeled button"
+                  onClick={[Function]}
+                  role="button"
+                >
+                  Rating
+                  <i
+                    aria-hidden="true"
+                    className="sort numeric down big icon"
+                  />
+                </button>
+                <div
+                  className="c4"
+                />
               </div>
             </div>
           </form>

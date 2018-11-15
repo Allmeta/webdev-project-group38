@@ -4,6 +4,7 @@ import Logo from '../images/filmguru-logo2.jpg'
 import SearchForm from './SearchForm.js'
 import 'react-sticky-header/styles.css'
 import StickyHeader from 'react-sticky-header'
+import FilterForm from './FilterForm.js'
 
 // The logo uses this hex-color: #4553F4
 
@@ -33,11 +34,18 @@ const SearchFields = styled.div`
   position:absolute;
   width:1000px;
   left:40%;
-  top:30px;
+  top:50px;
+`
+const FilterField = styled.div`
+  float:right;
+  position:absolute;
+  width:1000px;
+  left:60%;
+  top:50px;
 `
 
 class Header extends Component {
-  render () {
+  render() {
     return (
       <StickyHeader
 
@@ -49,6 +57,10 @@ class Header extends Component {
               <SearchFields>
                 <SearchForm />
               </SearchFields>
+              <FilterField>
+                <FilterForm />
+              </FilterField>
+
             </HDiv>
           </ div>
         }>

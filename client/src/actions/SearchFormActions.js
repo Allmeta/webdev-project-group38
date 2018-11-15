@@ -1,34 +1,41 @@
 import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS, LOG_SEARCH,
-  UPDATE_TITLE
-} from "./SearchFormActionTypes"
+  UPDATE_TITLE, UPDATE_FILTER_QUERY, EMPTY_FILTER_ITEMS, UPDATE_SORT_TOGGLE
+} from './SearchFormActionTypes'
 import fetch from 'cross-fetch'
-import {BASE_URL} from "../api/constants";
+import { BASE_URL } from '../api/constants'
+import store from '../store/index'
 
-export function updateTitle(title) {
+export function updateTitle (title) {
   return { type: UPDATE_TITLE, title }
 }
 
-export function logSearch(title) {
+export function logSearch (title) {
   return {
     type: LOG_SEARCH,
-    title: title,
+    title: title
   }
 }
 
-export function fetchMoviesBegin() {
+export function fetchMoviesBegin () {
   return { type: FETCH_MOVIES_BEGIN }
 }
 
-export function fetchMoviesSuccess(movies) {
+export function fetchMoviesSuccess (movies) {
   return {
     type: FETCH_MOVIES_SUCCESS,
     payload: { movies }
   }
 }
 
-export function fetchMoviesFailure(error) {
+export function emptyFilterItems () {
+  return {
+    type: EMPTY_FILTER_ITEMS
+  }
+}
+
+export function fetchMoviesFailure (error) {
   return {
     type: FETCH_MOVIES_FAILURE,
     payload: { error }
@@ -59,4 +66,17 @@ function handleErrors(response) {
     throw Error(response.statusText);
   }
   return response;
+}
+
+export function updateFilterQuery (filterquery) {
+  return {
+    type: UPDATE_FILTER_QUERY,
+    payload: filterquery
+  }
+}
+
+export function changeSortToggle () {
+  return {
+    type: UPDATE_SORT_TOGGLE
+  }
 }
