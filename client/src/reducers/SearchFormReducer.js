@@ -13,7 +13,7 @@ const initialState = {
   error: null,
   filterQuery: '',
   filterItems: {},
-  toggleSort: '',
+  toggleSort: 'grey',
   sortedItems: []
 
 }
@@ -72,22 +72,29 @@ export const SearchFormReducer = (state = initialState, action) => {
         filterQuery: ''
       })
     case UPDATE_SORT_TOGGLE:
-      console.log('This is the previous state:', state.toggleSort)
       if (state.toggleSort === 'inverted' && state.filterItems.length > 0) {
-        console.log('The prev togglestate is: and it is changing now ', state.toggleSort)
         return Object.assign({}, state, {
-          toggleSort: '',
-          sortedItems: [...state.filterItems]
+          toggleSort: 'grey',
+          filterItems: [...state.filterItems]
         })
-      } if (state.toggleSort === '') {
+      } if (state.toggleSort === 'grey' && state.filterItems.length > 0) {
         console.log('The list should now be sorted!')
+        // Sorting the filteredList:
+        let data = state.filterItems
+        data.sort(function (a, b) {
+          return a.rating.localeCompare(b.rating)
+        })
+        let sorted = data.sort()
+        console.log(sorted, 'SortedList')
         // Sorter filteredItems, sett den til svart og returner det!!
         return Object.assign({}, state, {
-          toggleSort: 'inverted'
+          toggleSort: 'green',
+          filterItems: sorted
+
         })
       } else {
         return Object.assign({}, state, {
-          toggleSort: ''
+          toggleSort: 'grey'
         })
       }
     default:
@@ -95,7 +102,7 @@ export const SearchFormReducer = (state = initialState, action) => {
   }
 }
 
-function findInObject(myObject, myCriteria) {
+function findInObject (myObject, myCriteria) {
   return myObject.filter(function (obj) {
     return Object.keys(myCriteria).every(function (c) {
       return obj[c].includes(myCriteria[c])
