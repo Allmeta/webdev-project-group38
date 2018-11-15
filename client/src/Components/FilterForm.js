@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Form, Header, Icon, Input, Button } from 'semantic-ui-react'
-import { updateFilterQuery } from '../actions/SearchFormActions'
+import { updateFilterQuery, changeSortToggle } from '../actions/SearchFormActions'
 import styled from 'styled-components'
 
 const StyledField = styled.div`
@@ -21,7 +21,7 @@ function FilterForm(props) {
       <StyledField>
         <Form.Group >
           <Form.Input onChange={props.handleChange} value={props.filterQuery} name='filterQuery' placeholder='Filter on title...' width={3} />
-          <Button disabled icon labelPosition='right' floated='right' color='black' >year
+          <Button onClick={props.handleSortToggle} inverted={props.toggleSort} icon labelPosition='right' floated='right' color='black' >Rating
             <Icon size='big' name=' sort numeric up' />
           </Button>
           <StyledField>
@@ -33,8 +33,10 @@ function FilterForm(props) {
 }
 
 function mapStateToProps(state) {
+  console.log(state.SearchFormReducer.toggleSort, 'state.SearchFormReducer.toggleSort')
   return ({
-    filterQuery: state.SearchFormReducer.filterQuery
+    filterQuery: state.SearchFormReducer.filterQuery,
+    toggleSort: state.SearchFormReducer.toggleSort
   }
   )
 }
@@ -45,6 +47,9 @@ function mapDispatchToProps(dispatch) {
       // Update the filter text in store:
       handleChange: (e, { name, value }) => {
         dispatch(updateFilterQuery(value))
+      },
+      handleSortToggle: () => {
+        dispatch(changeSortToggle())
       }
     }
   )

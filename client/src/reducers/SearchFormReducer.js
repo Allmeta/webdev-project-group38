@@ -1,7 +1,7 @@
 import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS, LOG_SEARCH,
-  UPDATE_TITLE, UPDATE_FILTER_QUERY, EMPTY_FILTER_ITEMS
+  UPDATE_TITLE, UPDATE_FILTER_QUERY, EMPTY_FILTER_ITEMS, UPDATE_SORT_TOGGLE
 } from '../actions/SearchFormActionTypes'
 import store from '../store/index.js'
 
@@ -12,7 +12,9 @@ const initialState = {
   loading: false,
   error: null,
   filterQuery: '',
-  filterItems: {}
+  filterItems: {},
+  toggleSort: '',
+  sortedItems: []
 
 }
 
@@ -69,12 +71,31 @@ export const SearchFormReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         filterQuery: ''
       })
+    case UPDATE_SORT_TOGGLE:
+      console.log('This is the previous state:', state.toggleSort)
+      if (state.toggleSort === 'inverted' && state.filterItems.length > 0) {
+        console.log('The prev togglestate is: and it is changing now ', state.toggleSort)
+        return Object.assign({}, state, {
+          toggleSort: '',
+          sortedItems: [...state.filterItems]
+        })
+      } if (state.toggleSort === '') {
+        console.log('The list should now be sorted!')
+        // Sorter filteredItems, sett den til svart og returner det!!
+        return Object.assign({}, state, {
+          toggleSort: 'inverted'
+        })
+      } else {
+        return Object.assign({}, state, {
+          toggleSort: ''
+        })
+      }
     default:
       return state
   }
 }
 
-function findInObject (myObject, myCriteria) {
+function findInObject(myObject, myCriteria) {
   return myObject.filter(function (obj) {
     return Object.keys(myCriteria).every(function (c) {
       return obj[c].includes(myCriteria[c])

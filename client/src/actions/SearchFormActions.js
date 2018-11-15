@@ -1,7 +1,7 @@
 import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS, LOG_SEARCH,
-  UPDATE_TITLE, UPDATE_FILTER_QUERY, EMPTY_FILTER_ITEMS
+  UPDATE_TITLE, UPDATE_FILTER_QUERY, EMPTY_FILTER_ITEMS, UPDATE_SORT_TOGGLE
 } from './SearchFormActionTypes'
 import fetch from 'cross-fetch'
 import { BASE_URL } from '../api/constants'
@@ -65,14 +65,18 @@ function handleErrors (response) {
   }
   return response
 }
-const unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-)
 
 export function updateFilterQuery (filterquery) {
   console.log('updateFilterQuery Triggered with: ', filterquery)
   return {
     type: UPDATE_FILTER_QUERY,
     payload: filterquery
+  }
+}
+
+export function changeSortToggle () {
+  console.log(changeSortToggle, 'changeSortToggle FIRED in action')
+  return {
+    type: UPDATE_SORT_TOGGLE
   }
 }
