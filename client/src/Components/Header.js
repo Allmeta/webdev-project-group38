@@ -2,60 +2,54 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Logo from '../images/filmguru-logo2.jpg'
 import SearchForm from './SearchForm.js'
-import 'react-sticky-header/styles.css'
-import StickyHeader from 'react-sticky-header'
 
 // The logo uses this hex-color: #4553F4
 
 const HDiv = styled.div`
-  position:relative;
-  padding: 0;
-  padding-left:10%;
-  padding-right:10%;
-  margin: 0;
+  display:flex;
+  position:fixed;
+  height: 58px;
+  left:0;
+  top:0;
+  justify-content: center;
+  width:100%;
+  overflow-y:hidden;
+  z-index:999;
   background-color: #4553F4;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
-color: white;
-text-align:center;
-height: 110px;
-
-
-  @media screen and (max-width: 500px) {
-    flex-direction: column;
-  }
+  box-shadow: 0 4px 3px rgba(49,54,68,.3);
+`
+const HeadWrap = styled.div`
+  align-items: center;
+  display: flex;
+  height: 100%;
+  width:100%;
+  margin-left:10%;
+  margin-right:10%;
+  
 `
 const ImgStyle = styled.img`
   width:200px;
-  float: left;
+  border-right:1px solid hsla(0,0%,93%,.16);
 `
 const SearchFields = styled.div`
-  float:left;
-  position:absolute;
-  width:1000px;
-  left:40%;
-  top:30px;
+  > * {
+    margin-left:50px;
+  }
+  width:400px;
 `
 
 class Header extends Component {
   render () {
     return (
-      <StickyHeader
-
-        // This is the sticky part of the header.
-        header={
-          <div className="Header_root">
-            <HDiv>
-              <ImgStyle src={Logo} />
-              <SearchFields>
-                <SearchForm />
-              </SearchFields>
-            </HDiv>
-          </ div>
-        }>
-        <section>
-
-        </section>
-      </StickyHeader >
+      <HDiv>
+        <HeadWrap>
+          <ImgStyle src={Logo} />
+          <div></div>
+          <SearchFields>
+            <SearchForm />
+          </SearchFields>
+        </HeadWrap>
+      </HDiv>
     )
   }
 }

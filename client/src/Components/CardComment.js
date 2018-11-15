@@ -1,6 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { Button, Icon, Input } from 'semantic-ui-react'
+import styled from 'styled-components'
+import { Label, Icon, Input, Popup } from 'semantic-ui-react'
+
+const CommentWrap = styled.div`
+  text-align:left;
+`
 
 class Comment extends Component {
   constructor (props) {
@@ -19,7 +24,8 @@ class Comment extends Component {
   }
   toggleCommenting () {
     this.setState({
-      commenting: !this.state.commenting
+      commenting: !this.state.commenting,
+      previewComment: ''
     })
   }
   submitComment (e) {
@@ -27,7 +33,6 @@ class Comment extends Component {
       comment: this.state.previewComment,
       previewComment: ''
     })
-    console.log(this.state.previewComment)
 
     this.toggleCommenting()
   }
@@ -35,27 +40,34 @@ class Comment extends Component {
     return (
       <div>
         {this.state.commenting &&
-        <Input focus placeholder="Comment..." onChange={this.handleMessage}>
-          <Icon name="delete" color="blue" link circular inverted size="large" onClick={this.toggleCommenting}></Icon>
-          <input />
-          <Icon name="chat" color="blue" link circular inverted size="large" onClick={this.submitComment}></Icon>
-        </Input>
+        <div>
+          <Input fluid
+            placeholder="Comment"
+            onChange={this.handleMessage}
+            icon={{ name: 'cancel', link: true, onClick: () => this.toggleCommenting() }}
+            action={{ icon: 'chat', onClick: () => this.submitComment() }}
+            iconPosition="left"
+            style={{ height: '42px' }}
+          >
+          </Input>
+        </div>
         }
 
         {!this.state.commenting && !this.state.comment &&
-        <Button animated="fade" icon attached='bottom' color="blue" onClick={this.toggleCommenting}>
-          <Button.Content visible>
-            <Icon name = 'add' circular color="blue" style={{ background: 'white' }}></Icon>
-          </Button.Content>
-          <Button.Content hidden>
-            Comment on movie
-          </Button.Content>
-        </Button>}
+        <Popup trigger={
+          <Icon name="chat" link size="large" onClick={this.toggleCommenting}/>
+        } content="Add comment"></Popup>
+        }
         {!this.state.commenting && this.state.comment &&
-        <Button animated="fade" attached="bottom" color="orange" onClick={this.toggleCommenting}>
-          <Button.Content visible>{this.state.comment}</Button.Content>
-          <Button.Content hidden>Change comment?</Button.Content>
-        </Button>
+        <CommentWrap>
+          <Label
+          >
+            <Popup trigger={
+              <Icon name="cancel" link size="large" onClick={this.toggleCommenting}/>
+            } content="Change comment"></Popup>
+            {this.state.comment}
+          </Label>
+        </CommentWrap>
         }
       </div>
     )

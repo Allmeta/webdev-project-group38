@@ -1,34 +1,38 @@
 import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS, LOG_SEARCH,
-  UPDATE_TITLE
-} from "./SearchFormActionTypes"
+  UPDATE_TITLE, UPDATE_PAGE
+} from './SearchFormActionTypes'
 import fetch from 'cross-fetch'
-import {BASE_URL} from "../api/constants";
+import { BASE_URL } from '../api/constants'
 
-export function updateTitle(title) {
+export function updateTitle (title) {
   return { type: UPDATE_TITLE, title }
 }
 
-export function logSearch(title) {
+export function updatePage () {
+  return { type: UPDATE_TITLE }
+}
+
+export function logSearch (title) {
   return {
     type: LOG_SEARCH,
-    title: title,
+    title: title
   }
 }
 
-export function fetchMoviesBegin() {
+export function fetchMoviesBegin () {
   return { type: FETCH_MOVIES_BEGIN }
 }
 
-export function fetchMoviesSuccess(movies) {
+export function fetchMoviesSuccess (movies) {
   return {
     type: FETCH_MOVIES_SUCCESS,
     payload: { movies }
   }
 }
 
-export function fetchMoviesFailure(error) {
+export function fetchMoviesFailure (error) {
   return {
     type: FETCH_MOVIES_FAILURE,
     payload: { error }
@@ -36,27 +40,24 @@ export function fetchMoviesFailure(error) {
 }
 
 // Async action creator for fetching movies.
-export function fetchMovies(title){
-  if(title === undefined){
-    title = ''
-  }
+export function fetchMovies (title = '', page = 1) {
   return dispatch => {
-    dispatch(fetchMoviesBegin());
-      return fetch(BASE_URL + "/movies?search=" + title)
-        .then(handleErrors)
-        .then(res => res.json())
-        .then(json => {
-          dispatch(fetchMoviesSuccess(json));
-          return json;
-        })
-        .catch(error => dispatch(fetchMoviesFailure(error)));
+    dispatch(fetchMoviesBegin())
+    return fetch(BASE_URL + '/movies?page=' + page + '&title=' + title)
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(json => {
+        dispatch(fetchMoviesSuccess(json))
+        return json
+      })
+      .catch(error => dispatch(fetchMoviesFailure(error)))
   }
 }
 
 // Handle HTTP errors since fetch won't.
-function handleErrors(response) {
+function handleErrors (response) {
   if (!response.ok) {
-    throw Error(response.statusText);
+    throw Error(response.statusText)
   }
-  return response;
+  return response
 }
