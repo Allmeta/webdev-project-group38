@@ -1,7 +1,7 @@
 import {
   FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS, LOG_SEARCH,
-  UPDATE_TITLE, UPDATE_PAGE
+  UPDATE_TITLE, UPDATE_PAGE, FETCH_NEXT_PAGE_FAILURE
 } from './MovieActionTypes'
 import fetch from 'cross-fetch'
 import { BASE_URL } from '../api/constants'
@@ -39,9 +39,39 @@ export function fetchMoviesFailure (error) {
   }
 }
 
-// Async action creator for fetching movies.
-export function fetchMovies (title, page = 1) {
+export function fetchNextPageFailure (error) {
+  console.log(error.message)
+  return {
+    type: FETCH_NEXT_PAGE_FAILURE,
+    payload: 'No more movies to show!'
+  }
+}
+
+
+export function fetchNextPage(title, page){
   let fetchURL = ''
+  console.log(BASE_URL + '/movies?page=' + page + '&title=')
+  if(title === undefined || title === ''){
+    fetchURL = BASE_URL + '/movies?page=' + page + '&title='
+  }
+  fetchURL = BASE_URL + '/movies?page=' + page + '&search=' + title;
+  return dispatch => {
+    dispatch(fetchMoviesBegin())
+    return fetch(fetchURL)
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(json => {
+        dispatch(fetchMoviesSuccess(json))
+        return json
+      })
+      .catch(error => dispatch(fetchNextPageFailure(error)))
+  }
+}
+
+// Async action creator for fetching movies.
+export function fetchMovies (title) {
+  let fetchURL = ''
+  let page = 1
   if(title === undefined || title === ''){
     fetchURL = BASE_URL + '/movies?page=' + page + '&title='
   }

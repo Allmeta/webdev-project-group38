@@ -4,7 +4,7 @@ import {
   FETCH_MOVIES_SUCCESS,
   LOG_SEARCH,
   UPDATE_TITLE,
-  UPDATE_PAGE
+  UPDATE_PAGE, FETCH_NEXT_PAGE_FAILURE
 } from '../actions/MovieActionTypes'
 
 const initialState = {
@@ -52,6 +52,12 @@ export const MovieReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload.error.message,
         items: []
+      })
+    case FETCH_NEXT_PAGE_FAILURE:
+      return Object.assign({}, state, {
+        loading: false,
+        error: action.payload,
+        nextPage: state.nextPage - 1
       })
     default:
       return state
