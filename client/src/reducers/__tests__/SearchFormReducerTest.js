@@ -56,7 +56,7 @@ describe('search form reducer', () => {
         loading: false,
         error: null,
         filterQuery: '',
-        filterItems: {},
+        filterItems: [],
         toggleSort: 'grey'
       }
     )
@@ -152,14 +152,26 @@ describe('search form reducer', () => {
       }
     )
   })
-  it('should handle UPDATE_SORT_TOGGLE', () => {
+  it('should handle UPDATE_SORT_TOGGLE when filterItem.length > 0 og toggleSort = grey', () => {
+    expect(
+      SearchFormReducer({ toggleSort: 'green', filterItems: jsonList }, {
+        type: UPDATE_SORT_TOGGLE
+      })
+    ).toEqual(
+      {
+        filterItems: sortedJson,
+        toggleSort: 'red'
+      }
+    )
+  })
+  it('should handle UPDATE_SORT_TOGGLE ', () => {
     expect(
       SearchFormReducer({ toggleSort: 'grey', filterItems: jsonList }, {
         type: UPDATE_SORT_TOGGLE
       })
     ).toEqual(
       {
-        filterItems: sortedJson,
+        filterItems: sortedJson.reverse(),
         toggleSort: 'green'
       }
     )

@@ -169,7 +169,7 @@ exports[`renders correctly 1`] = `
                     Rating
                     <i
                       aria-hidden="true"
-                      className=" sort numeric up big icon"
+                      className="sort numeric down big icon"
                     />
                   </button>
                   <div

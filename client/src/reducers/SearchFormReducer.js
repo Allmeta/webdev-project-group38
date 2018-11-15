@@ -95,14 +95,12 @@ export const SearchFormReducer = (state = initialState, action) => {
         })
       }
   } if (state.toggleSort === 'grey' && state.filterItems.length > 0) {
-    console.log('The list should now be sorted!')
     // Sorting the filteredList:
     let data = [...state.filterItems]
     data.sort(function (a, b) {
       return a.rating.localeCompare(b.rating)
     })
     let sorted = data.sort().reverse()
-    console.log(sorted, 'SortedList')
     // Sorter filteredItems, sett den til svart og returner det!!
     return Object.assign({}, state, {
       toggleSort: 'green',
