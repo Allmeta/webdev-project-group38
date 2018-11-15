@@ -13,8 +13,7 @@ const initialState = {
   error: null,
   filterQuery: '',
   filterItems: {},
-  toggleSort: 'grey',
-  sortItems: []
+  toggleSort: 'grey'
 }
 
 export const SearchFormReducer = (state = initialState, action) => {
@@ -103,7 +102,7 @@ export const SearchFormReducer = (state = initialState, action) => {
   }
 }
 
-function findInObject(myObject, myCriteria) {
+function findInObject (myObject, myCriteria) {
   return myObject.filter(function (obj) {
     return Object.keys(myCriteria).every(function (c) {
       return obj[c].includes(myCriteria[c])

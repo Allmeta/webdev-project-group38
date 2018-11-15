@@ -118,14 +118,26 @@ describe('async actions', () => {
       expect(store.getActions()[1].payload.error.message).toEqual(expectedActions[1].error)
     })
   })
-  it('Updates the filterquery which updates the filterItems list on change:', () => {
-    const store = mockStore({ filterQuery: '' })
-
-    const expectedActions =
-      { type: types.UPDATE_FILTER_QUERY, payload: 'The' }
-
-    return store.dispatch(actions.updateFilterQuery('The')).then(() => {
-      expect(store.getActions()).toEqual(expectedActions)
+  it('should create an action to empty the filter field', () => {
+    const expectedAction = {
+      type: types.EMPTY_FILTER_ITEMS
+    }
+    expect(actions.emptyFilterItems()).toEqual(expectedAction)
+  })
+  describe('actions', () => {
+    it('should create an action to update the filter query', () => {
+      const filterquery = 'The'
+      const expectedAction = {
+        type: types.UPDATE_FILTER_QUERY,
+        payload: filterquery
+      }
+      expect(actions.updateFilterQuery(filterquery)).toEqual(expectedAction)
+    })
+    it('should create an action to change the sort toggle-button', () => {
+      const expectedAction = {
+        type: types.UPDATE_SORT_TOGGLE
+      }
+      expect(actions.changeSortToggle()).toEqual(expectedAction)
     })
   })
 })
