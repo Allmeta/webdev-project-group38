@@ -1,53 +1,65 @@
 import React, { Component } from 'react'
-import { fetchMovies, updateTitle, updatePage } from '../actions/MovieActions'
 import { Icon, Popup } from 'semantic-ui-react'
 import Waypoint from 'react-waypoint'
+import { fetchMovies, fetchNextPage, logSearch, updatePage, updateTitle } from '../actions/MovieActions'
+import { connect } from 'react-redux'
+import store from '../store/index'
 
 class Loader extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      loading: false,
-      inView: true
+      inView: true,
+      loading: props.loading,
+      searchHistory: props.searchHistory,
+      nextPage: props.nextPage
     }
   }
-  tryFetch () {
-    if (this.state.loading) {
-      this.setState({
-        inView: true
-      })
-    }else {
-      this.fetch()
-    }
-  }
-  fetch () {
+  onLeave () {
     this.setState({
-      loading: true
+      inView: false
     })
-    console.log('Entered!')
-  }
-  doneFetch () {
-    this.setState({
-      loading: false
-    })
-    console.log('Left!')
   }
   render () {
     return (
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <Waypoint
-          onEnter={this.tryFetch.bind(this)}
-          onLeave={this.doneFetch.bind(this)}
+          onEnter={this.props.handleClick}
+          onLeave={this.onLeave.bind(this)}
         />
 
         <Popup position="top center" content="Load more movies" trigger={
-          <Icon name={this.state.loading ? 'circle notch' : 'arrow alternate circle down'}
+          <Icon name={this.props.loading ? 'circle notch' : 'arrow alternate circle down'}
             color="grey" link size="huge"
-            loading={this.state.loading} onClick={this.fetch.bind(this)}/>
+            loading={this.props.loading}/>
         }></Popup>
       </div>
+
     )
   }
 }
 
-export default Loader
+function mapStateToProps (state) {
+  return {
+    loading: state.MovieReducer.loading,
+    searchHistory: state.MovieReducer.searchHistory,
+    nextPage: state.MovieReducer.nextPage
+  }
+}
+
+function mapDispatchToProps (dispatch) {
+  return {
+    handleClick: () => {
+      let searchHistory = store.getState().MovieReducer.searchHistory
+      let title = searchHistory[searchHistory.length - 1]
+      let searchedTitle = ''
+      if (title !== undefined) {
+        searchedTitle = title['searchedTitle']
+      }
+      dispatch(updatePage())
+      dispatch(fetchNextPage(searchedTitle))
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Loader)

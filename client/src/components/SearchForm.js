@@ -31,11 +31,7 @@ function mapDispatchToProps (dispatch) {
       },
       handleSubmit: (event) => {
         const title = event.target.querySelectorAll('input[name="title"]')[0].value
-
-        if (title !== '') {
-          // We log the search only if it's non-empty.
-          dispatch(logSearch(title))
-        }
+        dispatch(logSearch(title))
         dispatch(fetchMovies(title))
       }
     }

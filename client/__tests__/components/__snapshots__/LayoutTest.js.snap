@@ -174,8 +174,7 @@ exports[`renders correctly 1`] = `
     />
     <i
       aria-hidden="true"
-      className="grey arrow alternate circle down huge link icon"
-      onBlur={[Function]}
+      className="grey arrow alternate circle down huge link loading icon"
       onClick={[Function]}
       onFocus={[Function]}
       onMouseEnter={[Function]}
