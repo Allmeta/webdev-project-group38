@@ -178,7 +178,7 @@ exports[`renders correctly 1`] = `
     />
     <i
       aria-hidden="true"
-      className="grey arrow alternate circle down huge link icon"
+      className="grey arrow alternate circle down huge link loading icon"
       onClick={[Function]}
     />
   </div>

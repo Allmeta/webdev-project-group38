@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
-import {fetchMovies, fetchNextPage, updatePage} from '../actions/MovieActions'
+import {fetchMovies, fetchNextPage, logSearch, updatePage, updateTitle} from '../actions/MovieActions'
 import {Icon} from 'semantic-ui-react'
 import {connect} from "react-redux";
+import store from '../store/index'
 
 class Loader extends Component {
   constructor (props) {
@@ -11,16 +12,10 @@ class Loader extends Component {
       searchHistory: props.searchHistory,
       nextPage: props.nextPage
     }
-    this.handleClick = this.handleClick.bind(this)
-  }
-  handleClick () {
-    this.props.updatePage();
-    console.log(this.props.nextPage);
-    this.props.fetchNextPage(this.props.searchHistory[this.props.searchHistory.length - 1], this.props.nextPage)
   }
   render () {
     return (
-      <Icon name="arrow alternate circle down" color="grey" link size="huge" loading={this.props.loading} onClick={this.handleClick} />
+      <Icon name="arrow alternate circle down" color="grey" link size="huge" loading={this.props.loading} onClick={this.props.handleClick} />
     )
   }
 }
@@ -33,10 +28,18 @@ function mapStateToProps(state){
   }
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return {
-    updatePage: () => dispatch(updatePage()),
-    fetchNextPage: (title, page) => dispatch(fetchNextPage(title, page))
+    handleClick: () => {
+      let searchHistory = store.getState().MovieReducer.searchHistory;
+      let title = searchHistory[searchHistory.length - 1];
+      let searchedTitle = ''
+      if (title !== undefined) {
+        searchedTitle = title['searchedTitle']
+      }
+      dispatch(updatePage());
+      dispatch(fetchNextPage(searchedTitle));
+    }
   }
 }
 

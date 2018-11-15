@@ -4,7 +4,7 @@ import {
   FETCH_MOVIES_SUCCESS,
   LOG_SEARCH,
   UPDATE_TITLE,
-  UPDATE_PAGE, FETCH_NEXT_PAGE_FAILURE
+  UPDATE_PAGE, FETCH_NEXT_PAGE_FAILURE, FETCH_NEXT_PAGE_SUCCESS
 } from '../actions/MovieActionTypes'
 
 const initialState = {
@@ -43,7 +43,8 @@ export const MovieReducer = (state = initialState, action) => {
       // We update the items with what was received.
       return Object.assign({}, state, {
         loading: false,
-        items: action.payload.movies
+        items: action.payload.movies,
+        nextPage: 1
       })
     case FETCH_MOVIES_FAILURE:
       // Set loading to false and save error so we can display it.
@@ -51,13 +52,19 @@ export const MovieReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         loading: false,
         error: action.payload.error.message,
-        items: []
+        items: [],
+        nextPage: 1
       })
     case FETCH_NEXT_PAGE_FAILURE:
       return Object.assign({}, state, {
         loading: false,
         error: action.payload,
         nextPage: state.nextPage - 1
+      })
+    case FETCH_NEXT_PAGE_SUCCESS:
+      return Object.assign({}, state, {
+        loading: false,
+        items: state.items.concat(action.payload.movies)
       })
     default:
       return state
