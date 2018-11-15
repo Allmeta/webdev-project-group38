@@ -32,8 +32,8 @@ class CardGroup extends Component {
   }
 
   componentDidMount () {
-    const { fetchMovies } = this.props
-    fetchMovies()
+    // const { fetchMovies } = this.props
+    // fetchMovies()
   }
 
   render () {

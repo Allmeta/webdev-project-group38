@@ -24,14 +24,6 @@ const CardImg = styled.div`
   justify-content: flex-end;
   background-image: url(${props => props.img});
 `
-const CardTitle = styled.div`
-  background:rgba(0,0,0,.5);
-  color:white;
-  width:100%;
-  padding:12px;
-  text-align:center;
-  font-size:14px;
-`
 const CardData = styled.div`
   position:relative;
 `
@@ -45,14 +37,16 @@ const CardDate = styled.div`
 `
 const CardExtra = styled.div`
   color:rgb(122,133,143);
-  display: grid;
+  display: flex;
+  flex-direction:row;
   font-size: 13px;
-  grid-template-columns: repeat(2,1fr);
   background:#f6f8fb;
+  white-space:no-wrap;
+  
 `
 const CardSpan = styled.span`
-  padding:8px;
-  text-align:center;
+  padding:2px;
+  margin: 0 auto;
   display:inline-block;
 `
 const CardDesc = styled.div`
@@ -106,11 +100,11 @@ class MovieCard extends Component {
     return (
       <Card onMouseEnter={this.mouseIn} onMouseLeave={this.mouseOut}>
         <CardImg img={this.props.img}>
-          <CardTitle>{this.props.title}</CardTitle>
         </CardImg>
         <CardData>
-          <CardDate>{this.props.date}</CardDate>
+          <CardDate><Label size="large">{this.props.title}</Label></CardDate>
           <CardExtra>
+            <CardSpan><Label content={this.props.date} icon="calendar alternate"></Label></CardSpan>
             <CardSpan><Label content={this.props.language} icon="location arrow"/></CardSpan>
             <CardSpan><Label content={this.props.popularity} icon="star"></Label></CardSpan>
           </CardExtra>

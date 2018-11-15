@@ -13,7 +13,7 @@ const initialState = {
   items: [],
   loading: false,
   error: null,
-  nextPage: 1
+  nextPage: 0
 }
 
 export const MovieReducer = (state = initialState, action) => {
