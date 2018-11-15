@@ -3,11 +3,10 @@ import {
   FETCH_MOVIES_FAILURE,
   FETCH_MOVIES_SUCCESS,
   LOG_SEARCH,
-  UPDATE_TITLE
-} from "../actions/SearchFormActionTypes";
-  FETCH_MOVIES_BEGIN, FETCH_MOVIES_FAILURE,
-  FETCH_MOVIES_SUCCESS, LOG_SEARCH,
-  UPDATE_TITLE, UPDATE_FILTER_QUERY, EMPTY_FILTER_ITEMS, UPDATE_SORT_TOGGLE
+  UPDATE_TITLE,
+  UPDATE_FILTER_QUERY,
+  EMPTY_FILTER_ITEMS,
+  UPDATE_SORT_TOGGLE
 } from '../actions/SearchFormActionTypes'
 import store from '../store/index.js'
 
@@ -18,12 +17,12 @@ const initialState = {
   loading: false,
   error: null,
   filterQuery: '',
-  filterItems: {},
+  filterItems: [],
   toggleSort: 'grey'
 }
 
 export const SearchFormReducer = (state = initialState, action) => {
-  switch(action.type){
+  switch (action.type) {
     case UPDATE_TITLE:
       return Object.assign({}, state, {
         title: action.title
@@ -47,7 +46,9 @@ export const SearchFormReducer = (state = initialState, action) => {
       // We update the items with what was received.
       return Object.assign({}, state, {
         loading: false,
-        items: action.payload.movies
+        items: action.payload.movies,
+        filterItems: action.payload.movies,
+        toggleSort: 'grey'
       })
     case FETCH_MOVIES_FAILURE:
       // Set loading to false and save error so we can display it.
@@ -78,7 +79,8 @@ export const SearchFormReducer = (state = initialState, action) => {
     case UPDATE_SORT_TOGGLE:
       if (state.toggleSort === 'green' && state.filterItems.length > 0) {
         // Turn off sorting:
-        let randomOrder = state.filterItems.sort(function (a, b) { return Math.random() - 0.5 })
+        let newState = [...state.filterItems]
+        let randomOrder = newState.sort(function (a, b) { return Math.random() - 0.5 })
         return Object.assign({}, state, {
           toggleSort: 'grey',
           filterItems: randomOrder
@@ -86,7 +88,7 @@ export const SearchFormReducer = (state = initialState, action) => {
       } if (state.toggleSort === 'grey' && state.filterItems.length > 0) {
         console.log('The list should now be sorted!')
         // Sorting the filteredList:
-        let data = state.filterItems
+        let data = [...state.filterItems]
         data.sort(function (a, b) {
           return a.rating.localeCompare(b.rating)
         })
