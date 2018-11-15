@@ -8,8 +8,8 @@ const StyledField = styled.div`
 right: 50 ;
 `
 
-function FilterForm(props) {
-  function componentDidUpdate(prevfilterQuery) {
+function FilterForm (props) {
+  function componentDidUpdate (prevfilterQuery) {
     console.log('GGGGS')
     if (this.props.filterQuery !== prevfilterQuery) {
       console.log(this.state.filterQuery, 'Filterquery updated!')
@@ -32,7 +32,7 @@ function FilterForm(props) {
   )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   console.log(state.SearchFormReducer.toggleSort, 'state.SearchFormReducer.toggleSort')
   return ({
     filterQuery: state.SearchFormReducer.filterQuery,
@@ -41,7 +41,7 @@ function mapStateToProps(state) {
   )
 }
 
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return (
     {
       // Update the filter text in store:
