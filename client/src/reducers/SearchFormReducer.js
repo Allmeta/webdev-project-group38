@@ -92,7 +92,7 @@ export const SearchFormReducer = (state = initialState, action) => {
         data.sort(function (a, b) {
           return a.rating.localeCompare(b.rating)
         })
-        let sorted = data.sort()
+        let sorted = data.sort().reverse()
         console.log(sorted, 'SortedList')
         // Sorter filteredItems, sett den til svart og returner det!!
         return Object.assign({}, state, {
