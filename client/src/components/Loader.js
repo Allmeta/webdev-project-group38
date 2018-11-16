@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { Icon, Popup } from 'semantic-ui-react'
 import Waypoint from 'react-waypoint'
-import { fetchMovies, fetchNextPage, logSearch, updatePage, updateTitle } from '../actions/MovieActions'
+import { fetchNextPage, updatePage } from '../actions/MovieActions'
 import { connect } from 'react-redux'
 import store from '../store/index'
 
