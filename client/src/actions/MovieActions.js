@@ -132,7 +132,7 @@ export function fetchMovies (title) {
 
 export function postCommentBegin () {
   return {
-    type: POST_COMMENT_BEGIN,
+    type: POST_COMMENT_BEGIN
   }
 }
 
@@ -145,7 +145,7 @@ export function postCommentFailure (error) {
 
 export function postComment (key, comment) {
   let fetchURL = BASE_URL + '/movies/reviews'
-  let putObject = { "id": key, "review": comment }
+  let putObject = { 'id': key, 'review': comment }
   return dispatch => {
     dispatch(postCommentBegin())
     return fetch(fetchURL, { method: 'PUT', body: JSON.stringify(putObject), headers: { 'Content-Type': 'application/json' } })
@@ -163,7 +163,7 @@ function handleErrors (response) {
   }
   return response
 }
-
+// Action creator for updating the filterQuery in the redux store:
 export function updateFilterQuery (filterquery) {
   return {
     type: UPDATE_FILTER_QUERY,
@@ -171,18 +171,16 @@ export function updateFilterQuery (filterquery) {
   }
 }
 
-export function changeSortToggle () {
-  return {
-    type: UPDATE_SORT_TOGGLE
-  }
-}
+/* Action creator for empyting the filterQuery:
+* To be called when a new fetch-movie API call is done.
+*/
 export function emptyFilterItems () {
   return {
     type: EMPTY_FILTER_ITEMS
   }
 }
 
-// Async action creator for fetching movies.
+// Async action creator for fetching sorted movies.
 export function fetchSortedMovies (togglesort, title) {
   let prevButtonColor = togglesort
   let fetchURL = ''
@@ -236,5 +234,10 @@ export function fetchSortedMoviesSuccess (movies) {
   return {
     type: FETCH_SORTED_MOVIES_SUCCESS,
     payload: { movies }
+  }
+}
+export function changeSortToggle () {
+  return {
+    type: UPDATE_SORT_TOGGLE
   }
 }

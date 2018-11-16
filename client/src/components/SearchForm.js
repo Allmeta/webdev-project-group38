@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Form } from 'semantic-ui-react'
 import { fetchMovies, logSearch, updateTitle } from '../actions/MovieActions'
 
-function SearchForm(props) {
+function SearchForm (props) {
   return (
     <Form onSubmit={props.handleSubmit}>
       <Form.Input onChange={props.handleChange}
@@ -14,16 +14,14 @@ function SearchForm(props) {
     </Form>
   )
 }
-
-function mapStateToProps(state) {
+function mapStateToProps (state) {
   return ({
     title: state.title,
     genre: state.genre
   }
   )
 }
-
-function mapDispatchToProps(dispatch) {
+function mapDispatchToProps (dispatch) {
   return (
     {
       handleChange: (e, { name, value }) => {

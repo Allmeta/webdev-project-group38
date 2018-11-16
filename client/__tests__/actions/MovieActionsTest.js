@@ -69,14 +69,14 @@ describe('async actions', () => {
         payload: {
           movies: [{
             movie_id: 300668,
-            title: "Annihilation",
+            title: 'Annihilation',
             summary: "A biologist signs up for a dangerous, secret expedition into a mysterious zone where the laws of nature don't apply.",
-            popularity: "28.371",
-            language: "en",
-            release_date: "2018-02-22",
-            poster_path: "/d3qcpfNwbAMCNqWDHzPQsUYiUgS.jpg",
-            comment: "",
-            rating: "6.3"
+            popularity: '28.371',
+            language: 'en',
+            release_date: '2018-02-22',
+            poster_path: '/d3qcpfNwbAMCNqWDHzPQsUYiUgS.jpg',
+            comment: '',
+            rating: '6.3'
           }]
         }
       }
@@ -119,12 +119,6 @@ describe('async actions', () => {
         payload: filterquery
       }
       expect(actions.updateFilterQuery(filterquery)).toEqual(expectedAction)
-    })
-    it('should create an action to change the sort toggle-button', () => {
-      const expectedAction = {
-        type: types.UPDATE_SORT_TOGGLE
-      }
-      expect(actions.changeSortToggle()).toEqual(expectedAction)
     })
   })
 })

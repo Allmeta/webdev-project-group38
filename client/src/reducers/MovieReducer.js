@@ -9,10 +9,13 @@ import {
   FETCH_NEXT_PAGE_SUCCESS,
   UPDATE_FILTER_QUERY,
   EMPTY_FILTER_ITEMS,
-  UPDATE_SORT_TOGGLE, POST_COMMENT_BEGIN, POST_COMMENT_FAILURE,
-  FETCH_SORTED_MOVIES_SUCCESS
+  POST_COMMENT_BEGIN,
+  POST_COMMENT_FAILURE,
+  FETCH_SORTED_MOVIES_SUCCESS,
+  UPDATE_SORT_TOGGLE
 } from '../actions/MovieActionTypes'
 
+// The toggleSort button is set to grey, as it is not "activated" yet
 const initialState = {
   title: '',
   searchHistory: [],
@@ -24,7 +27,7 @@ const initialState = {
   toggleSort: 'grey',
   nextPage: 0
 }
-
+// Reducer handling all the actions concering the movies
 export const MovieReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_TITLE:
@@ -53,7 +56,7 @@ export const MovieReducer = (state = initialState, action) => {
       // Reset any errors when starting new fetch.
       return Object.assign({}, state, {
         loading: true,
-        error: null,
+        error: null
       })
     case FETCH_MOVIES_SUCCESS:
       // When finished, set loading to false.
@@ -67,6 +70,9 @@ export const MovieReducer = (state = initialState, action) => {
         filterQuery: ''
       })
     case FETCH_SORTED_MOVIES_SUCCESS:
+      /* If the sorting button is red when it is pressed films are now being loaded in the normal
+      and the button is set to grey
+        */
       if (state.toggleSort === 'red') {
         return Object.assign({}, state, {
           loading: false,
@@ -76,6 +82,8 @@ export const MovieReducer = (state = initialState, action) => {
           toggleSort: 'grey'
         })
       }
+      /* If the sorting button is green when it is pressed films are now being loaded in the
+      ascending order and the button is set to red */
       if (state.toggleSort === 'green') {
         return Object.assign({}, state, {
           loading: false,
@@ -85,6 +93,8 @@ export const MovieReducer = (state = initialState, action) => {
           toggleSort: 'red'
         })
       }
+      /* If the sorting button is grey when it is pressed films are now being loaded in the
+     ascending order and the button is set to green */
       if (state.toggleSort === 'grey') {
         return Object.assign({}, state, {
           loading: false,
@@ -115,9 +125,11 @@ export const MovieReducer = (state = initialState, action) => {
         items: state.items.concat(action.payload.movies),
         filterItems: state.filterItems.concat(action.payload.movies)
       })
+    // Updating the filtered items by the entered filter string
     case UPDATE_FILTER_QUERY:
       var myJson = JSON.stringify([...state.items])
       var filteredJson = findInObject(JSON.parse(myJson), { summary: action.payload })
+      // If no items are loaded
       if ([...state.items].length === 0 || filteredJson === undefined) {
         return Object.assign({}, state, {
           filterQuery: action.payload,
@@ -129,6 +141,7 @@ export const MovieReducer = (state = initialState, action) => {
           filterItems: filteredJson
         })
       }
+    // Emptying the filterQuery when a new search is done
     case EMPTY_FILTER_ITEMS:
       return Object.assign({}, state, {
         filterQuery: ''
@@ -170,7 +183,8 @@ export const MovieReducer = (state = initialState, action) => {
   }
 }
 
-function findInObject (myObject, myCriteria) {
+// Helper method used for seeing if a search cirteria is in a movie synopis:
+function findInObject(myObject, myCriteria) {
   return myObject.filter(function (obj) {
     return Object.keys(myCriteria).every(function (c) {
       return obj[c].includes(myCriteria[c])
