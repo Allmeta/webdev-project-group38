@@ -6,6 +6,8 @@ const generateError = (status, errorMessage) => ({ status, error: errorMessage }
 // Transform function
 const insidePercent = input => [`%${input}%`]
 
+const insidePercentSort = input => [`%${input[0]}%`, `${input[1]}`]
+
 const regular = input => [`${input}`]
 
 const identity = input => input
@@ -31,6 +33,7 @@ export {
   buildReviewsQuery,
   regular,
   insidePercent,
+  insidePercentSort,
   identity,
   buildGenresQuery,
   buildQuery
