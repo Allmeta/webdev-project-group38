@@ -157,7 +157,7 @@ exports[`renders correctly 1`] = `
               <input
                 name="title"
                 onChange={[Function]}
-                placeholder="Search"
+                placeholder="Search movie title..."
                 type="text"
               />
               <button
@@ -187,7 +187,7 @@ exports[`renders correctly 1`] = `
               <input
                 name="filterQuery"
                 onChange={[Function]}
-                placeholder="Filter on title..."
+                placeholder="Filter on movie synopsis..."
                 type="text"
                 value=""
               />

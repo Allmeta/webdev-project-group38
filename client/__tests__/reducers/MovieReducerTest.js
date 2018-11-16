@@ -130,17 +130,7 @@ it('should handle UPDATE_FILTER_QUERY with movies in item-list', () => {
   ).toEqual(
     {
       filterQuery: 'The Predator',
-      filterItems: [{
-        movie_id: 346910,
-        title: 'The Predator',
-        summary: 'From the outer reaches of space to the small-town streets of suburbia, the hunt comes home. Now, the universe’s most lethal hunters are stronger, smarter and deadlier than ever before, having genetically upgraded themselves with DNA from other species. When a young boy accidentally triggers their return to Earth, only a ragtag crew of ex-soldiers and a disgruntled science teacher can prevent the end of the human race.',
-        popularity: '163.789',
-        language: 'en',
-        release_date: '2018-09-13',
-        poster_path: '/wMq9kQXTeQCHUZOG4fAe5cAxyUA.jpg',
-        comment: '',
-        rating: '5.3'
-      }],
+      filterItems: [],
       items: jsonList
     }
   )

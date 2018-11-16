@@ -37,7 +37,7 @@ describe('async actions', () => {
         language: 'en',
         release_date: '2018-07-04',
         poster_path: '/rv1AWImgx386ULjcf62VYaW8zSt.jpg',
-        comment: '',
+        comment: 'sds',
         rating: '6.9'
       },
       {
@@ -48,7 +48,7 @@ describe('async actions', () => {
         language: 'en',
         release_date: '2015-07-14',
         poster_path: '/D6e8RJf2qUstnfkTslTXNTUAlT.jpg',
-        comment: '',
+        comment: 'sds',
         rating: '7.1'
       }]
     },

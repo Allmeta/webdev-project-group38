@@ -1,12 +1,12 @@
 import React, { Component } from 'react'
 import { Icon, Popup } from 'semantic-ui-react'
 import Waypoint from 'react-waypoint'
-import { fetchMovies, fetchNextPage, logSearch, updatePage, updateTitle } from '../actions/MovieActions'
+import { fetchNextPage, updatePage } from '../actions/MovieActions'
 import { connect } from 'react-redux'
 import store from '../store/index'
 
 class Loader extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       inView: true,
@@ -15,12 +15,12 @@ class Loader extends Component {
       nextPage: props.nextPage
     }
   }
-  onLeave () {
+  onLeave() {
     this.setState({
       inView: false
     })
   }
-  render () {
+  render() {
     return (
       <div style={{ display: 'flex', flexDirection: 'row' }}>
         <Waypoint
@@ -39,7 +39,7 @@ class Loader extends Component {
   }
 }
 
-function mapStateToProps (state) {
+function mapStateToProps(state) {
   return {
     loading: state.MovieReducer.loading,
     searchHistory: state.MovieReducer.searchHistory,
@@ -47,17 +47,18 @@ function mapStateToProps (state) {
   }
 }
 
-function mapDispatchToProps (dispatch) {
+function mapDispatchToProps(dispatch) {
   return {
     handleClick: () => {
       let searchHistory = store.getState().MovieReducer.searchHistory
       let title = searchHistory[searchHistory.length - 1]
       let searchedTitle = ''
+      let filtercolor = store.getState().MovieReducer.toggleSort
       if (title) {
         searchedTitle = title['searchedTitle']
       }
       dispatch(updatePage())
-      dispatch(fetchNextPage(searchedTitle))
+      dispatch(fetchNextPage(searchedTitle, filtercolor))
     }
   }
 }

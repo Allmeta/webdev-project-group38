@@ -9,9 +9,9 @@ import {
   FETCH_NEXT_PAGE_SUCCESS,
   UPDATE_FILTER_QUERY,
   EMPTY_FILTER_ITEMS,
-  UPDATE_SORT_TOGGLE, POST_COMMENT_BEGIN, POST_COMMENT_FAILURE
+  UPDATE_SORT_TOGGLE, POST_COMMENT_BEGIN, POST_COMMENT_FAILURE,
+  FETCH_SORTED_MOVIES_SUCCESS
 } from '../actions/MovieActionTypes'
-import store from '../store/index.js'
 
 const initialState = {
   title: '',
@@ -66,6 +66,34 @@ export const MovieReducer = (state = initialState, action) => {
         toggleSort: 'grey',
         filterQuery: ''
       })
+    case FETCH_SORTED_MOVIES_SUCCESS:
+      if (state.toggleSort === 'red') {
+        return Object.assign({}, state, {
+          loading: false,
+          items: action.payload.movies,
+          nextPage: 1,
+          filterItems: action.payload.movies,
+          toggleSort: 'grey'
+        })
+      }
+      if (state.toggleSort === 'green') {
+        return Object.assign({}, state, {
+          loading: false,
+          items: action.payload.movies,
+          nextPage: 1,
+          filterItems: action.payload.movies,
+          toggleSort: 'red'
+        })
+      }
+      if (state.toggleSort === 'grey') {
+        return Object.assign({}, state, {
+          loading: false,
+          items: action.payload.movies,
+          nextPage: 1,
+          filterItems: action.payload.movies,
+          toggleSort: 'green'
+        })
+      } break
     case FETCH_MOVIES_FAILURE:
       // Set loading to false and save error so we can display it.
       // Also, we reset items list upon error encounter.
@@ -82,44 +110,14 @@ export const MovieReducer = (state = initialState, action) => {
         nextPage: state.nextPage - 1
       })
     case FETCH_NEXT_PAGE_SUCCESS:
-      // Adding new movies on scroll
-      if (state.toggleSort === 'green') {
-        // Sorting the newly added films:
-        let newSortedList = state.filterItems.concat(action.payload.movies)
-        newSortedList.sort(function (a, b) {
-          return a.rating.localeCompare(b.rating)
-        })
-        let sorted = newSortedList.sort().reverse()
-        return Object.assign({}, state, {
-          loading: false,
-          items: state.items.concat(action.payload.movies),
-          filterItems: sorted
-        })
-      }
-      if (state.toggleSort === 'grey') {
-        return Object.assign({}, state, {
-          loading: false,
-          items: state.items.concat(action.payload.movies),
-          filterItems: state.filterItems.concat(action.payload.movies)
-        })
-      }
-      if (state.toggleSort === 'red') {
-        // Sorting the newly added films:
-        let newSortedList = state.filterItems.concat(action.payload.movies)
-        newSortedList.sort(function (a, b) {
-          return a.rating.localeCompare(b.rating)
-        })
-        let sorted = newSortedList.sort().reverse()
-        return Object.assign({}, state, {
-          loading: false,
-          items: state.items.concat(action.payload.movies),
-          filterItems: sorted.reverse()
-        })
-      }
-      break
+      return Object.assign({}, state, {
+        loading: false,
+        items: state.items.concat(action.payload.movies),
+        filterItems: state.filterItems.concat(action.payload.movies)
+      })
     case UPDATE_FILTER_QUERY:
       var myJson = JSON.stringify([...state.items])
-      var filteredJson = findInObject(JSON.parse(myJson), { title: action.payload })
+      var filteredJson = findInObject(JSON.parse(myJson), { summary: action.payload })
       if ([...state.items].length === 0 || filteredJson === undefined) {
         return Object.assign({}, state, {
           filterQuery: action.payload,
@@ -172,7 +170,7 @@ export const MovieReducer = (state = initialState, action) => {
   }
 }
 
-function findInObject(myObject, myCriteria) {
+function findInObject (myObject, myCriteria) {
   return myObject.filter(function (obj) {
     return Object.keys(myCriteria).every(function (c) {
       return obj[c].includes(myCriteria[c])
