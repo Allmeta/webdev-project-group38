@@ -12,7 +12,7 @@ import {
   POST_COMMENT_BEGIN,
   POST_COMMENT_FAILURE,
   FETCH_SORTED_MOVIES_SUCCESS,
-  UPDATE_SORT_TOGGLE
+  UPDATE_SORT_TOGGLE, POST_COMMENT_SUCCESS
 } from '../actions/MovieActionTypes'
 
 // The toggleSort button is set to grey, as it is not "activated" yet
@@ -27,7 +27,8 @@ const initialState = {
   toggleSort: 'grey',
   nextPage: 0
 }
-// Reducer handling all the actions concering the movies
+
+// Reducer handling all the actions concerning the movies
 export const MovieReducer = (state = initialState, action) => {
   switch (action.type) {
     case UPDATE_TITLE:
@@ -39,28 +40,24 @@ export const MovieReducer = (state = initialState, action) => {
         nextPage: state.nextPage + 1
       })
     case LOG_SEARCH:
-      // Update search history.
+      // Update search history by appending to the list.
       return Object.assign({}, state, {
         searchHistory: [...state.searchHistory, { searchedTitle: action.title }]
       })
-    case POST_COMMENT_BEGIN:
-      return Object.assign({}, state, {
-        error: null
-      })
-    case POST_COMMENT_FAILURE:
-      return Object.assign({}, state, {
-        error: action.payload.message
-      })
     case FETCH_MOVIES_BEGIN:
-      // Mark state as loading so frontend knows to display loading wheel.
-      // Reset any errors when starting new fetch.
+      /**
+       * Mark state as loading so frontend knows to display loading wheel.
+       * Reset any errors when starting new fetch.
+       */
       return Object.assign({}, state, {
         loading: true,
         error: null
       })
     case FETCH_MOVIES_SUCCESS:
-      // When finished, set loading to false.
-      // We update the items with what was received.
+      /**
+       * When finished, set loading to false.
+       * We update the items with what was received.
+       */
       return Object.assign({}, state, {
         loading: false,
         items: action.payload.movies,
@@ -69,10 +66,29 @@ export const MovieReducer = (state = initialState, action) => {
         toggleSort: 'grey',
         filterQuery: ''
       })
+    case POST_COMMENT_BEGIN:
+      // Reset the error
+      return Object.assign({}, state, {
+        error: null
+      })
+    case POST_COMMENT_FAILURE:
+      return Object.assign({}, state, {
+        error: action.payload.message
+      })
+    case POST_COMMENT_SUCCESS:
+      // Updates the comment in state to display the newly posted comment.
+      return Object.assign({}, state, {
+        filterItems: state.filterItems.map(
+          (filterItem) => filterItem.movie_id === action.movie_id ?
+            { ...filterItem, comment: action.comment } :
+            filterItem
+        )}
+      )
     case FETCH_SORTED_MOVIES_SUCCESS:
-      /* If the sorting button is red when it is pressed films are now being loaded in the normal
-      and the button is set to grey
-        */
+      /**
+       *  If the sorting button is red when it is pressed films are now being loaded in the normal
+       *  and the button is set to grey
+       */
       if (state.toggleSort === 'red') {
         return Object.assign({}, state, {
           loading: false,
@@ -82,8 +98,10 @@ export const MovieReducer = (state = initialState, action) => {
           toggleSort: 'grey'
         })
       }
-      /* If the sorting button is green when it is pressed films are now being loaded in the
-      ascending order and the button is set to red */
+      /**
+       * If the sorting button is green when it is pressed films are now being loaded in the
+       * ascending order and the button is set to red
+       */
       if (state.toggleSort === 'green') {
         return Object.assign({}, state, {
           loading: false,
@@ -93,8 +111,10 @@ export const MovieReducer = (state = initialState, action) => {
           toggleSort: 'red'
         })
       }
-      /* If the sorting button is grey when it is pressed films are now being loaded in the
-     ascending order and the button is set to green */
+      /**
+       *  If the sorting button is grey when it is pressed films are now being loaded in the
+       *  ascending order and the button is set to green
+       */
       if (state.toggleSort === 'grey') {
         return Object.assign({}, state, {
           loading: false,
@@ -105,8 +125,10 @@ export const MovieReducer = (state = initialState, action) => {
         })
       } break
     case FETCH_MOVIES_FAILURE:
-      // Set loading to false and save error so we can display it.
-      // Also, we reset items list upon error encounter.
+      /**
+       * Set loading to false and save error so we can display it.
+       * Also, we reset items list upon error encounter.
+       */
       return Object.assign({}, state, {
         loading: false,
         error: action.payload.error.message,
@@ -183,7 +205,7 @@ export const MovieReducer = (state = initialState, action) => {
   }
 }
 
-// Helper method used for seeing if a search cirteria is in a movie synopis:
+// Helper method used for seeing if a search criteria is in a movie synopsis:
 function findInObject(myObject, myCriteria) {
   return myObject.filter(function (obj) {
     return Object.keys(myCriteria).every(function (c) {
