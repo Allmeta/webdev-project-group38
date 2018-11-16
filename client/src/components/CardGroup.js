@@ -31,11 +31,6 @@ class CardGroup extends Component {
     }
   }
 
-  componentDidMount () {
-    // const { fetchMovies } = this.props
-    // fetchMovies()
-  }
-
   render () {
     const image_base = 'https://image.tmdb.org/t/p/w500'
 
