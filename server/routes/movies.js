@@ -8,6 +8,12 @@ import { generateError,
 
 const movies = express.Router()
 
+/**
+ * Returns movies dependent upon given query parameters
+ * - search lets you match on search results
+ * - page lets you paginate the movies
+ * - sortOnRating lets you sort the movies on their rating
+ */
 movies.get('/movies', (req, res) => {
   let query = { text: 'SELECT * FROM movie' }
 
@@ -44,6 +50,7 @@ movies.get('/movies', (req, res) => {
     .catch(() => res.status(500).json(generateError(500, 'Internal server error')))
 })
 
+// Returns a specific movie for a given movie_id
 movies.get('/movies/id/:id', (req, res) => {
   pool.query(buildMoviesQuery('SELECT * FROM movie WHERE movie_id = $1', regular, req.params.id))
     .then(movies => movies.rows.length === 1 ? res.json(movies.rows) : res.status(404).json(
@@ -52,6 +59,7 @@ movies.get('/movies/id/:id', (req, res) => {
     .catch(() => res.status(500).json(generateError(500, 'Internal server error')))
 })
 
+// Returns all movies which have a given genre associated with it
 movies.get('/movies/genre/:id', (req, res) => {
   pool.query(
     buildMoviesQuery(

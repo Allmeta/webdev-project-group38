@@ -71,7 +71,10 @@ describe('GET /api/movies/reviews - get reviews', () => {
   })
 })
 
-/* describe('PUT /api/movies/reviews - update review object', () => {
+/**
+ * This test did not work function properly. Read more about why in the documentation
+ *
+describe('PUT /api/movies/reviews - update review object', () => {
   it('should return the response object and 200 status code', done => {
     const respObj = {
       id: Joi.number().required(),

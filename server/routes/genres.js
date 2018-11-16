@@ -10,6 +10,7 @@ import {
 
 const genres = express.Router()
 
+// Returns the genres that match the search result
 genres.get('/genres', (req, res) => {
   pool.query(
     buildGenresQuery(
@@ -25,7 +26,7 @@ genres.get('/genres', (req, res) => {
     .catch(() => res.status(500).json(generateError(500, 'Internal server error')))
 })
 
-// genre of a movie
+// Returns the genres for a specific movie_id
 genres.get('/genres/movie/:id', (req, res) => {
   pool.query(
     buildGenresQuery(
@@ -46,6 +47,7 @@ genres.get('/genres/movie/:id', (req, res) => {
     .catch(() => res.status(500).json(generateError(500, 'Internal server error')))
 })
 
+// Returns the average rating across movies for each genre
 genres.get('/genres/ratings', (req, res) => {
   pool.query(
     buildQuery(
