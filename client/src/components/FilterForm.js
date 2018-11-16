@@ -5,12 +5,6 @@ import { updateFilterQuery, changeSortToggle, fetchSortedMovies, fetchMovies } f
 import styled from 'styled-components'
 
 function FilterForm(props) {
-  function componentDidUpdate(prevfilterQuery) {
-    console.log('GGGGS')
-    if (this.props.filterQuery !== prevfilterQuery) {
-      console.log(this.state.filterQuery, 'Filterquery updated!')
-    }
-  }
   return (
     <Form >
       <Form.Input onChange={props.handleChange}
@@ -26,19 +20,11 @@ function FilterForm(props) {
           content: 'Rating'
         }}
       />
-
     </Form >
   )
 }
-/*
 
-      <Button onClick={props.handleSortToggle} icon labelPosition='right' floated='right' color={props.toggleSort} >Rating
-        {props.toggleSort === 'green' ? (<Icon size='big' name='sort numeric up' />) : (<Icon size='big' name='sort numeric down' />)}
-      </Button>
-*/
-
-function mapStateToProps(state) {
-  console.log(state.MovieReducer.toggleSort, 'state.MovieReducer.toggleSort')
+function mapStateToProps (state) {
   return ({
     filterQuery: state.MovieReducer.filterQuery,
     toggleSort: state.MovieReducer.toggleSort,

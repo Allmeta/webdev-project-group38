@@ -8,7 +8,7 @@ import {
   UPDATE_TITLE,
   UPDATE_FILTER_QUERY,
   EMPTY_FILTER_ITEMS,
-  UPDATE_SORT_TOGGLE,
+  UPDATE_SORT_TOGGLE, POST_COMMENT_BEGIN, POST_COMMENT_FAILURE,
   FETCH_SORTED_MOVIES_SUCCESS
 } from './MovieActionTypes'
 import fetch from 'cross-fetch'
@@ -95,10 +95,7 @@ export function fetchNextPage (title, filtercolor) {
       }
     }
   }
-
-  console.log(fetchURL)
   return (dispatch, getState) => {
-    console.log(getState().MovieReducer.nextPage)
     dispatch(fetchMoviesBegin())
     return fetch(fetchURL)
       .then(handleErrors)
@@ -130,6 +127,32 @@ export function fetchMovies (title) {
         return json
       })
       .catch(error => dispatch(fetchMoviesFailure(error)))
+  }
+}
+
+export function postCommentBegin () {
+  return {
+    type: POST_COMMENT_BEGIN,
+  }
+}
+
+export function postCommentFailure (error) {
+  return {
+    type: POST_COMMENT_FAILURE,
+    payload: error
+  }
+}
+
+export function postComment (key, comment) {
+  let fetchURL = BASE_URL + '/movies/reviews'
+  let putObject = { "id": key, "review": comment }
+  return dispatch => {
+    dispatch(postCommentBegin())
+    return fetch(fetchURL, { method: 'PUT', body: JSON.stringify(putObject), headers: { 'Content-Type': 'application/json' } })
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .catch(error => dispatch(postCommentFailure(error)))
   }
 }
 
@@ -208,37 +231,10 @@ export function fetchSortedMovies (togglesort, title) {
       .catch(error => dispatch(fetchMoviesFailure(error)))
   }
 }
-/* export function fetchNextSortedPage (title) {
-  let fetchURL = ''
-  let page = store.getState().MovieReducer.nextPage
-  if (title === undefined || title === '') {
-    fetchURL = BASE_URL + `/movies?sortOnRating=1&page=${page}`
-  } else {
-    fetchURL = BASE_URL + `/movies?page=${page}&search=${title}&sortOnRating=1`
-  }
-  console.log(fetchURL)
-  return (dispatch, getState) => {
-    console.log(getState().MovieReducer.nextPage)
-    dispatch(fetchMoviesBegin())
-    return fetch(fetchURL)
-      .then(handleErrors)
-      .then(res => res.json())
-      .then(json => {
-        dispatch(fetchNextSortedPageSuccess(json))
-        return json
-      })
-      .catch(error => dispatch(fetchNextPageFailure(error)))
-  }
-} */
+
 export function fetchSortedMoviesSuccess (movies) {
   return {
     type: FETCH_SORTED_MOVIES_SUCCESS,
     payload: { movies }
   }
 }
-/* export function fetchNextSortedPageSuccess (movies) {
-  return {
-    type: FETCH_NEXT_PAGE_SUCCESS,
-    payload: { movies }
-  }
-} */

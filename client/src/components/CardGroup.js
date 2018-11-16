@@ -31,11 +31,6 @@ class CardGroup extends Component {
     }
   }
 
-  componentDidMount () {
-    // const { fetchMovies } = this.props
-    // fetchMovies()
-  }
-
   render () {
     const image_base = 'https://image.tmdb.org/t/p/w500'
 
@@ -45,7 +40,6 @@ class CardGroup extends Component {
       <CardWrapper>
         {items && items.map((o) =>
           <MovieCard
-            key={o.movie_id}
             img={image_base + o.poster_path}
             description={o.summary}
             title={o.title}
@@ -53,8 +47,8 @@ class CardGroup extends Component {
             comment={o.comment}
             date={o.release_date}
             language={o.language}
-            // genres={o.genres.join(' ')}
             genres={['WIP1', 'WIP2', 'WIP3']}
+            movie_id={o.movie_id}
           />
         )}
       </CardWrapper>
