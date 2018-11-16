@@ -31,7 +31,6 @@ export {
   buildReviewsQuery,
   regular,
   insidePercent,
-  insidePercentSort,
   identity,
   buildGenresQuery,
   buildQuery
