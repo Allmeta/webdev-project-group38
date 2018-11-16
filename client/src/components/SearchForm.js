@@ -28,6 +28,7 @@ function mapDispatchToProps (dispatch) {
         dispatch(updateTitle(value))
       },
       handleSubmit: (event) => {
+        // Picks up the title field value from the DOM
         const title = event.target.querySelectorAll('input[name="title"]')[0].value
         dispatch(logSearch(title))
         dispatch(fetchMovies(title))

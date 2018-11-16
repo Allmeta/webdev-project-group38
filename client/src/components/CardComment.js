@@ -16,7 +16,8 @@ class Comment extends Component {
       movie_id: props.movie_id,
       comment: props.comment,
       commenting: false,
-      previewComment: ''
+      previewComment: '',
+      filterItems: props.filterItems
     }
     this.toggleCommenting = this.toggleCommenting.bind(this)
     this.submitComment = this.submitComment.bind(this)
@@ -28,7 +29,7 @@ class Comment extends Component {
   toggleCommenting () {
     this.setState({
       commenting: !this.state.commenting,
-      previewComment: ''
+      previewComment: '',
     })
   }
   submitComment () {
@@ -40,10 +41,14 @@ class Comment extends Component {
           previewComment: ''
         })
       }
-      this.toggleCommenting()
+    this.toggleCommenting()
     })
   }
-
+  componentDidUpdate(prevState) {
+    if (prevState.filterItems !== this.state.filterItems){
+      this.render()
+    }
+  }
   render () {
     return (
       <div>
@@ -84,7 +89,8 @@ class Comment extends Component {
 
 function mapStateToProps (state) {
   return {
-    error: state.MovieReducer.error
+    error: state.MovieReducer.error,
+    filterItems: state.MovieReducer.filterItems
   }
 }
 

@@ -9,7 +9,7 @@ import {
   UPDATE_FILTER_QUERY,
   EMPTY_FILTER_ITEMS,
   UPDATE_SORT_TOGGLE, POST_COMMENT_BEGIN, POST_COMMENT_FAILURE,
-  FETCH_SORTED_MOVIES_SUCCESS
+  FETCH_SORTED_MOVIES_SUCCESS, POST_COMMENT_SUCCESS
 } from './MovieActionTypes'
 import fetch from 'cross-fetch'
 import { BASE_URL } from '../api/constants'
@@ -49,7 +49,7 @@ export function fetchMoviesFailure (error) {
 }
 
 export function fetchNextPageFailure (error) {
-  console.log(error.message)
+  // To show error message upon fetch failure.
   return {
     type: FETCH_NEXT_PAGE_FAILURE,
     payload: 'No more movies to show!'
@@ -65,6 +65,7 @@ export function fetchNextPageSuccess (movies) {
 
 export function fetchNextPage (title, filtercolor) {
   let fetchURL = ''
+  // We need the next page to load.
   let page = store.getState().MovieReducer.nextPage
   if (title === undefined || title === '') {
     if (filtercolor === 'grey') {
@@ -118,6 +119,7 @@ export function fetchMovies (title) {
     fetchURL = BASE_URL + '/movies?page=' + page + '&search=' + title
   }
   return dispatch => {
+    // Use middleware to dispatch several functions and wait for the HTTP response.
     dispatch(fetchMoviesBegin())
     return fetch(fetchURL)
       .then(handleErrors)
@@ -143,15 +145,27 @@ export function postCommentFailure (error) {
   }
 }
 
+export function postCommentSuccess (key, comment) {
+  return {
+    type: POST_COMMENT_SUCCESS,
+    movie_id: key,
+    comment: comment
+  }
+}
+
 export function postComment (key, comment) {
   let fetchURL = BASE_URL + '/movies/reviews'
   let putObject = { 'id': key, 'review': comment }
   return dispatch => {
     dispatch(postCommentBegin())
-    return fetch(fetchURL, { method: 'PUT', body: JSON.stringify(putObject), headers: { 'Content-Type': 'application/json' } })
+    return fetch(fetchURL, {
+      method: 'PUT',
+      body: JSON.stringify(putObject),
+      headers: { 'Content-Type': 'application/json' }
+    })
       .then(handleErrors)
       .then(res => res.json())
-      .then(json => console.log(json))
+      .then(dispatch(postCommentSuccess(key, comment)))
       .catch(error => dispatch(postCommentFailure(error)))
   }
 }
@@ -171,9 +185,10 @@ export function updateFilterQuery (filterquery) {
   }
 }
 
-/* Action creator for empyting the filterQuery:
-* To be called when a new fetch-movie API call is done.
-*/
+/**
+ *  Action creator for empyting the filterQuery:
+ * To be called when a new fetch-movie API call is done.
+ */
 export function emptyFilterItems () {
   return {
     type: EMPTY_FILTER_ITEMS
@@ -234,10 +249,5 @@ export function fetchSortedMoviesSuccess (movies) {
   return {
     type: FETCH_SORTED_MOVIES_SUCCESS,
     payload: { movies }
-  }
-}
-export function changeSortToggle () {
-  return {
-    type: UPDATE_SORT_TOGGLE
   }
 }

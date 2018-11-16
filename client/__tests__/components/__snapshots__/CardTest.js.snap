@@ -84,17 +84,6 @@ exports[`renders correctly 1`] = `
   background: #f6f8fb;
 }
 
-.c8 {
-  color: rgb(146,153,161);
-  line-height: 13px;
-  padding: 8px 10px;
-  max-height: 42px;
-  text-align: center;
-  width: 100%;
-  background: #f6f8fb;
-  display: none;
-}
-
 <div
   className="c0"
   onMouseEnter={[Function]}
@@ -165,16 +154,6 @@ exports[`renders correctly 1`] = `
     />
     <div
       className="c7"
-    >
-      <div
-        className="ui label"
-        onClick={[Function]}
-      >
-        snapshot genre
-      </div>
-    </div>
-    <div
-      className="c8"
     >
       <div>
         <i

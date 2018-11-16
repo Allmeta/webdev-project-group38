@@ -3,6 +3,7 @@ import MovieCard from './Card.js'
 import { fetchMovies } from '../actions/MovieActions'
 import { connect } from 'react-redux'
 import styled from 'styled-components'
+import {IMAGE_BASE} from "../api/constants";
 
 const CardWrapper = styled.div`
   display:inline-grid;
@@ -27,27 +28,23 @@ class CardGroup extends Component {
     super(props)
 
     this.state = {
-      filteredItems: props.filteredItems // provided by connect@mapStateToProps
+      filterItems: props.filterItems // provided by connect@mapStateToProps
     }
   }
 
   render () {
-    const image_base = 'https://image.tmdb.org/t/p/w500'
-
-    const items = this.props.filteredItems
-
+    const items = this.props.filterItems
     return (
       <CardWrapper>
         {items && items.map((o) =>
           <MovieCard
-            img={image_base + o.poster_path}
+            img={IMAGE_BASE + o.poster_path}
             description={o.summary}
             title={o.title}
             popularity={Number(o.rating)}
             comment={o.comment}
             date={o.release_date}
             language={o.language}
-            genres={['WIP1', 'WIP2', 'WIP3']}
             movie_id={o.movie_id}
           />
         )}
@@ -58,7 +55,7 @@ class CardGroup extends Component {
 
 function mapStateToProps (state) {
   return {
-    filteredItems: state.MovieReducer.filterItems
+    filterItems: state.MovieReducer.filterItems
   }
 }
 

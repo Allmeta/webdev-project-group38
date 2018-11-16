@@ -80,7 +80,9 @@ class MovieCard extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      toggled: true
+      toggled: true,
+      movie_id: this.props.movie_id,
+      comment: this.props.comment
     }
     this.mouseIn = this.mouseIn.bind(this)
     this.mouseOut = this.mouseOut.bind(this)
@@ -104,20 +106,16 @@ class MovieCard extends Component {
         <CardData>
           <CardDate><Label size="large">{this.props.title}</Label></CardDate>
           <CardExtra>
-            <CardSpan><Label content={this.props.date} icon="calendar alternate"></Label></CardSpan>
+            <CardSpan><Label content={this.props.date} icon="calendar alternate"/></CardSpan>
             <CardSpan><Label content={this.props.language} icon="location arrow" /></CardSpan>
-            <CardSpan><Label content={this.props.popularity} icon="star"></Label></CardSpan>
+            <CardSpan><Label content={this.props.popularity} icon="star"/></CardSpan>
           </CardExtra>
           <CardDesc show={this.state.toggled}>{this.props.description}</CardDesc>
-          <CardBottom show={this.state.toggled}>
-            {this.props.genres.map((o) => <Label key={'' + o} content={o} />)}
-          </CardBottom>
-          <CardBottom show={!this.state.toggled}>
-            <Comment comment={this.props.comment} movie_id={this.props.movie_id}></Comment>
+          <CardBottom show>
+            <Comment comment={this.state.comment} movie_id={this.state.movie_id} />
           </CardBottom>
         </CardData>
       </Card>
-
     )
   }
 }
