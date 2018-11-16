@@ -77,7 +77,7 @@ const CardBottom = styled.div`
 `
 
 class MovieCard extends Component {
-  constructor (props) {
+  constructor(props) {
     super(props)
     this.state = {
       toggled: true
@@ -85,18 +85,18 @@ class MovieCard extends Component {
     this.mouseIn = this.mouseIn.bind(this)
     this.mouseOut = this.mouseOut.bind(this)
   }
-  mouseIn () {
+  mouseIn() {
     this.setState({
       toggled: false
     })
   }
-  mouseOut () {
+  mouseOut() {
     this.setState({
       toggled: true
     })
   }
 
-  render () {
+  render() {
     return (
       <Card onMouseEnter={this.mouseIn} onMouseLeave={this.mouseOut}>
         <CardImg img={this.props.img}>
@@ -105,12 +105,12 @@ class MovieCard extends Component {
           <CardDate><Label size="large">{this.props.title}</Label></CardDate>
           <CardExtra>
             <CardSpan><Label content={this.props.date} icon="calendar alternate"></Label></CardSpan>
-            <CardSpan><Label content={this.props.language} icon="location arrow"/></CardSpan>
+            <CardSpan><Label content={this.props.language} icon="location arrow" /></CardSpan>
             <CardSpan><Label content={this.props.popularity} icon="star"></Label></CardSpan>
           </CardExtra>
           <CardDesc show={this.state.toggled}>{this.props.description}</CardDesc>
           <CardBottom show={this.state.toggled}>
-            {this.props.genres.map((o) => <Label key={'' + o} content={o}/>)}
+            {this.props.genres.map((o) => <Label key={'' + o} content={o} />)}
           </CardBottom>
           <CardBottom show={!this.state.toggled}>
             <Comment comment={this.props.comment} movie_id={this.props.movie_id}></Comment>
