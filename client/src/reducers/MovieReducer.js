@@ -22,7 +22,6 @@ const initialState = {
   filterQuery: '',
   filterItems: [],
   toggleSort: 'grey',
-  error: null,
   nextPage: 0
 }
 
@@ -168,7 +167,7 @@ export const MovieReducer = (state = initialState, action) => {
   }
 }
 
-function findInObject (myObject, myCriteria) {
+function findInObject(myObject, myCriteria) {
   return myObject.filter(function (obj) {
     return Object.keys(myCriteria).every(function (c) {
       return obj[c].includes(myCriteria[c])

@@ -32,19 +32,10 @@ exports[`renders correctly 1`] = `
 }
 
 .c2 {
-  background: rgba(0,0,0,.5);
-  color: white;
-  width: 100%;
-  padding: 12px;
-  text-align: center;
-  font-size: 14px;
-}
-
-.c3 {
   position: relative;
 }
 
-.c4 {
+.c3 {
   text-align: center;
   font-size: 14px;
   padding: 10px;
@@ -53,21 +44,27 @@ exports[`renders correctly 1`] = `
   font-weight: bold;
 }
 
-.c5 {
+.c4 {
   color: rgb(122,133,143);
-  display: grid;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
   font-size: 13px;
-  grid-template-columns: repeat(2,1fr);
   background: #f6f8fb;
+  white-space: no-wrap;
 }
 
-.c6 {
-  padding: 8px;
-  text-align: center;
+.c5 {
+  padding: 2px;
+  margin: 0 auto;
   display: inline-block;
 }
 
-.c7 {
+.c6 {
   color: rgb(122,133,143);
   height: 160px;
   background: #fafafa;
@@ -77,7 +74,7 @@ exports[`renders correctly 1`] = `
   overflow-y: hidden;
 }
 
-.c8 {
+.c7 {
   color: rgb(146,153,161);
   line-height: 13px;
   padding: 8px 10px;
@@ -87,7 +84,7 @@ exports[`renders correctly 1`] = `
   background: #f6f8fb;
 }
 
-.c9 {
+.c8 {
   color: rgb(146,153,161);
   line-height: 13px;
   padding: 8px 10px;
@@ -105,24 +102,38 @@ exports[`renders correctly 1`] = `
 >
   <div
     className="c1"
+  />
+  <div
+    className="c2"
   >
     <div
-      className="c2"
+      className="c3"
     >
-      snapshot
+      <div
+        className="ui large label"
+        onClick={[Function]}
+      >
+        snapshot
+      </div>
     </div>
-  </div>
-  <div
-    className="c3"
-  >
     <div
       className="c4"
-    />
-    <div
-      className="c5"
     >
       <span
-        className="c6"
+        className="c5"
+      >
+        <div
+          className="ui label"
+          onClick={[Function]}
+        >
+          <i
+            aria-hidden="true"
+            className="calendar alternate icon"
+          />
+        </div>
+      </span>
+      <span
+        className="c5"
       >
         <div
           className="ui label"
@@ -135,7 +146,7 @@ exports[`renders correctly 1`] = `
         </div>
       </span>
       <span
-        className="c6"
+        className="c5"
       >
         <div
           className="ui label"
@@ -150,10 +161,10 @@ exports[`renders correctly 1`] = `
       </span>
     </div>
     <div
-      className="c7"
+      className="c6"
     />
     <div
-      className="c8"
+      className="c7"
     >
       <div
         className="ui label"
@@ -163,7 +174,7 @@ exports[`renders correctly 1`] = `
       </div>
     </div>
     <div
-      className="c9"
+      className="c8"
     >
       <div>
         <i

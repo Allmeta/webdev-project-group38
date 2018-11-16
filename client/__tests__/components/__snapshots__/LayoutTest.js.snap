@@ -42,7 +42,18 @@ exports[`renders correctly 1`] = `
 }
 
 .c4 {
-  width: 400px;
+  width: 1000px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
 }
 
 .c4 > * {
@@ -163,6 +174,37 @@ exports[`renders correctly 1`] = `
             </div>
           </div>
         </form>
+        <form
+          className="ui form"
+          onSubmit={[Function]}
+        >
+          <div
+            className="field"
+          >
+            <div
+              className="ui action input"
+            >
+              <input
+                name="filterQuery"
+                onChange={[Function]}
+                placeholder="Filter on title..."
+                type="text"
+                value=""
+              />
+              <button
+                className="ui grey button"
+                onClick={[Function]}
+                role="button"
+              >
+                <i
+                  aria-hidden="true"
+                  className="sort numeric down icon"
+                />
+                Rating
+              </button>
+            </div>
+          </div>
+        </form>
       </div>
     </div>
   </div>
@@ -172,14 +214,31 @@ exports[`renders correctly 1`] = `
     <div
       className="c6"
     />
-    <i
-      aria-hidden="true"
-      className="grey arrow alternate circle down huge link loading icon"
-      onClick={[Function]}
-      onFocus={[Function]}
-      onMouseEnter={[Function]}
-      onMouseLeave={[Function]}
-    />
+    <div
+      style={
+        Object {
+          "display": "flex",
+          "flexDirection": "row",
+        }
+      }
+    >
+      <span
+        style={
+          Object {
+            "fontSize": 0,
+          }
+        }
+      />
+      <i
+        aria-hidden="true"
+        className="grey arrow alternate circle down huge link icon"
+        onBlur={[Function]}
+        onClick={[Function]}
+        onFocus={[Function]}
+        onMouseEnter={[Function]}
+        onMouseLeave={[Function]}
+      />
+    </div>
   </div>
 </div>
 `;

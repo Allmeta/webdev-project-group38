@@ -42,7 +42,18 @@ exports[`renders correctly 1`] = `
 }
 
 .c3 {
-  width: 400px;
+  width: 1000px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
 }
 
 .c3 > * {
@@ -89,6 +100,37 @@ exports[`renders correctly 1`] = `
                 aria-hidden="true"
                 className="search icon"
               />
+            </button>
+          </div>
+        </div>
+      </form>
+      <form
+        className="ui form"
+        onSubmit={[Function]}
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui action input"
+          >
+            <input
+              name="filterQuery"
+              onChange={[Function]}
+              placeholder="Filter on title..."
+              type="text"
+              value=""
+            />
+            <button
+              className="ui grey button"
+              onClick={[Function]}
+              role="button"
+            >
+              <i
+                aria-hidden="true"
+                className="sort numeric down icon"
+              />
+              Rating
             </button>
           </div>
         </div>
