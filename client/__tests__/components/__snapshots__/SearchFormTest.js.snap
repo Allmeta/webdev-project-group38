@@ -14,7 +14,7 @@ exports[`renders correctly 1`] = `
       <input
         name="title"
         onChange={[Function]}
-        placeholder="Search"
+        placeholder="Search movie title..."
         type="text"
       />
       <button
