@@ -8,7 +8,7 @@ import {
   UPDATE_TITLE,
   UPDATE_FILTER_QUERY,
   EMPTY_FILTER_ITEMS,
-  UPDATE_SORT_TOGGLE
+  UPDATE_SORT_TOGGLE, POST_COMMENT_BEGIN, POST_COMMENT_FAILURE
 } from './MovieActionTypes'
 import fetch from 'cross-fetch'
 import { BASE_URL } from '../api/constants'
@@ -70,9 +70,7 @@ export function fetchNextPage (title) {
   } else {
     fetchURL = BASE_URL + '/movies?page=' + page + '&search=' + title
   }
-  console.log(fetchURL)
   return (dispatch, getState) => {
-    console.log(getState().MovieReducer.nextPage)
     dispatch(fetchMoviesBegin())
     return fetch(fetchURL)
       .then(handleErrors)
@@ -104,6 +102,32 @@ export function fetchMovies (title) {
         return json
       })
       .catch(error => dispatch(fetchMoviesFailure(error)))
+  }
+}
+
+export function postCommentBegin () {
+  return {
+    type: POST_COMMENT_BEGIN,
+  }
+}
+
+export function postCommentFailure (error) {
+  return {
+    type: POST_COMMENT_FAILURE,
+    payload: error
+  }
+}
+
+export function postComment (key, comment) {
+  let fetchURL = BASE_URL + '/movies/reviews'
+  let putObject = { "id": key, "review": comment }
+  return dispatch => {
+    dispatch(postCommentBegin())
+    return fetch(fetchURL, { method: 'PUT', body: JSON.stringify(putObject), headers: { 'Content-Type': 'application/json' } })
+      .then(handleErrors)
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .catch(error => dispatch(postCommentFailure(error)))
   }
 }
 

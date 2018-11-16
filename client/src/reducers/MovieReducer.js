@@ -9,7 +9,7 @@ import {
   FETCH_NEXT_PAGE_SUCCESS,
   UPDATE_FILTER_QUERY,
   EMPTY_FILTER_ITEMS,
-  UPDATE_SORT_TOGGLE
+  UPDATE_SORT_TOGGLE, POST_COMMENT_BEGIN, POST_COMMENT_FAILURE
 } from '../actions/MovieActionTypes'
 import store from '../store/index.js'
 
@@ -26,8 +26,6 @@ const initialState = {
 }
 
 export const MovieReducer = (state = initialState, action) => {
-  console.log('action.type, REDUCER', action.type)
-
   switch (action.type) {
     case UPDATE_TITLE:
       return Object.assign({}, state, {
@@ -42,24 +40,31 @@ export const MovieReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         searchHistory: [...state.searchHistory, { searchedTitle: action.title }]
       })
+    case POST_COMMENT_BEGIN:
+      return Object.assign({}, state, {
+        error: null
+      })
+    case POST_COMMENT_FAILURE:
+      return Object.assign({}, state, {
+        error: action.payload.message
+      })
     case FETCH_MOVIES_BEGIN:
       // Mark state as loading so frontend knows to display loading wheel.
       // Reset any errors when starting new fetch.
       return Object.assign({}, state, {
         loading: true,
         error: null,
-        filterQuery: ''
       })
     case FETCH_MOVIES_SUCCESS:
       // When finished, set loading to false.
       // We update the items with what was received.
-      console.log('FETCH_MOVIES_SUCCESS CALLED')
       return Object.assign({}, state, {
         loading: false,
         items: action.payload.movies,
         nextPage: 1,
         filterItems: action.payload.movies,
-        toggleSort: 'grey'
+        toggleSort: 'grey',
+        filterQuery: ''
       })
     case FETCH_MOVIES_FAILURE:
       // Set loading to false and save error so we can display it.

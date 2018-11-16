@@ -113,7 +113,7 @@ class MovieCard extends Component {
             {this.props.genres.map((o) => <Label key={'' + o} content={o}/>)}
           </CardBottom>
           <CardBottom show={!this.state.toggled}>
-            <Comment comment={this.props.comment}></Comment>
+            <Comment comment={this.props.comment} movie_id={this.props.movie_id}></Comment>
           </CardBottom>
         </CardData>
       </Card>
@@ -130,7 +130,8 @@ MovieCard.propTypes = {
   genres: PropTypes.array.isRequired,
   comment: PropTypes.string,
   date: PropTypes.string,
-  language: PropTypes.string
+  language: PropTypes.string,
+  key: PropTypes.number
 }
 
 export default MovieCard

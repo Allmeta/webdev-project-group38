@@ -2,6 +2,8 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 import { Label, Icon, Input, Popup } from 'semantic-ui-react'
+import { connect } from "react-redux";
+import {postComment} from "../actions/MovieActions";
 
 const CommentWrap = styled.div`
   text-align:left;
@@ -11,6 +13,7 @@ class Comment extends Component {
   constructor (props) {
     super(props)
     this.state = {
+      movie_id: props.movie_id,
       comment: props.comment,
       commenting: false,
       previewComment: ''
@@ -28,14 +31,19 @@ class Comment extends Component {
       previewComment: ''
     })
   }
-  submitComment (e) {
-    this.setState({
-      comment: this.state.previewComment,
-      previewComment: ''
+  submitComment () {
+    this.props.postComment(this.state.movie_id, this.state.previewComment).then(() => {
+      if(this.props.error === null){
+        console.log(this.props.error)
+        this.setState({
+          comment: this.state.previewComment,
+          previewComment: ''
+        });
+      }
+      this.toggleCommenting()
     })
-
-    this.toggleCommenting()
   }
+
   render () {
     return (
       <div>
@@ -74,7 +82,20 @@ class Comment extends Component {
   }
 }
 
+function mapStateToProps(state){
+  return{
+    error: state.MovieReducer.error
+  }
+}
+
+function mapDispatchToProps(dispatch){
+  return{
+    postComment: (key, comment) => dispatch(postComment(key, comment))
+  }
+}
+
 Comment.propTypes = {
   comment: PropTypes.string
 }
-export default Comment
+
+export default connect(mapStateToProps, mapDispatchToProps)(Comment)
