@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
-import { SearchFormReducer } from './SearchFormReducer'
+import { MovieReducer } from './MovieReducer'
 
 export default combineReducers({
-  SearchFormReducer
+  MovieReducer: MovieReducer
 })

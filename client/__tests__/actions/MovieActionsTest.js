@@ -1,5 +1,5 @@
-import * as actions from '../SearchFormActions'
-import * as types from '../SearchFormActionTypes'
+import * as actions from '../../src/actions/MovieActions'
+import * as types from '../../src/actions/MovieActionTypes'
 import configureMockStore from 'redux-mock-store'
 import thunk from 'redux-thunk'
 import fetchMock from 'fetch-mock'

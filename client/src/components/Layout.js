@@ -1,32 +1,42 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import styled from 'styled-components'
 import Header from './Header'
-import CardGroup from "./CardGroup";
+import CardGroup from './CardGroup'
+import Loader from './Loader'
 
 const WrapperFlex = styled.div`
   display: flex;
-  background-color: #212733;
   flex-direction: column;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: Roboto,sans-serif;
   color: white;
-  height: 100vh;
+  min-height: 100vh;
   margin:0;
+  background:#edf1f5;
+  
 `
 const StyledBody = styled.div`
   flex: 1;
+  display:flex;
+  flex-direction:column;
+  align-items: center;
   height: 100%;
-  padding-top:10%;
-  padding-left:10%;
-  padding-right:10%;
+  padding: 108px 50px 50px 50px;
+  @media (max-width: 860px){
+    padding: 78px 20px 20px 20px;
+  }
+  >  * {
+    margin-bottom:50px;
+  }
 `
 
 class Layout extends Component {
-  render() {
+  render () {
     return (
       <WrapperFlex>
         <Header />
         <StyledBody>
           <CardGroup/>
+          <Loader/>
         </StyledBody>
       </WrapperFlex >
     )

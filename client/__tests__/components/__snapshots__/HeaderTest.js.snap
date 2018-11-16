@@ -1,0 +1,141 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c0 {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  position: fixed;
+  height: 58px;
+  left: 0;
+  top: 0;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  width: 100%;
+  overflow-y: hidden;
+  z-index: 999;
+  background-color: #4553F4;
+  box-shadow: 0 4px 3px rgba(49,54,68,.3);
+}
+
+.c1 {
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  height: 100%;
+  width: 100%;
+  margin-left: 10%;
+  margin-right: 10%;
+}
+
+.c2 {
+  width: 200px;
+  border-right: 1px solid hsla(0,0%,93%,.16);
+}
+
+.c3 {
+  width: 1000px;
+  -webkit-align-items: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+}
+
+.c3 > * {
+  margin-left: 50px;
+}
+
+<div
+  className="c0"
+>
+  <div
+    className="c1"
+  >
+    <img
+      className="c2"
+      src="test-file-stub"
+    />
+    <div />
+    <div
+      className="c3"
+    >
+      <form
+        className="ui form"
+        onSubmit={[Function]}
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui action input"
+          >
+            <input
+              name="title"
+              onChange={[Function]}
+              placeholder="Search"
+              type="text"
+            />
+            <button
+              className="ui icon button"
+              onClick={[Function]}
+              role="button"
+              type="submit"
+            >
+              <i
+                aria-hidden="true"
+                className="search icon"
+              />
+            </button>
+          </div>
+        </div>
+      </form>
+      <form
+        className="ui form"
+        onSubmit={[Function]}
+      >
+        <div
+          className="field"
+        >
+          <div
+            className="ui action input"
+          >
+            <input
+              name="filterQuery"
+              onChange={[Function]}
+              placeholder="Filter on title..."
+              type="text"
+              value=""
+            />
+            <button
+              className="ui grey button"
+              onClick={[Function]}
+              role="button"
+            >
+              <i
+                aria-hidden="true"
+                className="sort numeric down icon"
+              />
+              Rating
+            </button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;

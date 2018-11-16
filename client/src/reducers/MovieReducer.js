@@ -4,10 +4,13 @@ import {
   FETCH_MOVIES_SUCCESS,
   LOG_SEARCH,
   UPDATE_TITLE,
+  UPDATE_PAGE,
+  FETCH_NEXT_PAGE_FAILURE,
+  FETCH_NEXT_PAGE_SUCCESS,
   UPDATE_FILTER_QUERY,
   EMPTY_FILTER_ITEMS,
   UPDATE_SORT_TOGGLE
-} from '../actions/SearchFormActionTypes'
+} from '../actions/MovieActionTypes'
 import store from '../store/index.js'
 
 const initialState = {
@@ -18,14 +21,21 @@ const initialState = {
   error: null,
   filterQuery: '',
   filterItems: [],
-  toggleSort: 'grey'
+  toggleSort: 'grey',
+  nextPage: 0
 }
 
-export const SearchFormReducer = (state = initialState, action) => {
+export const MovieReducer = (state = initialState, action) => {
+  console.log('action.type, REDUCER', action.type)
+
   switch (action.type) {
     case UPDATE_TITLE:
       return Object.assign({}, state, {
         title: action.title
+      })
+    case UPDATE_PAGE:
+      return Object.assign({}, state, {
+        nextPage: state.nextPage + 1
       })
     case LOG_SEARCH:
       // Update search history.
@@ -38,15 +48,16 @@ export const SearchFormReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         loading: true,
         error: null,
-        filterItems: [],
         filterQuery: ''
       })
     case FETCH_MOVIES_SUCCESS:
       // When finished, set loading to false.
       // We update the items with what was received.
+      console.log('FETCH_MOVIES_SUCCESS CALLED')
       return Object.assign({}, state, {
         loading: false,
         items: action.payload.movies,
+        nextPage: 1,
         filterItems: action.payload.movies,
         toggleSort: 'grey'
       })
@@ -56,8 +67,51 @@ export const SearchFormReducer = (state = initialState, action) => {
       return Object.assign({}, state, {
         loading: false,
         error: action.payload.error.message,
-        items: []
+        items: [],
+        nextPage: 1
       })
+    case FETCH_NEXT_PAGE_FAILURE:
+      return Object.assign({}, state, {
+        loading: false,
+        error: action.payload,
+        nextPage: state.nextPage - 1
+      })
+    case FETCH_NEXT_PAGE_SUCCESS:
+      // Adding new movies on scroll
+      if (state.toggleSort === 'green') {
+        // Sorting the newly added films:
+        let newSortedList = state.filterItems.concat(action.payload.movies)
+        newSortedList.sort(function (a, b) {
+          return a.rating.localeCompare(b.rating)
+        })
+        let sorted = newSortedList.sort().reverse()
+        return Object.assign({}, state, {
+          loading: false,
+          items: state.items.concat(action.payload.movies),
+          filterItems: sorted
+        })
+      }
+      if (state.toggleSort === 'grey') {
+        return Object.assign({}, state, {
+          loading: false,
+          items: state.items.concat(action.payload.movies),
+          filterItems: state.filterItems.concat(action.payload.movies)
+        })
+      }
+      if (state.toggleSort === 'red') {
+        // Sorting the newly added films:
+        let newSortedList = state.filterItems.concat(action.payload.movies)
+        newSortedList.sort(function (a, b) {
+          return a.rating.localeCompare(b.rating)
+        })
+        let sorted = newSortedList.sort().reverse()
+        return Object.assign({}, state, {
+          loading: false,
+          items: state.items.concat(action.payload.movies),
+          filterItems: sorted.reverse()
+        })
+      }
+      break
     case UPDATE_FILTER_QUERY:
       var myJson = JSON.stringify([...state.items])
       var filteredJson = findInObject(JSON.parse(myJson), { title: action.payload })
@@ -113,7 +167,7 @@ export const SearchFormReducer = (state = initialState, action) => {
   }
 }
 
-function findInObject (myObject, myCriteria) {
+function findInObject(myObject, myCriteria) {
   return myObject.filter(function (obj) {
     return Object.keys(myCriteria).every(function (c) {
       return obj[c].includes(myCriteria[c])

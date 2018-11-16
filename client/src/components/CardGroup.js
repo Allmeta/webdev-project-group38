@@ -1,8 +1,26 @@
 import React, { Component } from 'react'
-import { Card } from 'semantic-ui-react'
 import MovieCard from './Card.js'
-import { fetchMovies } from '../actions/SearchFormActions'
+import { fetchMovies } from '../actions/MovieActions'
 import { connect } from 'react-redux'
+import styled from 'styled-components'
+
+const CardWrapper = styled.div`
+  display:inline-grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  margin: 0 auto;
+  max-width: 80vw;
+  
+  @media (max-width: 1330px){
+    grid-template-columns: repeat(2,1fr);
+  }
+  @media (max-width: 860px){
+    grid-template-columns: repeat(1,1fr);
+    max-width: 100vw;
+    grid-row-gap: 20px;
+  }
+`
 
 class CardGroup extends Component {
   constructor (props) {
@@ -14,8 +32,8 @@ class CardGroup extends Component {
   }
 
   componentDidMount () {
-    const { fetchMovies } = this.props
-    fetchMovies()
+    // const { fetchMovies } = this.props
+    // fetchMovies()
   }
 
   render () {
@@ -24,8 +42,7 @@ class CardGroup extends Component {
     const items = this.props.filteredItems
 
     return (
-      <Card.Group centered>
-        {console.log(items, 'CONSOLE LOG')}
+      <CardWrapper>
         {items && items.map((o) =>
           <MovieCard
             key={o.movie_id}
@@ -33,18 +50,21 @@ class CardGroup extends Component {
             description={o.summary}
             title={o.title}
             popularity={Number(o.rating)}
+            comment={o.comment}
+            date={o.release_date}
+            language={o.language}
             // genres={o.genres.join(' ')}
-            genres='WIP'
+            genres={['WIP1', 'WIP2', 'WIP3']}
           />
         )}
-      </Card.Group>
+      </CardWrapper>
     )
   }
 }
 
 function mapStateToProps (state) {
   return {
-    filteredItems: state.SearchFormReducer.filterItems
+    filteredItems: state.MovieReducer.filterItems
   }
 }
 

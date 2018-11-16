@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders correctly 1`] = `
+.c0 {
+  display: inline-grid;
+  grid-template-columns: repeat(3,1fr);
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
+  margin: 0 auto;
+  max-width: 80vw;
+}
+
+@media (max-width:1330px) {
+  .c0 {
+    grid-template-columns: repeat(2,1fr);
+  }
+}
+
+@media (max-width:860px) {
+  .c0 {
+    grid-template-columns: repeat(1,1fr);
+    max-width: 100vw;
+    grid-row-gap: 20px;
+  }
+}
+
+<div
+  className="c0"
+/>
+`;
