@@ -5,10 +5,13 @@ import {
   FETCH_NEXT_PAGE_FAILURE, FETCH_NEXT_PAGE_SUCCESS,
   LOG_SEARCH,
   UPDATE_PAGE,
-  UPDATE_TITLE
+  UPDATE_TITLE,
+  UPDATE_FILTER_QUERY,
+  EMPTY_FILTER_ITEMS,
+  UPDATE_SORT_TOGGLE
 } from './MovieActionTypes'
 import fetch from 'cross-fetch'
-import {BASE_URL} from '../api/constants'
+import { BASE_URL } from '../api/constants'
 import store from '../store/index'
 
 export function updateTitle (title) {
@@ -59,14 +62,13 @@ export function fetchNextPageSuccess (movies) {
   }
 }
 
-export function fetchNextPage(title){
+export function fetchNextPage (title) {
   let fetchURL = ''
   let page = store.getState().MovieReducer.nextPage
-  if(title === undefined || title === ''){
+  if (title === undefined || title === '') {
     fetchURL = BASE_URL + '/movies?page=' + page + '&title='
-  }
-  else{
-    fetchURL = BASE_URL + '/movies?page=' + page + '&search=' + title;
+  } else {
+    fetchURL = BASE_URL + '/movies?page=' + page + '&search=' + title
   }
   console.log(fetchURL)
   return (dispatch, getState) => {
@@ -87,10 +89,9 @@ export function fetchNextPage(title){
 export function fetchMovies (title) {
   let fetchURL = ''
   let page = 1
-  if(title === undefined || title === ''){
+  if (title === undefined || title === '') {
     fetchURL = BASE_URL + '/movies?page=' + page + '&title='
-  }
-  else{
+  } else {
     fetchURL = BASE_URL + '/movies?page=' + page + '&search=' + title
   }
   return dispatch => {
@@ -112,4 +113,22 @@ function handleErrors (response) {
     throw Error(response.statusText)
   }
   return response
+}
+
+export function updateFilterQuery (filterquery) {
+  return {
+    type: UPDATE_FILTER_QUERY,
+    payload: filterquery
+  }
+}
+
+export function changeSortToggle () {
+  return {
+    type: UPDATE_SORT_TOGGLE
+  }
+}
+export function emptyFilterItems () {
+  return {
+    type: EMPTY_FILTER_ITEMS
+  }
 }

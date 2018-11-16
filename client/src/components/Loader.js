@@ -31,7 +31,7 @@ class Loader extends Component {
         <Popup position="top center" content="Load more movies" trigger={
           <Icon name={this.props.loading ? 'circle notch' : 'arrow alternate circle down'}
             color="grey" link size="huge"
-            loading={this.props.loading}/>
+            loading={this.props.loading} />
         }></Popup>
       </div>
 
@@ -53,7 +53,7 @@ function mapDispatchToProps (dispatch) {
       let searchHistory = store.getState().MovieReducer.searchHistory
       let title = searchHistory[searchHistory.length - 1]
       let searchedTitle = ''
-      if (title !== undefined) {
+      if (title) {
         searchedTitle = title['searchedTitle']
       }
       dispatch(updatePage())

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import styled from 'styled-components'
 import Logo from '../images/filmguru-logo2.jpg'
 import SearchForm from './SearchForm.js'
+import FilterForm from './FilterForm.js'
 
 // The logo uses this hex-color: #4553F4
 
@@ -35,7 +36,10 @@ const SearchFields = styled.div`
   > * {
     margin-left:50px;
   }
-  width:400px;
+  width:1000px;
+  align-items:center;
+  display:flex;
+  flex-direction:row;
 `
 
 class Header extends Component {
@@ -47,6 +51,7 @@ class Header extends Component {
           <div></div>
           <SearchFields>
             <SearchForm />
+            <FilterForm />
           </SearchFields>
         </HeadWrap>
       </HDiv>

@@ -27,7 +27,7 @@ class CardGroup extends Component {
     super(props)
 
     this.state = {
-      items: props.items // provided by connect@mapStateToProps
+      filteredItems: props.filteredItems // provided by connect@mapStateToProps
     }
   }
 
@@ -39,7 +39,7 @@ class CardGroup extends Component {
   render () {
     const image_base = 'https://image.tmdb.org/t/p/w500'
 
-    const items = this.props.items
+    const items = this.props.filteredItems
 
     return (
       <CardWrapper>
@@ -64,7 +64,7 @@ class CardGroup extends Component {
 
 function mapStateToProps (state) {
   return {
-    items: state.MovieReducer.items
+    filteredItems: state.MovieReducer.filterItems
   }
 }
 
