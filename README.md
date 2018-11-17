@@ -9,6 +9,7 @@ FilmGuru is a website that lets you search for movies. In esscense it's a front 
 - **Filter** the search on movie synopsis by starting to type in the input field. Example:
 ![Search and filter](https://i.imgur.com/501eQ4J.png)
 - **Sort on rating** makes an API call which sorts all the movies by their respective ratings, either in ascending or descending order
+- **Scroll in each card** Show more of the movie synopsis by scrolling each individual card (if the synopsis length exceeds the card height)
 
 *Disclaimer:* Since our assignment stated that both the search and sorting should be done on the server-side, our Filmguru&trade; does not support *sorting* on a result set from a search call. This is not how we would have implemented the sort functionaity, had we been given the choice.
 
