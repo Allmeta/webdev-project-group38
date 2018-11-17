@@ -5,7 +5,7 @@
 FilmGuru is a website that lets you search for movies. In esscense it's a front end interface for a movie database which is accessed through a rest api service that the client sends HTTP requests to.
 
 ### Functionality:
-- **Search movie** titles by typing in the leftmost input field and clicking the search icon
+- **Search movie** titles by typing in the leftmost input field and clicking the search icon. The search query is case sensitive, so remember to use capitals at the start of each word.
 - **Filter** the search on movie synopsis by starting to type in the input field. Example:
 ![Search and filter](https://i.imgur.com/501eQ4J.png)
 - **Sort on rating** makes an API call which sorts all the movies by their respective ratings, either in ascending or descending order
